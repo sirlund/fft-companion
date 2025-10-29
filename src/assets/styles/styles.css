@@ -349,16 +349,17 @@ tr:hover {
 }
 
 .job-icon {
-    box-sizing: content-box;
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 80px;
     background: rgba(212, 175, 55, 0.2);
-    border: 2px solid #d4af37;
+    /* border: 2px solid #d4af37; */
     border-radius: 8px;
-    padding: 8px;
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;
     image-rendering: crisp-edges;
+    display: flex;
+    align-items: flex-start;
+    overflow: hidden;
 }
 
 .requirements-section {
