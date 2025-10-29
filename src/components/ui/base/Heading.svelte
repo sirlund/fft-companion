@@ -15,6 +15,7 @@
 <style>
   .heading {
     font-family: var(--font-serif);
+    line-height: var(--line-height-tight);
     margin: 0;
   }
 

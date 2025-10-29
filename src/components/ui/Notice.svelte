@@ -34,38 +34,48 @@
     margin-bottom: 10px;
     font-size: 1.2em;
     text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
+    line-height: var(--line-height-tight);
   }
 
   .notice-content {
     font-size: 0.9em;
-    line-height: 1.6;
+    line-height: var(--line-height-relaxed);
   }
 
   /* Variants */
-  .notice-warning {
-    background: linear-gradient(135deg, var(--color-gold-light) 0%, #e8d4b0 50%, var(--color-parchment-base) 100%);
-    border-color: var(--color-gold);
+  .notice-info {
+    background: linear-gradient(135deg, var(--color-status-info-light) 0%, var(--color-status-info-base) 50%, var(--color-status-info-dark) 100%);
+    border-color: var(--color-status-info-border);
     box-shadow:
-      inset 0 0 0 1px var(--color-gold),
-      inset 0 0 0 2px var(--color-gold-light),
-      0 4px 8px rgba(212, 175, 55, 0.4);
+      inset 0 0 0 1px var(--color-status-info-border),
+      inset 0 0 0 2px var(--color-status-info-light),
+      0 4px 8px rgba(144, 164, 174, 0.4);
+  }
+
+  .notice-warning {
+    background: linear-gradient(135deg, var(--color-status-warning-light) 0%, var(--color-status-warning-base) 50%, var(--color-status-warning-dark) 100%);
+    border-color: var(--color-status-warning-border);
+    box-shadow:
+      inset 0 0 0 1px var(--color-status-warning-border),
+      inset 0 0 0 2px var(--color-status-warning-light),
+      0 4px 8px rgba(253, 216, 53, 0.4);
   }
 
   .notice-success {
-    background: linear-gradient(135deg, #e8f4e8 0%, #d4e8d4 50%, #c4dcc4 100%);
-    border-color: #4caf50;
+    background: linear-gradient(135deg, var(--color-status-success-light) 0%, var(--color-status-success-base) 50%, var(--color-status-success-dark) 100%);
+    border-color: var(--color-status-success-border);
     box-shadow:
-      inset 0 0 0 1px #4caf50,
-      inset 0 0 0 2px #e8f4e8,
+      inset 0 0 0 1px var(--color-status-success-border),
+      inset 0 0 0 2px var(--color-status-success-light),
       0 4px 8px rgba(76, 175, 80, 0.4);
   }
 
   .notice-error {
-    background: linear-gradient(135deg, #f4e8e8 0%, #e8d4d4 50%, #dcc4c4 100%);
-    border-color: var(--color-red);
+    background: linear-gradient(135deg, var(--color-status-error-light) 0%, var(--color-status-error-base) 50%, var(--color-status-error-dark) 100%);
+    border-color: var(--color-status-error-border);
     box-shadow:
-      inset 0 0 0 1px var(--color-red),
-      inset 0 0 0 2px #f4e8e8,
-      0 4px 8px rgba(231, 76, 60, 0.4);
+      inset 0 0 0 1px var(--color-status-error-border),
+      inset 0 0 0 2px var(--color-status-error-light),
+      0 4px 8px rgba(212, 63, 47, 0.4);
   }
 </style>

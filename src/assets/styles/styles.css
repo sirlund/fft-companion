@@ -56,7 +56,9 @@
  * - parchment-100 through parchment-900 (beige/cream tones)
  * - brown-100 through brown-900 (main UI colors)
  * - gold-100 through gold-900 (accent/highlight colors)
- * - red-100 through red-900 (error/special states)
+ * - red-100 through red-900 (error/danger states)
+ * - green-100 through green-900 (success states)
+ * - yellow-100 through yellow-900 (warning states)
  *
  * Workflow to update a token:
  * 1. Find the token in this :root section
@@ -119,6 +121,28 @@
     --color-red-800: #9c2b22;
     --color-red-900: #81231c;
 
+    /* Colors - Green Palette (9 levels) */
+    --color-green-100: #e8f5e9;
+    --color-green-200: #c8e6c9;
+    --color-green-300: #a5d6a7;
+    --color-green-400: #81c784;
+    --color-green-500: #66bb6a;
+    --color-green-600: #4caf50;
+    --color-green-700: #43a047;
+    --color-green-800: #388e3c;
+    --color-green-900: #2e7d32;
+
+    /* Colors - Yellow Palette (9 levels) */
+    --color-yellow-100: #fffde7;
+    --color-yellow-200: #fff9c4;
+    --color-yellow-300: #fff59d;
+    --color-yellow-400: #fff176;
+    --color-yellow-500: #ffee58;
+    --color-yellow-600: #ffeb3b;
+    --color-yellow-700: #fdd835;
+    --color-yellow-800: #f9a825;
+    --color-yellow-900: #f57f17;
+
     /* Legacy aliases for backwards compatibility (will be removed later) */
     --color-parchment-lightest: var(--color-parchment-200);
     --color-parchment-light: var(--color-parchment-300);
@@ -146,6 +170,31 @@
     --color-rating-d: #999;
     --color-rating-d-accent: #555;
 
+    /* Colors - Status (for notices, alerts, etc) */
+    /* Info - uses parchment tones */
+    --color-status-info-light: var(--color-parchment-200);
+    --color-status-info-base: var(--color-parchment-300);
+    --color-status-info-dark: var(--color-parchment-400);
+    --color-status-info-border: var(--color-brown-400);
+
+    /* Warning - yellow tones */
+    --color-status-warning-light: var(--color-yellow-100);
+    --color-status-warning-base: var(--color-yellow-200);
+    --color-status-warning-dark: var(--color-yellow-300);
+    --color-status-warning-border: var(--color-yellow-700);
+
+    /* Success - green tones */
+    --color-status-success-light: var(--color-green-100);
+    --color-status-success-base: var(--color-green-200);
+    --color-status-success-dark: var(--color-green-300);
+    --color-status-success-border: var(--color-green-600);
+
+    /* Error - red tones */
+    --color-status-error-light: var(--color-red-100);
+    --color-status-error-base: var(--color-red-200);
+    --color-status-error-dark: var(--color-red-300);
+    --color-status-error-border: var(--color-red-600);
+
     /* Typography */
     --font-serif: 'Georgia', 'Times New Roman', serif;
     --font-sans: system-ui, -apple-system, sans-serif;
@@ -157,6 +206,9 @@
     --font-size-xl: 2em;
     --font-weight-normal: 400;
     --font-weight-bold: 700;
+    --line-height-tight: 1.25;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.6;
 
     /* Size */
     --size-xs: 24px;
@@ -166,8 +218,10 @@
     --size-xl: 96px;
 
     /* Border Radius */
-    --radius-sm: 3px;
-    --radius-md: 4px;
+    --radius-xs: 4px;
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
 
     /* Border Width */
     --border-thin: 1px;
@@ -203,124 +257,8 @@ body {
 }
 
 /* Header */
-header {
-    text-align: center;
-    padding: 30px 0 50px 0;
-    border-bottom: 3px solid #8b6f47;
-    margin-bottom: 40px;
-    background: linear-gradient(180deg, rgba(139, 111, 71, 0.2) 0%, transparent 100%);
-}
-
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Georgia', 'Times New Roman', serif;
-}
-
-h1 {
-    font-size: 3.5em;
-    color: #f4e4c4;
-    text-shadow:
-        2px 2px 4px rgba(0,0,0,0.7),
-        0 0 20px rgba(212, 175, 55, 0.5);
-    letter-spacing: 4px;
-    margin-bottom: 10px;
-}
-
-.subtitle {
-    font-size: 1.3em;
-    color: #d4c4a0;
-    letter-spacing: 2px;
-    font-style: italic;
-}
-
-.version-info {
-    background: linear-gradient(135deg, #e8dcc0 0%, #d4c4a0 50%, #c4b490 100%);
-    border: 3px solid #8b6f47;
-    border-radius: 4px;
-    padding: 15px;
-    margin: 20px 0;
-    font-size: 0.9em;
-    color: #2f2416;
-    box-shadow:
-        inset 0 0 0 1px #a08968,
-        0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-.version-info h3 {
-    color: #4a3820;
-    margin-bottom: 10px;
-    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
-}
-
-/* Grid Layout */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 25px;
-    margin-bottom: 40px;
-}
-
-/* Menu Cards */
-.card {
-    background: linear-gradient(135deg, #e8dcc0 0%, #d4c4a0 50%, #c4b490 100%);
-    border: 3px solid #8b6f47;
-    border-radius: 4px;
-    padding: 30px;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    box-shadow:
-        inset 0 0 0 1px #a08968,
-        inset 0 0 0 2px #e8dcc0,
-        0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-.card:hover {
-    transform: translateY(-3px);
-    box-shadow:
-        inset 0 0 0 1px #d4af37,
-        inset 0 0 0 2px #f4e4c4,
-        0 8px 20px rgba(212, 175, 55, 0.5);
-}
-
-.card h2 {
-    color: #4a3820;
-    font-size: 2em;
-    text-align: center;
-    margin-bottom: 20px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    border-bottom: 2px solid #8b6f47;
-    padding-bottom: 15px;
-    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
-}
-
-.card p {
-    text-align: center;
-    color: #4a3820;
-    margin-bottom: 25px;
-    min-height: 60px;
-}
-
-.card-button {
-    display: block;
-    background: linear-gradient(180deg, #8b6f47 0%, #6b5537 100%);
-    border: 2px solid #5a4530;
-    color: #f4e4c4;
-    padding: 12px 24px;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-    font-size: 1.1em;
-    letter-spacing: 1px;
-    font-weight: bold;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
-}
-
-.card-button:hover {
-    background: linear-gradient(180deg, #d4af37 0%, #b8941f 100%);
-    color: #2f2416;
-    border-color: #d4af37;
 }
 
 /* Section Switching */

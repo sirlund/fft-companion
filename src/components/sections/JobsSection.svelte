@@ -52,14 +52,39 @@
     return `assets/jobs/${jobId}_${jobGenders[jobId]}.gif`;
   }
 
-  // Filter function for jobs
+  // Filter function for jobs - searches all content in job cards
   function filterJob(job) {
     if (!searchValue) return true;
     const search = searchValue.toLowerCase();
-    return job.name.toLowerCase().includes(search) ||
-           job.ability?.name?.toLowerCase().includes(search) ||
-           job.description?.toLowerCase().includes(search) ||
-           job.bonuses?.some(b => b.text.toLowerCase().includes(search));
+
+    // Search in name
+    if (job.name.toLowerCase().includes(search)) return true;
+
+    // Search in character name
+    if (job.characterName?.toLowerCase().includes(search)) return true;
+
+    // Search in requirements
+    if (job.requirements?.some(r => r.label.toLowerCase().includes(search))) return true;
+
+    // Search in stats
+    if (job.stats) {
+      const statValues = Object.values(job.stats)
+        .map(s => s.value?.toString().toLowerCase())
+        .filter(Boolean);
+      if (statValues.some(v => v.includes(search))) return true;
+    }
+
+    // Search in ability
+    if (job.ability?.name?.toLowerCase().includes(search)) return true;
+    if (job.ability?.description?.toLowerCase().includes(search)) return true;
+
+    // Search in bonuses
+    if (job.bonuses?.some(b => b.text.toLowerCase().includes(search))) return true;
+
+    // Search in description
+    if (job.description?.toLowerCase().includes(search)) return true;
+
+    return false;
   }
 
   // Derived filtered special jobs
@@ -168,5 +193,6 @@
     margin: 15px 0 30px;
     font-style: italic;
     font-size: 1em;
+    line-height: var(--line-height-relaxed);
   }
 </style>

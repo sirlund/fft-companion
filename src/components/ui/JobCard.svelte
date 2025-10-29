@@ -198,7 +198,7 @@
   .ability-description {
     font-size: var(--font-size-sm);
     color: var(--color-brown-base);
-    line-height: 1.4;
+    line-height: var(--line-height-normal);
   }
 
   .job-bonuses {
@@ -211,7 +211,7 @@
     font-size: var(--font-size-sm);
     color: var(--color-brown-dark);
     padding: var(--spacing-xs) 0;
-    line-height: 1.4;
+    line-height: var(--line-height-normal);
   }
 
   .bonus-item:before {
@@ -222,7 +222,7 @@
   .job-description {
     font-size: var(--font-size-sm);
     color: var(--color-brown-base);
-    line-height: 1.5;
+    line-height: var(--line-height-relaxed);
     margin-top: var(--spacing-md);
     padding-top: var(--spacing-md);
     border-top: var(--border-thin) solid var(--color-brown-light);

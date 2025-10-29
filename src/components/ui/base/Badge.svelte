@@ -23,7 +23,7 @@
   /* Sizes */
   .badge-small {
     padding: var(--spacing-xs) var(--spacing-md);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-sm);
     font-size: var(--font-size-xs);
     letter-spacing: 1px;
   }
@@ -36,7 +36,7 @@
 
   .badge-large {
     padding: 6px var(--spacing-md);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-sm);
     font-size: var(--font-size-sm);
   }
 

@@ -7,3 +7,71 @@
   <p>{description}</p>
   <span class="card-button">{buttonText}</span>
 </div>
+
+<style>
+  .card {
+    background: linear-gradient(135deg, var(--color-parchment-300) 0%, var(--color-parchment-500) 50%, var(--color-parchment-600) 100%);
+    border: var(--border-thick) solid var(--color-brown-400);
+    border-radius: var(--radius-md);
+    padding: 30px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow:
+      inset 0 0 0 1px var(--color-brown-300),
+      inset 0 0 0 2px var(--color-parchment-300),
+      0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow:
+      inset 0 0 0 1px var(--color-gold-500),
+      inset 0 0 0 2px var(--color-gold-300),
+      0 8px 20px rgba(212, 175, 55, 0.5);
+  }
+
+  .card h2 {
+    color: var(--color-brown-700);
+    font-size: 2em;
+    text-align: center;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-bottom: var(--border-base) solid var(--color-brown-400);
+    padding-bottom: 15px;
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
+    font-family: var(--font-serif);
+    line-height: var(--line-height-tight);
+  }
+
+  .card p {
+    text-align: center;
+    color: var(--color-brown-700);
+    margin-bottom: 25px;
+    min-height: 60px;
+    line-height: var(--line-height-relaxed);
+  }
+
+  .card-button {
+    display: block;
+    background: linear-gradient(180deg, var(--color-brown-400) 0%, var(--color-brown-600) 100%);
+    border: var(--border-base) solid var(--color-brown-600);
+    color: var(--color-gold-300);
+    padding: 12px 24px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    transition: all 0.3s ease;
+    font-size: 1.1em;
+    letter-spacing: 1px;
+    font-weight: var(--font-weight-bold);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+  }
+
+  .card-button:hover {
+    background: linear-gradient(180deg, var(--color-gold-500) 0%, var(--color-gold-600) 100%);
+    color: var(--color-brown-900);
+    border-color: var(--color-gold-500);
+  }
+</style>
