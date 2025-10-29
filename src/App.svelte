@@ -8,6 +8,7 @@
   import BossesSection from './components/sections/BossesSection.svelte';
   import MapsSection from './components/sections/MapsSection.svelte';
   import ZodiacSection from './components/sections/ZodiacSection.svelte';
+  import ComponentShowcase from './components/sections/ComponentShowcase.svelte';
 
   let currentSection = $state('main-menu');
   let jobSearch = $state('');
@@ -115,6 +116,13 @@
         buttonText="Ver Zodiac"
         onclick={() => showSection('zodiac')}
       />
+
+      <MenuCard
+        title="Component Showcase"
+        description="Biblioteca de componentes de la interfaz. Vista previa de todos los elementos de diseño disponibles."
+        buttonText="Ver Showcase"
+        onclick={() => showSection('showcase')}
+      />
     </div>
   </div>
 
@@ -149,5 +157,9 @@
 
   <div id="zodiac" class="section" class:active={currentSection === 'zodiac'}>
     <ZodiacSection {showSection} />
+  </div>
+
+  <div id="showcase" class="section" class:active={currentSection === 'showcase'}>
+    <ComponentShowcase {showSection} />
   </div>
 </div>

@@ -1,5 +1,8 @@
 <script>
-  import BackButton from '../ui/BackButton.svelte';
+  import Button from '../ui/base/Button.svelte';
+  import Heading from '../ui/base/Heading.svelte';
+  import Badge from '../ui/base/Badge.svelte';
+  import Notice from '../ui/Notice.svelte';
   import SearchBox from '../ui/SearchBox.svelte';
   import JobCard from '../ui/JobCard.svelte';
   import { jobTiers, specialCharacterJobs } from '../../data/jobs.js';
@@ -48,68 +51,122 @@
     // Generic jobs use gender-based sprites
     return `assets/jobs/${jobId}_${jobGenders[jobId]}.gif`;
   }
+
+  // Filter function for jobs
+  function filterJob(job) {
+    if (!searchValue) return true;
+    const search = searchValue.toLowerCase();
+    return job.name.toLowerCase().includes(search) ||
+           job.ability?.name?.toLowerCase().includes(search) ||
+           job.description?.toLowerCase().includes(search) ||
+           job.bonuses?.some(b => b.text.toLowerCase().includes(search));
+  }
+
+  // Derived filtered special jobs
+  let filteredSpecialJobs = $derived(specialCharacterJobs.filter(filterJob));
 </script>
 
-<BackButton onclick={() => showSection('main-menu')} />
-<h2 style="color: #d4af37; font-size: 2.5em; margin-bottom: 20px;">Jobs</h2>
+<Button variant="secondary" onclick={() => showSection('main-menu')}>
+  ← Volver
+</Button>
+
+<div style="margin: 20px 0;">
+  <Heading level={1}>Jobs</Heading>
+</div>
+
 <SearchBox placeholder="Buscar job..." bind:value={searchValue} {onkeyup} />
 
 <!-- LEYENDA DE RATINGS -->
-<div class="content-box" style="margin-bottom: 30px; background: rgba(212, 175, 55, 0.1);">
-  <h3 style="font-size: 1.2em; margin-bottom: 10px;">📊 Leyenda de Stats</h3>
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; font-size: 0.9em;">
-    <div><span class="stat-rating s" style="font-size: 1.2em;">S</span> = Excepcional (raro)</div>
-    <div><span class="stat-rating a" style="font-size: 1.2em;">A</span> = Excelente</div>
-    <div><span class="stat-rating b" style="font-size: 1.2em;">B</span> = Bueno</div>
-    <div><span class="stat-rating c" style="font-size: 1.2em;">C</span> = Promedio</div>
-    <div><span class="stat-rating d" style="font-size: 1.2em;">D</span> = Bajo</div>
+<Notice variant="info" title="📊 Leyenda de Stats">
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 15px;">
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <Badge variant="rating-s">S</Badge>
+      <span>Excepcional (raro)</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <Badge variant="rating-a">A</Badge>
+      <span>Excelente</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <Badge variant="rating-b">B</Badge>
+      <span>Bueno</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <Badge variant="rating-c">C</Badge>
+      <span>Promedio</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <Badge variant="rating-d">D</Badge>
+      <span>Bajo</span>
+    </div>
   </div>
-  <p style="margin-top: 10px; font-size: 0.85em; font-style: italic; color: #b8a080;">
+  <p style="font-size: 0.9em; font-style: italic;">
     Los ratings indican el crecimiento de stats al subir de nivel. <strong>A</strong> significa alto crecimiento, <strong>D</strong> significa bajo crecimiento.
   </p>
-</div>
+</Notice>
 
 <!-- GENERIC JOBS TIERS -->
 {#each Object.values(jobTiers) as tier}
-  <div class="job-tier">
-    <h3 class="tier-title">{tier.title}</h3>
+  {@const filteredJobs = tier.jobs.filter(filterJob)}
+  {#if filteredJobs.length > 0}
+    <div class="job-tier">
+      <Heading level={2} variant="tier">{tier.title}</Heading>
+      <div class="jobs-row">
+        {#each filteredJobs as job}
+          <JobCard
+            name={job.name}
+            iconSrc={getJobIcon(job.id)}
+            requirements={job.requirements}
+            stats={job.stats}
+            ability={job.ability}
+            bonuses={job.bonuses || []}
+            description={job.description}
+            isExclusiveWotl={job.isExclusiveWotl || false}
+          />
+        {/each}
+      </div>
+    </div>
+  {/if}
+{/each}
+
+<!-- SPECIAL CHARACTER JOBS -->
+{#if filteredSpecialJobs.length > 0}
+  <div class="job-tier special-section">
+    <Heading level={2} variant="tier">⭐ Special Character Jobs (Unique)</Heading>
+    <p class="special-description">
+      Jobs exclusivos de personajes únicos. No se pueden desbloquear para unidades genéricas.
+    </p>
     <div class="jobs-row">
-      {#each tier.jobs as job}
+      {#each filteredSpecialJobs as job}
         <JobCard
           name={job.name}
           iconSrc={getJobIcon(job.id)}
-          requirements={job.requirements}
+          requirements={job.requirements || []}
           stats={job.stats}
           ability={job.ability}
           bonuses={job.bonuses || []}
           description={job.description}
+          characterName={job.characterName}
           isExclusiveWotl={job.isExclusiveWotl || false}
+          isSpecialCharacter={true}
         />
       {/each}
     </div>
   </div>
-{/each}
+{/if}
 
-<!-- SPECIAL CHARACTER JOBS -->
-<div class="job-tier" style="margin-top: 60px; border-top: 3px solid #d4af37; padding-top: 40px;">
-  <h3 class="tier-title" style="color: #f4cf67; font-size: 2em;">⭐ Special Character Jobs (Unique)</h3>
-  <p style="text-align: center; color: #b8a080; margin-bottom: 30px; font-style: italic;">
-    Jobs exclusivos de personajes únicos. No se pueden desbloquear para unidades genéricas.
-  </p>
-  <div class="jobs-row">
-    {#each specialCharacterJobs as job}
-      <JobCard
-        name={job.name}
-        iconSrc={getJobIcon(job.id)}
-        requirements={job.requirements || []}
-        stats={job.stats}
-        ability={job.ability}
-        bonuses={job.bonuses || []}
-        description={job.description}
-        characterName={job.characterName}
-        isExclusiveWotl={job.isExclusiveWotl || false}
-        isSpecialCharacter={true}
-      />
-    {/each}
-  </div>
-</div>
+<style>
+  .special-section {
+    margin-top: 60px;
+    border-top: 3px solid #d4af37;
+    padding-top: 40px;
+  }
+
+  .special-description {
+    text-align: center;
+    color: #5a4530;
+    margin: 15px 0 30px;
+    font-style: italic;
+    font-size: 1em;
+  }
+</style>

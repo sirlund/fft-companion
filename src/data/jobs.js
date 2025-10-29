@@ -464,11 +464,11 @@ export const jobTiers = {
           { label: '⚠️ Requiere masterizar 14 jobs para máximo poder', special: true }
         ],
         stats: {
-          hp: { value: '★ → ★★★★★', rating: 's' },
-          mp: { value: '★ → ★★★', rating: 'a' },
-          speed: { value: '★★★', rating: 'a' },
-          pa: { value: '★ → ★★★★★', rating: 's' },
-          ma: { value: '★ → ★★★', rating: 'a' }
+          hp: { value: 'Variable', rating: 's' },
+          mp: { value: 'Variable', rating: 'a' },
+          speed: { value: '100', rating: 'a' },
+          pa: { value: 'Variable', rating: 's' },
+          ma: { value: 'Variable', rating: 'a' }
         },
         ability: {
           name: '🧅 None',
