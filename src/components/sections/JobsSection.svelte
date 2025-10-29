@@ -3,6 +3,35 @@
   import SearchBox from '../ui/SearchBox.svelte';
 
   let { showSection, searchValue = $bindable(''), onkeyup } = $props();
+
+  // Random gender selection for job portraits (Male or Female)
+  const randomGender = () => Math.random() < 0.5 ? 'm' : 'f';
+
+  // Generate gender for each job card (called once on mount)
+  const jobGenders = {
+    squire: randomGender(),
+    chemist: randomGender(),
+    knight: randomGender(),
+    archer: randomGender(),
+    white_mage: randomGender(),
+    black_mage: randomGender(),
+    monk: randomGender(),
+    thief: randomGender(),
+    time_mage: randomGender(),
+    mystic: randomGender(),
+    geomancer: randomGender(),
+    dragoon: randomGender(),
+    summoner: randomGender(),
+    orator: randomGender(),
+    samurai: randomGender(),
+    ninja: randomGender(),
+    arithmetician: randomGender(),
+    bard: 'm', // Gender-locked: Male only
+    dancer: 'f', // Gender-locked: Female only
+    mime: randomGender(),
+    dark_knight: randomGender(),
+    onion_knight: randomGender()
+  };
 </script>
 
 <BackButton onclick={() => showSection('main-menu')} />
@@ -32,7 +61,7 @@
                     <div class="job-card">
                         <div class="job-header">
                             <div class="job-name">Squire</div>
-                            <div class="job-icon"><img src="assets/jobs/squire.webp" alt="Squire" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                            <div class="job-icon"><img src="assets/jobs/squire_{jobGenders.squire}.gif" alt="Squire" style="width: 100%; height: 100%; object-fit: contain;"></div>
                         </div>
                         <div class="requirements-section">
                             <div class="req-title">Requisitos:</div>
@@ -58,7 +87,7 @@
                     <div class="job-card">
                         <div class="job-header">
                             <div class="job-name">Chemist</div>
-                            <div class="job-icon"><img src="assets/jobs/chemist.webp" alt="Chemist" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                            <div class="job-icon"><img src="assets/jobs/chemist_{jobGenders.chemist}.gif" alt="Chemist" style="width: 100%; height: 100%; object-fit: contain;"></div>
                         </div>
                         <div class="requirements-section">
                             <div class="req-title">Requisitos:</div>
@@ -90,7 +119,7 @@
                     <div class="job-card">
                         <div class="job-header">
                             <div class="job-name">Knight</div>
-                            <div class="job-icon"><img src="assets/jobs/knight.webp" alt="Knight" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                            <div class="job-icon"><img src="assets/jobs/knight_{jobGenders.knight}.gif" alt="Knight" style="width: 100%; height: 100%; object-fit: contain;"></div>
                         </div>
                         <div class="requirements-section">
                             <div class="req-title">Requisitos:</div>
@@ -121,7 +150,7 @@
                     <div class="job-card">
                         <div class="job-header">
                             <div class="job-name">Archer</div>
-                            <div class="job-icon"><img src="assets/jobs/archer.webp" alt="Archer" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                            <div class="job-icon"><img src="assets/jobs/archer_{jobGenders.archer}.gif" alt="Archer" style="width: 100%; height: 100%; object-fit: contain;"></div>
                         </div>
                         <div class="requirements-section">
                             <div class="req-title">Requisitos:</div>
@@ -151,7 +180,7 @@
                     <div class="job-card">
                         <div class="job-header">
                             <div class="job-name">White Mage</div>
-                            <div class="job-icon"><img src="assets/jobs/white_mage.webp" alt="White Mage" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                            <div class="job-icon"><img src="assets/jobs/white_mage_{jobGenders.white_mage}.gif" alt="White Mage" style="width: 100%; height: 100%; object-fit: contain;"></div>
                         </div>
                         <div class="requirements-section">
                             <div class="req-title">Requisitos:</div>
@@ -177,7 +206,7 @@
                     <div class="job-card">
                         <div class="job-header">
                             <div class="job-name">Black Mage</div>
-                            <div class="job-icon"><img src="assets/jobs/black_mage.webp" alt="Black Mage" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                            <div class="job-icon"><img src="assets/jobs/black_mage_{jobGenders.black_mage}.gif" alt="Black Mage" style="width: 100%; height: 100%; object-fit: contain;"></div>
                         </div>
                         <div class="requirements-section">
                             <div class="req-title">Requisitos:</div>
@@ -209,7 +238,7 @@
                     <div class="job-card">
                         <div class="job-header">
                             <div class="job-name">Monk</div>
-                            <div class="job-icon"><img src="assets/jobs/monk.webp" alt="Monk" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                            <div class="job-icon"><img src="assets/jobs/monk_{jobGenders.monk}.gif" alt="Monk" style="width: 100%; height: 100%; object-fit: contain;"></div>
                         </div>
                         <div class="requirements-section">
                             <div class="req-title">Requisitos:</div>
@@ -239,7 +268,7 @@
                     <div class="job-card">
                         <div class="job-header">
                             <div class="job-name">Thief</div>
-                            <div class="job-icon"><img src="assets/jobs/thief.webp" alt="Thief" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                            <div class="job-icon"><img src="assets/jobs/thief_{jobGenders.thief}.gif" alt="Thief" style="width: 100%; height: 100%; object-fit: contain;"></div>
                         </div>
                         <div class="requirements-section">
                             <div class="req-title">Requisitos:</div>
@@ -270,7 +299,7 @@
                     <div class="job-card">
                         <div class="job-header">
                             <div class="job-name">Time Mage</div>
-                            <div class="job-icon"><img src="assets/jobs/time_mage.webp" alt="Time Mage" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                            <div class="job-icon"><img src="assets/jobs/time_mage_{jobGenders.time_mage}.gif" alt="Time Mage" style="width: 100%; height: 100%; object-fit: contain;"></div>
                         </div>
                         <div class="requirements-section">
                             <div class="req-title">Requisitos:</div>
@@ -296,7 +325,7 @@
                     <div class="job-card">
                         <div class="job-header">
                             <div class="job-name">Mystic</div>
-                            <div class="job-icon"><img src="assets/jobs/mystic.webp" alt="Mystic" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                            <div class="job-icon"><img src="assets/jobs/mystic_{jobGenders.mystic}.gif" alt="Mystic" style="width: 100%; height: 100%; object-fit: contain;"></div>
                         </div>
                         <div class="requirements-section">
                             <div class="req-title">Requisitos:</div>
@@ -322,7 +351,7 @@
                     <div class="job-card">
                         <div class="job-header">
                             <div class="job-name">Geomancer</div>
-                            <div class="job-icon"><img src="assets/jobs/geomancer.webp" alt="Geomancer" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                            <div class="job-icon"><img src="assets/jobs/geomancer_{jobGenders.geomancer}.gif" alt="Geomancer" style="width: 100%; height: 100%; object-fit: contain;"></div>
                         </div>
                         <div class="requirements-section">
                             <div class="req-title">Requisitos:</div>
@@ -352,7 +381,7 @@
                     <div class="job-card">
                         <div class="job-header">
                             <div class="job-name">Dragoon</div>
-                            <div class="job-icon"><img src="assets/jobs/dragoon.webp" alt="Dragoon" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                            <div class="job-icon"><img src="assets/jobs/dragoon_{jobGenders.dragoon}.gif" alt="Dragoon" style="width: 100%; height: 100%; object-fit: contain;"></div>
                         </div>
                         <div class="requirements-section">
                             <div class="req-title">Requisitos:</div>
@@ -383,7 +412,7 @@
                     <div class="job-card">
                         <div class="job-header">
                             <div class="job-name">Summoner</div>
-                            <div class="job-icon"><img src="assets/jobs/summoner.webp" alt="Summoner" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                            <div class="job-icon"><img src="assets/jobs/summoner_{jobGenders.summoner}.gif" alt="Summoner" style="width: 100%; height: 100%; object-fit: contain;"></div>
                         </div>
                         <div class="requirements-section">
                             <div class="req-title">Requisitos:</div>
@@ -414,7 +443,7 @@
                     <div class="job-card">
                         <div class="job-header">
                             <div class="job-name">Orator</div>
-                            <div class="job-icon"><img src="assets/jobs/orator.webp" alt="Orator" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                            <div class="job-icon"><img src="assets/jobs/orator_{jobGenders.orator}.gif" alt="Orator" style="width: 100%; height: 100%; object-fit: contain;"></div>
                         </div>
                         <div class="requirements-section">
                             <div class="req-title">Requisitos:</div>
@@ -452,7 +481,7 @@
                     <div class="job-card">
                         <div class="job-header">
                             <div class="job-name">Samurai</div>
-                            <div class="job-icon"><img src="assets/jobs/samurai.webp" alt="Samurai" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                            <div class="job-icon"><img src="assets/jobs/samurai_{jobGenders.samurai}.gif" alt="Samurai" style="width: 100%; height: 100%; object-fit: contain;"></div>
                         </div>
                         <div class="requirements-section">
                             <div class="req-title">Requisitos:</div>
@@ -484,7 +513,7 @@
                     <div class="job-card">
                         <div class="job-header">
                             <div class="job-name">Ninja</div>
-                            <div class="job-icon"><img src="assets/jobs/ninja.webp" alt="Ninja" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                            <div class="job-icon"><img src="assets/jobs/ninja_{jobGenders.ninja}.gif" alt="Ninja" style="width: 100%; height: 100%; object-fit: contain;"></div>
                         </div>
                         <div class="requirements-section">
                             <div class="req-title">Requisitos:</div>
@@ -517,7 +546,7 @@
                     <div class="job-card">
                         <div class="job-header">
                             <div class="job-name">Calculator</div>
-                            <div class="job-icon"><img src="assets/jobs/arithmetician.webp" alt="Calculator" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                            <div class="job-icon"><img src="assets/jobs/arithmetician_{jobGenders.arithmetician}.gif" alt="Calculator" style="width: 100%; height: 100%; object-fit: contain;"></div>
                         </div>
                         <div class="requirements-section">
                             <div class="req-title">Requisitos:</div>
@@ -546,7 +575,7 @@
                     <div class="job-card">
                         <div class="job-header">
                             <div class="job-name">Bard</div>
-                            <div class="job-icon"><img src="assets/jobs/bard.webp" alt="Bard" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                            <div class="job-icon"><img src="assets/jobs/bard_{jobGenders.bard}.gif" alt="Bard" style="width: 100%; height: 100%; object-fit: contain;"></div>
                         </div>
                         <div class="requirements-section">
                             <div class="req-title">Requisitos:</div>
@@ -574,7 +603,7 @@
                     <div class="job-card">
                         <div class="job-header">
                             <div class="job-name">Dancer</div>
-                            <div class="job-icon"><img src="assets/jobs/dancer.webp" alt="Dancer" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                            <div class="job-icon"><img src="assets/jobs/dancer_{jobGenders.dancer}.gif" alt="Dancer" style="width: 100%; height: 100%; object-fit: contain;"></div>
                         </div>
                         <div class="requirements-section">
                             <div class="req-title">Requisitos:</div>
@@ -602,7 +631,7 @@
                     <div class="job-card">
                         <div class="job-header">
                             <div class="job-name">Mime</div>
-                            <div class="job-icon"><img src="assets/jobs/mime.webp" alt="Mime" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                            <div class="job-icon"><img src="assets/jobs/mime_{jobGenders.mime}.gif" alt="Mime" style="width: 100%; height: 100%; object-fit: contain;"></div>
                         </div>
                         <div class="requirements-section">
                             <div class="req-title">Requisitos:</div>
@@ -637,7 +666,7 @@
                     <div class="job-card exclusive-wotl">
                         <div class="job-header">
                             <div class="job-name">Dark Knight</div>
-                            <div class="job-icon"><img src="assets/jobs/dark_knight.webp" alt="Dark Knight" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                            <div class="job-icon"><img src="assets/jobs/dark_knight_{jobGenders.dark_knight}.gif" alt="Dark Knight" style="width: 100%; height: 100%; object-fit: contain;"></div>
                         </div>
                         <div class="requirements-section">
                             <div class="req-title">Requisitos:</div>
@@ -669,7 +698,7 @@
                     <div class="job-card exclusive-wotl">
                         <div class="job-header">
                             <div class="job-name">Onion Knight</div>
-                            <div class="job-icon"><img src="assets/jobs/onion_knight.webp" alt="Onion Knight" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                            <div class="job-icon"><img src="assets/jobs/onion_knight_{jobGenders.onion_knight}.gif" alt="Onion Knight" style="width: 100%; height: 100%; object-fit: contain;"></div>
                         </div>
                         <div class="requirements-section">
                             <div class="req-title">Requisitos:</div>
@@ -713,7 +742,7 @@
                     <div class="job-card" style="border-color: #f4cf67;">
                         <div class="job-header">
                             <div class="job-name">Holy Knight</div>
-                            <div class="job-icon"><img src="assets/jobs/holy_knight.webp" alt="Holy Knight" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                            <div class="job-icon"><img src="assets/jobs/agrias.gif" alt="Holy Knight" style="width: 100%; height: 100%; object-fit: contain;"></div>
                         </div>
                         <div style="text-align: center; color: #f4cf67; font-size: 0.9em; margin-bottom: 10px; font-weight: bold;">
                             Agrias Oaks / Delita Heiral
@@ -742,7 +771,7 @@
                     <div class="job-card" style="border-color: #f4cf67;">
                         <div class="job-header">
                             <div class="job-name">Divine Knight</div>
-                            <div class="job-icon"><img src="assets/jobs/divine_knight.webp" alt="Divine Knight" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                            <div class="job-icon"><img src="assets/jobs/meliadoul.gif" alt="Divine Knight" style="width: 100%; height: 100%; object-fit: contain;"></div>
                         </div>
                         <div style="text-align: center; color: #f4cf67; font-size: 0.9em; margin-bottom: 10px; font-weight: bold;">
                             Meliadoul Tingel
@@ -771,7 +800,7 @@
                     <div class="job-card" style="border-color: #f4cf67;">
                         <div class="job-header">
                             <div class="job-name">Sword Saint</div>
-                            <div class="job-icon"><img src="assets/jobs/sword_saint.webp" alt="Sword Saint" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                            <div class="job-icon"><img src="assets/jobs/orlandeau.gif" alt="Sword Saint" style="width: 100%; height: 100%; object-fit: contain;"></div>
                         </div>
                         <div style="text-align: center; color: #f4cf67; font-size: 0.9em; margin-bottom: 10px; font-weight: bold;">
                             Cidolfus Orlandeau (Thunder God Cid)
@@ -800,7 +829,7 @@
                     <div class="job-card exclusive-wotl" style="border-color: #f4cf67;">
                         <div class="job-header">
                             <div class="job-name">Sky Pirate</div>
-                            <div class="job-icon"><img src="assets/jobs/sky_pirate.webp" alt="Sky Pirate" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                            <div class="job-icon"><img src="assets/jobs/balthier.gif" alt="Sky Pirate" style="width: 100%; height: 100%; object-fit: contain;"></div>
                         </div>
                         <div style="text-align: center; color: #f4cf67; font-size: 0.9em; margin-bottom: 10px; font-weight: bold;">
                             Balthier (FF12 Guest)
@@ -829,7 +858,7 @@
                     <div class="job-card" style="border-color: #f4cf67;">
                         <div class="job-header">
                             <div class="job-name">Templar</div>
-                            <div class="job-icon"><img src="assets/jobs/templar.webp" alt="Templar" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                            <div class="job-icon"><img src="assets/jobs/beowulf.gif" alt="Templar" style="width: 100%; height: 100%; object-fit: contain;"></div>
                         </div>
                         <div style="text-align: center; color: #f4cf67; font-size: 0.9em; margin-bottom: 10px; font-weight: bold;">
                             Beowulf Cadmus
@@ -858,7 +887,7 @@
                     <div class="job-card" style="border-color: #f4cf67;">
                         <div class="job-header">
                             <div class="job-name">Machinist</div>
-                            <div class="job-icon"><img src="assets/jobs/machinist.webp" alt="Machinist" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                            <div class="job-icon"><img src="assets/jobs/mustadio.gif" alt="Machinist" style="width: 100%; height: 100%; object-fit: contain;"></div>
                         </div>
                         <div style="text-align: center; color: #f4cf67; font-size: 0.9em; margin-bottom: 10px; font-weight: bold;">
                             Mustadio Bunansa
@@ -887,7 +916,7 @@
                     <div class="job-card" style="border-color: #f4cf67;">
                         <div class="job-header">
                             <div class="job-name">Skyseer</div>
-                            <div class="job-icon"><img src="assets/jobs/skyseer.webp" alt="Skyseer" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                            <div class="job-icon"><img src="assets/jobs/rafa.gif" alt="Skyseer" style="width: 100%; height: 100%; object-fit: contain;"></div>
                         </div>
                         <div style="text-align: center; color: #f4cf67; font-size: 0.9em; margin-bottom: 10px; font-weight: bold;">
                             Rafa Galthena (Heaven Knight)
@@ -917,7 +946,7 @@
                     <div class="job-card" style="border-color: #f4cf67;">
                         <div class="job-header">
                             <div class="job-name">Netherseer</div>
-                            <div class="job-icon"><img src="assets/jobs/netherseer.webp" alt="Netherseer" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                            <div class="job-icon"><img src="assets/jobs/malak.gif" alt="Netherseer" style="width: 100%; height: 100%; object-fit: contain;"></div>
                         </div>
                         <div style="text-align: center; color: #f4cf67; font-size: 0.9em; margin-bottom: 10px; font-weight: bold;">
                             Malak Galthena (Hell Knight)
@@ -947,7 +976,7 @@
                     <div class="job-card" style="border-color: #f4cf67;">
                         <div class="job-header">
                             <div class="job-name">Dragonkin</div>
-                            <div class="job-icon"><img src="assets/jobs/dragonkin.webp" alt="Dragonkin" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                            <div class="job-icon"><img src="assets/jobs/reis.gif" alt="Dragonkin" style="width: 100%; height: 100%; object-fit: contain;"></div>
                         </div>
                         <div style="text-align: center; color: #f4cf67; font-size: 0.9em; margin-bottom: 10px; font-weight: bold;">
                             Reis Duelar (Holy Dragon)
@@ -976,7 +1005,7 @@
                     <div class="job-card exclusive-wotl" style="border-color: #f4cf67;">
                         <div class="job-header">
                             <div class="job-name">Game Hunter</div>
-                            <div class="job-icon"><img src="assets/jobs/game_hunter.webp" alt="Game Hunter" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                            <div class="job-icon"><img src="assets/jobs/luso.gif" alt="Game Hunter" style="width: 100%; height: 100%; object-fit: contain;"></div>
                         </div>
                         <div style="text-align: center; color: #f4cf67; font-size: 0.9em; margin-bottom: 10px; font-weight: bold;">
                             Luso Clemens (FFTA2 Guest)
@@ -1005,7 +1034,7 @@
                     <div class="job-card" style="border-color: #f4cf67;">
                         <div class="job-header">
                             <div class="job-name">Soldier</div>
-                            <div class="job-icon"><img src="assets/jobs/soldier.webp" alt="Soldier" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                            <div class="job-icon"><img src="assets/jobs/cloud.gif" alt="Soldier" style="width: 100%; height: 100%; object-fit: contain;"></div>
                         </div>
                         <div style="text-align: center; color: #f4cf67; font-size: 0.9em; margin-bottom: 10px; font-weight: bold;">
                             Cloud Strife (FF7 Guest)

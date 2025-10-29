@@ -356,6 +356,9 @@ tr:hover {
     border: 2px solid #d4af37;
     border-radius: 8px;
     padding: 8px;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
 }
 
 .requirements-section {
