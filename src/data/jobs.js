@@ -3,12 +3,12 @@
 
 export const jobTiers = {
   tier1: {
-    title: '⚔️ Tier 1: Clases Iniciales',
+    title: '⚔️ Tier 1: Starting Jobs',
     jobs: [
       {
         id: 'squire',
         name: 'Squire',
-        requirements: [{ label: '✓ Inicial', none: true }],
+        requirements: [{ label: '✓ Starting', none: true }],
         stats: {
           hp: { value: 'C', rating: 'c' },
           mp: { value: 'D', rating: 'd' },
@@ -20,12 +20,12 @@ export const jobTiers = {
           name: '🎯 Fundaments',
           description: 'Item, Throw Stone, Heal, Dash'
         },
-        description: 'Clase inicial básica. Desbloquea otras clases.'
+        description: 'Starter. Unlocks jobs'
       },
       {
         id: 'chemist',
         name: 'Chemist',
-        requirements: [{ label: '✓ Inicial', none: true }],
+        requirements: [{ label: '✓ Starting', none: true }],
         stats: {
           hp: { value: 'C', rating: 'c' },
           mp: { value: 'C', rating: 'c' },
@@ -35,14 +35,14 @@ export const jobTiers = {
         },
         ability: {
           name: '💊 Item',
-          description: 'Uso de items con rango extendido'
+          description: 'Use items with extended range'
         },
-        description: 'Excelente velocidad. Items a distancia. Soporte inicial.'
+        description: 'High Speed. Ranged items. Support'
       }
     ]
   },
   tier2: {
-    title: '⚔️ Tier 2: Clases Básicas',
+    title: '⚔️ Tier 2: Basic Jobs',
     jobs: [
       {
         id: 'knight',
@@ -57,13 +57,13 @@ export const jobTiers = {
         },
         ability: {
           name: '💥 Ruin (Break)',
-          description: 'Destruye equipo enemigo'
+          description: 'Destroys enemy equipment'
         },
         bonuses: [
-          { text: 'Acceso a las mejores armaduras del juego' },
-          { text: 'Puede usar Heavy Armor y Shields' }
+          { text: 'Best armor access' },
+          { text: 'Heavy Armor & Shields' }
         ],
-        description: 'Tank físico. Alto HP y PA. Mejores armaduras.'
+        description: 'Tank. High HP/PA. Best armor'
       },
       {
         id: 'archer',
@@ -78,12 +78,12 @@ export const jobTiers = {
         },
         ability: {
           name: '🎯 Aim',
-          description: 'Ataques de status a distancia'
+          description: 'Ranged status attacks'
         },
         bonuses: [
-          { text: 'Charge +1: Aumenta rango de arcos y crossbows' }
+          { text: 'Charge +1 (bow/crossbow range)' }
         ],
-        description: 'Rango largo. Charge +1. Control de campo.'
+        description: 'Long range. Charge +1. Control'
       },
       {
         id: 'white_mage',
@@ -100,7 +100,7 @@ export const jobTiers = {
           name: '✨ White Magick',
           description: 'Cure, Raise, Reraise, Holy'
         },
-        description: 'Curación principal. Fundamental para supervivencia.'
+        description: 'Healing. Support'
       },
       {
         id: 'black_mage',
@@ -117,12 +117,12 @@ export const jobTiers = {
           name: '🔥 Black Magick',
           description: 'Fire, Ice, Thunder, Flare series'
         },
-        description: 'Daño mágico elemental. Alto MA.'
+        description: 'Elemental dmg. High MA'
       }
     ]
   },
   tier3: {
-    title: '⚔️ Tier 3: Clases Intermedias',
+    title: '⚔️ Tier 3: Intermediate Jobs',
     jobs: [
       {
         id: 'monk',
@@ -140,9 +140,9 @@ export const jobTiers = {
           description: 'Chakra, Wave Fist, Earth Slash'
         },
         bonuses: [
-          { text: 'Martial Arts: Daño sin arma = PA × (PA/2)' }
+          { text: 'Martial Arts: Unarmed damage = PA × (PA/2)' }
         ],
-        description: 'Combate cuerpo a cuerpo. Revive aliados, excelente PA y Speed.'
+        description: 'Melee. Revives. High PA/Speed'
       },
       {
         id: 'thief',
@@ -163,7 +163,7 @@ export const jobTiers = {
           { text: 'Move +2' },
           { text: 'Innate: Treasure Hunter' }
         ],
-        description: 'Velocidad máxima. Útil para conseguir items raros.'
+        description: 'Max Speed. Item farming'
       },
       {
         id: 'time_mage',
@@ -180,7 +180,7 @@ export const jobTiers = {
           name: '⏱️ Time Magick',
           description: 'Haste, Slow, Stop, Quick'
         },
-        description: 'Control de velocidad. Crítico para estrategia.'
+        description: 'Speed control. Strategy'
       },
       {
         id: 'mystic',
@@ -197,7 +197,7 @@ export const jobTiers = {
           name: '🔮 Mystic Arts',
           description: 'Confuse, Silence, Blind, Sleep'
         },
-        description: 'Status ailments. Control de enemigos.'
+        description: 'Status. Control'
       },
       {
         id: 'geomancer',
@@ -212,12 +212,12 @@ export const jobTiers = {
         },
         ability: {
           name: '🌍 Elemental',
-          description: 'Magia sin MP, basada en terreno'
+          description: 'MP-free magic, terrain-based'
         },
         bonuses: [
-          { text: 'Ignora terreno (Move on Lava/Water)' }
+          { text: 'Ignores terrain' }
         ],
-        description: 'Magia sin costo de MP. Dependiente del terreno.'
+        description: 'No MP. Terrain-based'
       },
       {
         id: 'dragoon',
@@ -232,13 +232,13 @@ export const jobTiers = {
         },
         ability: {
           name: '🐉 Jump',
-          description: 'Ataques aéreos, ignora evasión'
+          description: 'Aerial attacks, ignores evasion'
         },
         bonuses: [
-          { text: 'Jump +3 (Vertical Jump 8 total)' },
-          { text: 'Los ataques Jump ignoran evasión completamente' }
+          { text: 'Jump +3 (Vertical 8)' },
+          { text: 'Jump ignores evasion' }
         ],
-        description: 'Jump ignora evasión. Vertical Jump 8. Anti-voladores.'
+        description: 'Jump. Ignores evasion. Anti-air'
       },
       {
         id: 'summoner',
@@ -256,10 +256,10 @@ export const jobTiers = {
           description: 'Shiva, Ifrit, Ramuh, Bahamut, Odin'
         },
         bonuses: [
-          { text: 'MP Growth #1 del juego (125%)' },
-          { text: 'Summons ignoran friendly fire (no dañan aliados)' }
+          { text: 'Best MP Growth (125%)' },
+          { text: 'No friendly fire' }
         ],
-        description: 'Daño de área masivo. AoE gigante. Alto costo de MP.'
+        description: 'Massive AoE. High MP cost'
       },
       {
         id: 'orator',
@@ -277,16 +277,16 @@ export const jobTiers = {
           description: 'Praise/Brave, Preach/Faith, Recruit'
         },
         bonuses: [
-          { text: 'Manipula Brave/Faith permanentemente' },
-          { text: 'Puede reclutar enemigos humanos y monstruos' },
-          { text: 'Innate: Beast Tongue (hablar con monstruos)' }
+          { text: 'Permanent Brave/Faith changes' },
+          { text: 'Recruits humans & monsters' },
+          { text: 'Beast Tongue (talk to monsters)' }
         ],
-        description: 'Útil para recruiting. Cambia stats permanentemente. Sin costo de MP.'
+        description: 'Recruiting. Permanent buffs. No MP'
       }
     ]
   },
   tier4: {
-    title: '⚔️ Tier 4: Clases Avanzadas',
+    title: '⚔️ Tier 4: Advanced Jobs',
     jobs: [
       {
         id: 'samurai',
@@ -308,9 +308,9 @@ export const jobTiers = {
           description: 'Muramasa, Chirijiraden'
         },
         bonuses: [
-          { text: 'Shirahadori: Puede esquivar ataques físicos (Brave-based)' }
+          { text: 'Shirahadori (evade physical)' }
         ],
-        description: 'Daño masivo. Shirahadori (esquiva físicos).'
+        description: 'Massive dmg. Shirahadori (evade physical)'
       },
       {
         id: 'ninja',
@@ -329,13 +329,13 @@ export const jobTiers = {
         },
         ability: {
           name: '🥷 Throw',
-          description: 'Lanzar armas y shurikens'
+          description: 'Throw weapons & shurikens'
         },
         bonuses: [
-          { text: 'Two Swords (Dual Wield): Ataca dos veces por turno' },
-          { text: 'Innate: Sunken State (inmune a trampas de terreno)' }
+          { text: 'Dual Wield (2x attacks)' },
+          { text: 'Sunken State (terrain immune)' }
         ],
-        description: 'Velocidad máxima. Two Swords. Evasión excelente.'
+        description: 'Max Speed. Dual Wield. High evasion'
       },
       {
         id: 'arithmetician',
@@ -357,7 +357,7 @@ export const jobTiers = {
           name: '🧮 Math Skill',
           description: 'CT5 Holy, Level 4 Holy'
         },
-        description: '⚠️ GAMEBREAKING. Magia sin charge basada en números.'
+        description: '⚠️ GAMEBREAKING. Math-based magic'
       },
       {
         id: 'bard',
@@ -365,7 +365,7 @@ export const jobTiers = {
         requirements: [
           { label: 'Summoner', level: 'Lv.5' },
           { label: 'Orator', level: 'Lv.5' },
-          { label: '♂️ Solo Masculino', genderLock: true, color: '#f39c12' }
+          { label: '♂️ Male Only', genderLock: true, color: '#f39c12' }
         ],
         stats: {
           hp: { value: 'C', rating: 'c' },
@@ -378,7 +378,7 @@ export const jobTiers = {
           name: '🎵 Sing',
           description: 'Battle Song, Nameless Song'
         },
-        description: 'Buffs de área permanentes hasta muerte/silence.'
+        description: 'Permanent AoE buffs'
       },
       {
         id: 'dancer',
@@ -386,7 +386,7 @@ export const jobTiers = {
         requirements: [
           { label: 'Geomancer', level: 'Lv.5' },
           { label: 'Dragoon', level: 'Lv.5' },
-          { label: '♀️ Solo Femenino', genderLock: true, color: '#e91e63' }
+          { label: '♀️ Female Only', genderLock: true, color: '#e91e63' }
         ],
         stats: {
           hp: { value: 'C', rating: 'c' },
@@ -399,7 +399,7 @@ export const jobTiers = {
           name: '💃 Dance',
           description: 'Slow Dance, Polka, Nameless'
         },
-        description: 'Status ailments aleatorios de área.'
+        description: 'Random AoE status'
       },
       {
         id: 'mime',
@@ -420,13 +420,13 @@ export const jobTiers = {
         },
         ability: {
           name: '🎭 Mimic',
-          description: 'Copia última acción ejecutada'
+          description: 'Copies last action executed'
         },
         bonuses: [
-          { text: 'Puede equipar TODO el equipo del juego (sin restricciones)' },
-          { text: 'Mimic no consume MP ni items' }
+          { text: 'Equips all gear' },
+          { text: 'Mimic: No MP/item cost' }
         ],
-        description: 'Versátil. Copia sin costo. Equipa TODO.'
+        description: 'Versatile. Mimics. Equips all'
       },
       {
         id: 'dark_knight',
@@ -452,7 +452,7 @@ export const jobTiers = {
           name: '🌑 Darkness',
           description: 'Dark Sword, Night Sword (consume HP)'
         },
-        description: '⚠️ Daño masivo a costa de HP propio. Muy poderoso.'
+        description: '⚠️ Massive dmg. Costs HP'
       },
       {
         id: 'onion_knight',
@@ -461,7 +461,7 @@ export const jobTiers = {
         requirements: [
           { label: 'Squire', level: 'Lv.6' },
           { label: 'Chemist', level: 'Lv.6' },
-          { label: '⚠️ Requiere masterizar 14 jobs para máximo poder', special: true }
+          { label: '⚠️ Requires mastering 14 jobs for maximum power', special: true }
         ],
         stats: {
           hp: { value: 'Variable', rating: 's' },
@@ -472,15 +472,15 @@ export const jobTiers = {
         },
         ability: {
           name: '🧅 None',
-          description: 'Sin habilidades propias (usa equipo)'
+          description: 'No innate abilities (uses equipment)'
         },
         bonuses: [
-          { text: 'Poder escala con jobs masterizados (2 jobs = 1 nivel OK)' },
-          { text: 'Puede equipar TODO (incluso equipo de género opuesto)' },
-          { text: 'Acceso a Onion Equipment (extremadamente poderoso)' },
-          { text: '❌ No cuentan: Squire, Chemist, Mime, Dark Knight' }
+          { text: 'Scales with mastered jobs' },
+          { text: 'Equips all gear (any gender)' },
+          { text: 'Onion Equipment access' },
+          { text: '❌ Excludes: Squire/Chemist/Mime/Dark Knight' }
         ],
-        description: '⭐ Endgame job. Débil al inicio, extremadamente poderoso con 14 jobs masterizados.'
+        description: '⭐ Endgame. Very powerful'
       }
     ]
   }
@@ -504,11 +504,11 @@ export const specialCharacterJobs = [
       description: 'Judgment Blade, Hallowed Bolt, Divine Ruination'
     },
     bonuses: [
-      { text: '100% Hit Rate en Holy Sword abilities', isCharacteristic: true },
-      { text: '25% chance de status secundario (Stop, Silence)', isCharacteristic: true },
-      { text: 'Requiere Knight Sword o Sword equipado', isCharacteristic: true }
+      { text: '100% hit rate', isCharacteristic: true },
+      { text: '25% secondary status', isCharacteristic: true },
+      { text: 'Requires Knight Sword/Sword', isCharacteristic: true }
     ],
-    description: 'Elite knight con Holy-elemental abilities. Agrias se une en Ch.2.'
+    description: 'Elite knight. Holy element. Joins Ch2'
   },
   {
     id: 'meliadoul',
@@ -527,11 +527,11 @@ export const specialCharacterJobs = [
       description: 'Shellburst Stab, Hellcry Punch, Icewolf Bite'
     },
     bonuses: [
-      { text: '100% Success Rate al romper equipo', isCharacteristic: true },
-      { text: 'Daña HP + Destruye Armor/Weapon/Accessory/Helmet', isCharacteristic: true },
-      { text: 'Inútil contra monstruos (no tienen equipo)', isCharacteristic: true }
+      { text: '100% break rate', isCharacteristic: true },
+      { text: 'Damages HP + breaks gear', isCharacteristic: true },
+      { text: 'Useless vs monsters', isCharacteristic: true }
     ],
-    description: 'Equipment breaker definitivo. Se une en Ch.4 en Limberry Castle.'
+    description: 'Equipment breaker. Joins Ch4'
   },
   {
     id: 'orlandeau',
@@ -547,14 +547,14 @@ export const specialCharacterJobs = [
     },
     ability: {
       name: '⚡ All Swordskill',
-      description: 'Holy Sword, Iaido, Mighty Sword combinados'
+      description: 'Holy Sword, Iaido, Mighty Sword combined'
     },
     bonuses: [
-      { text: '⚠️ GAMEBREAKING: El personaje más fuerte del juego', isCharacteristic: true },
-      { text: 'Tiene TODAS las habilidades de espada (3 sets completos)', isCharacteristic: true },
-      { text: 'Stats superiores a cualquier generic job', isCharacteristic: true }
+      { text: '⚠️ GAMEBREAKING: Strongest character', isCharacteristic: true },
+      { text: 'All sword abilities (3 sets)', isCharacteristic: true },
+      { text: 'Best stats', isCharacteristic: true }
     ],
-    description: 'Legendario "Thunder God". Se une en Ch.4. Rompe el balance del juego.'
+    description: 'Thunder God. Joins Ch4. Breaks balance'
   },
   {
     id: 'balthier',
@@ -571,14 +571,14 @@ export const specialCharacterJobs = [
     },
     ability: {
       name: '🏴‍☠️ Plunder',
-      description: 'Versión mejorada de Steal + Guns'
+      description: 'Improved version of Steal + Guns'
     },
     bonuses: [
-      { text: '+10% Success Rate vs Steal normal', isCharacteristic: true },
-      { text: 'Speed Growth #1 (mejor que todos los jobs)', isCharacteristic: true },
-      { text: 'Innate: Safeguard (inmune a Steal/Plunder)', isCharacteristic: true }
+      { text: '+10% steal rate', isCharacteristic: true },
+      { text: 'Best Speed growth', isCharacteristic: true },
+      { text: 'Safeguard (steal immune)', isCharacteristic: true }
     ],
-    description: 'WotL exclusive guest. Machinist mejorado + Thief. Sidequest opcional.'
+    description: 'WotL exclusive. Machinist/Thief. Sidequest'
   },
   {
     id: 'beowulf',
@@ -597,11 +597,11 @@ export const specialCharacterJobs = [
       description: 'Chicken, Toad, Stone, Stop status'
     },
     bonuses: [
-      { text: 'Status ailments permanentes (no temporales)', isCharacteristic: true },
-      { text: 'Rango largo sin necesidad de armas especiales', isCharacteristic: true },
-      { text: 'Reclutable en sidequest después de Lesalia', isCharacteristic: true }
+      { text: 'Permanent status', isCharacteristic: true },
+      { text: 'Long range', isCharacteristic: true },
+      { text: 'Sidequest (after Lesalia)', isCharacteristic: true }
     ],
-    description: 'Status breaker definitivo. Pareja de Reis. Sidequest Ch.4.'
+    description: 'Status breaker. Sidequest Ch4'
   },
   {
     id: 'mustadio',
@@ -620,11 +620,11 @@ export const specialCharacterJobs = [
       description: 'Arm Aim, Leg Aim, Seal Evil'
     },
     bonuses: [
-      { text: 'Guns ignoran evasión y terreno', isCharacteristic: true },
-      { text: 'Status ailments a partes del cuerpo específicas', isCharacteristic: true },
-      { text: 'Se une permanentemente en Ch.2 (Goug)', isCharacteristic: true }
+      { text: 'Guns ignore evasion/terrain', isCharacteristic: true },
+      { text: 'Targets body parts', isCharacteristic: true },
+      { text: 'Joins Ch2 (Goug)', isCharacteristic: true }
     ],
-    description: 'Ingeniero con armas de fuego. Útil early-game para control.'
+    description: 'Engineer. Firearms. Joins Ch2'
   },
   {
     id: 'rafa',
@@ -643,12 +643,12 @@ export const specialCharacterJobs = [
       description: 'Heaven Thunder, Asura, Diamond Sword, Celestial Void'
     },
     bonuses: [
-      { text: '⚠️ RANDOM: Golpea entre 1-10 veces por cast', isCharacteristic: true },
-      { text: 'Ignora Faith y Reflect, sin costo de MP', isCharacteristic: true },
-      { text: 'Daño elemental de área (Fire/Lightning/Wind/Water/Earth)', isCharacteristic: true },
-      { text: 'Se une en Ch.3 (Riovanes Castle)', isCharacteristic: true }
+      { text: '⚠️ RANDOM: 1-10 hits', isCharacteristic: true },
+      { text: 'Ignores Faith/Reflect. No MP', isCharacteristic: true },
+      { text: 'AoE elemental dmg', isCharacteristic: true },
+      { text: 'Joins Ch3 (Riovanes)', isCharacteristic: true }
     ],
-    description: 'Heaven Knight. Hermana de Malak. Hechizos "Truth" random pero poderosos.'
+    description: 'Heaven Knight. Random Truth spells'
   },
   {
     id: 'malak',
@@ -667,12 +667,12 @@ export const specialCharacterJobs = [
       description: "Hell's Wrath, Nether Blade, Nether Ashura, Corporeal Void"
     },
     bonuses: [
-      { text: '⚠️ RANDOM: Golpea entre 1-10 veces por cast', isCharacteristic: true },
-      { text: 'Daño INVERSO a Faith (menor Faith = más daño)', isCharacteristic: true },
-      { text: 'Mejor PA que Rafa, peor MA (necesita MA Boost)', isCharacteristic: true },
-      { text: 'Se une en Ch.3 (Riovanes Castle)', isCharacteristic: true }
+      { text: '⚠️ RANDOM: 1-10 hits', isCharacteristic: true },
+      { text: 'INVERSE Faith (lower = more dmg)', isCharacteristic: true },
+      { text: 'Better PA than Rafa', isCharacteristic: true },
+      { text: 'Joins Ch3 (Riovanes)', isCharacteristic: true }
     ],
-    description: 'Hell Knight. Hermano de Rafa. "Untruth" basado en falta de fe.'
+    description: 'Hell Knight. Untruth spells'
   },
   {
     id: 'reis',
@@ -691,11 +691,11 @@ export const specialCharacterJobs = [
       description: "Reis's Breath, Dragon's Gift, Dragon's Charm"
     },
     bonuses: [
-      { text: 'Único hybrid humano-dragón del juego', isCharacteristic: true },
-      { text: 'Buffs de área + daño elemental + curación', isCharacteristic: true },
-      { text: 'Reclutable en sidequest Ch.4 (con Beowulf)', isCharacteristic: true }
+      { text: 'Human-dragon hybrid', isCharacteristic: true },
+      { text: 'AoE buffs/dmg/healing', isCharacteristic: true },
+      { text: 'Sidequest Ch4 (w/ Beowulf)', isCharacteristic: true }
     ],
-    description: 'Ex-Holy Dragon transformada en humana. Support + offense hybrid.'
+    description: 'Holy Dragon. Support/offense hybrid'
   },
   {
     id: 'luso',
@@ -712,14 +712,14 @@ export const specialCharacterJobs = [
     },
     ability: {
       name: '🎯 Hunt',
-      description: 'Abilities especializadas en cacería'
+      description: 'Specialized hunting abilities'
     },
     bonuses: [
-      { text: 'WotL exclusive character (crossover FFTA2)', isCharacteristic: true },
-      { text: 'Versátil: combat + soporte', isCharacteristic: true },
-      { text: 'Sidequest opcional en WotL', isCharacteristic: true }
+      { text: 'WotL exclusive (FFTA2)', isCharacteristic: true },
+      { text: 'Combat + support', isCharacteristic: true },
+      { text: 'Optional sidequest', isCharacteristic: true }
     ],
-    description: 'WotL exclusive. Joven cazador del mundo de Ivalice.'
+    description: 'WotL exclusive. Hunter'
   },
   {
     id: 'cloud',
@@ -738,11 +738,11 @@ export const specialCharacterJobs = [
       description: 'Braver, Cross-Slash, Meteorain, Finishing Touch, Omnislash'
     },
     bonuses: [
-      { text: '⚠️ REQUIERE: Materia Blade equipado para usar Limit', isCharacteristic: true },
-      { text: 'Límit Breaks de FF7 + Cherry Blossom (único de FFT)', isCharacteristic: true },
-      { text: 'Daño basado en MA (no PA), largo Charge Time', isCharacteristic: true },
-      { text: '⚠️ Empieza nivel 1 (mejorado en Ivalice Chronicles)', isCharacteristic: true }
+      { text: '⚠️ Requires Materia Blade', isCharacteristic: true },
+      { text: 'FF7 Limit Breaks + Cherry Blossom', isCharacteristic: true },
+      { text: 'MA-based. Long charge', isCharacteristic: true },
+      { text: '⚠️ Starts at Lv1', isCharacteristic: true }
     ],
-    description: 'Crossover FF7. Sidequest complejo: Mustadio → Goug Machine → Sal Ghidos.'
+    description: 'FF7 crossover. Complex sidequest'
   }
 ];

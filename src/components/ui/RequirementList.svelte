@@ -1,5 +1,5 @@
 <script>
-  import Label from './base/Label.svelte';
+  import SectionDivider from './base/SectionDivider.svelte';
   import Badge from './base/Badge.svelte';
 
   let {
@@ -8,8 +8,8 @@
 </script>
 
 {#if requirements.length > 0}
-  <div class="requirements">
-    <Label>Requisitos:</Label>
+  <div>
+    <SectionDivider>REQUIREMENTS</SectionDivider>
     <div class="req-badges">
       {#each requirements.filter(r => !r.special && !r.genderLock) as req}
         <Badge size="small">
@@ -40,10 +40,6 @@
 {/if}
 
 <style>
-  .requirements {
-    margin: var(--spacing-md) 0;
-  }
-
   .req-badges {
     display: flex;
     flex-wrap: wrap;
@@ -53,7 +49,7 @@
 
   .special-req {
     font-size: var(--font-size-sm);
-    color: var(--color-red);
+    color: var(--color-red-500);
     margin-top: 5px;
   }
 
@@ -63,7 +59,7 @@
   }
 
   .level {
-    color: var(--color-brown-light);
+    color: var(--color-brown-400);
     font-weight: var(--font-weight-bold);
     font-family: var(--font-serif);
   }

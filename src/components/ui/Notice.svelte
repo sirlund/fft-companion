@@ -17,20 +17,20 @@
 
 <style>
   .notice {
-    background: linear-gradient(135deg, var(--color-parchment-light) 0%, var(--color-parchment-base) 50%, var(--color-parchment-dark) 100%);
-    border: var(--border-thick) solid var(--color-brown-light);
+    background: linear-gradient(135deg, var(--color-parchment-300) 0%, var(--color-parchment-500) 50%, var(--color-parchment-600) 100%);
+    border: var(--border-thick) solid var(--color-brown-400);
     border-radius: var(--radius-md);
     padding: var(--spacing-lg);
     margin-bottom: var(--spacing-lg);
-    color: var(--color-brown-darkest);
+    color: var(--color-brown-900);
     box-shadow:
-      inset 0 0 0 1px var(--color-brown-lightest),
+      inset 0 0 0 1px var(--color-brown-300),
       0 4px 8px rgba(0, 0, 0, 0.3);
   }
 
   .notice-title {
     font-family: var(--font-serif);
-    color: var(--color-brown-dark);
+    color: var(--color-brown-700);
     margin-bottom: 10px;
     font-size: 1.2em;
     text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);

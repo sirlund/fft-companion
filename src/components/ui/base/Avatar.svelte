@@ -13,7 +13,7 @@
 <style>
   .avatar {
     background: rgba(139, 111, 71, 0.15);
-    border: var(--border-base) solid var(--color-brown-light);
+    border: var(--border-base) solid var(--color-brown-400);
     border-radius: var(--radius-md);
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;

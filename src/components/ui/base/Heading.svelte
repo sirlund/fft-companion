@@ -32,35 +32,35 @@
 
   :global(h2.heading) {
     font-size: 2.5em;
-    color: var(--color-gold-light);
+    color: var(--color-gold-300);
     text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
     margin-bottom: 20px;
   }
 
   :global(h3.heading) {
     font-size: 1.8em;
-    color: var(--color-brown-dark);
+    color: var(--color-brown-700);
     text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
     margin-bottom: var(--spacing-md);
   }
 
   :global(h4.heading) {
     font-size: 1.2em;
-    color: var(--color-brown-base);
+    color: var(--color-brown-600);
     margin-bottom: 10px;
   }
 
   /* Tier variant (for job tiers) */
   .heading-tier {
     text-align: center;
-    color: var(--color-gold-light) !important;
+    color: var(--color-gold-300) !important;
     font-size: 1.8em !important;
     margin-bottom: var(--spacing-xl);
     text-transform: uppercase;
     letter-spacing: 2px;
-    border-bottom: var(--border-thick) solid var(--color-brown-light);
+    border-bottom: var(--border-thick) solid var(--color-brown-400);
     padding: var(--spacing-md);
-    background: linear-gradient(180deg, var(--color-brown-light) 0%, #6b5537 100%);
+    background: linear-gradient(180deg, var(--color-brown-400) 0%, #6b5537 100%);
     border-radius: var(--radius-md);
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -68,7 +68,7 @@
 
   /* Section variant */
   .heading-section {
-    color: var(--color-brown-dark) !important;
+    color: var(--color-brown-700) !important;
     text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
   }
 </style>

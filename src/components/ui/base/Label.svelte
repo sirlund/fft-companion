@@ -10,7 +10,7 @@
 
 <style>
   .label {
-    color: var(--color-brown-base);
+    color: var(--color-brown-600);
     font-size: var(--font-size-sm);
     text-transform: uppercase;
     letter-spacing: 1px;

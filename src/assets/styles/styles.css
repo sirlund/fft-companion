@@ -143,21 +143,6 @@
     --color-yellow-800: #f9a825;
     --color-yellow-900: #f57f17;
 
-    /* Legacy aliases for backwards compatibility (will be removed later) */
-    --color-parchment-lightest: var(--color-parchment-200);
-    --color-parchment-light: var(--color-parchment-300);
-    --color-parchment-base: var(--color-parchment-500);
-    --color-parchment-dark: var(--color-parchment-600);
-    --color-brown-lightest: var(--color-brown-300);
-    --color-brown-light: var(--color-brown-400);
-    --color-brown-base: var(--color-brown-600);
-    --color-brown-dark: var(--color-brown-700);
-    --color-brown-darkest: var(--color-brown-900);
-    --color-gold: var(--color-gold-500);
-    --color-gold-light: var(--color-gold-300);
-    --color-red: var(--color-red-500);
-    --color-red-dark: var(--color-red-700);
-
     /* Colors - Ratings */
     --color-rating-s: #ffd700;
     --color-rating-s-accent: #ff8c00;
@@ -239,12 +224,15 @@
 /* Body & Container */
 body {
     font-family: 'Georgia', 'Times New Roman', serif;
-    /* FFT-inspired checkered diamond pattern background */
-    background-color: #1a1510;
+    /* Watercolor texture background with dark overlay */
+    background-color: #0d0a08;
     background-image:
-        repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(50, 40, 30, 0.3) 35px, rgba(50, 40, 30, 0.3) 70px),
-        repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(40, 30, 25, 0.3) 35px, rgba(40, 30, 25, 0.3) 70px),
-        linear-gradient(135deg, #1a1510 0%, #0d0a08 100%);
+        linear-gradient(135deg, rgba(26, 21, 16, 0.85) 0%, rgba(13, 10, 8, 0.9) 100%),
+        url('/assets/watercolor.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-blend-mode: multiply;
     color: #d4c5a0;
     line-height: 1.6;
     min-height: 100vh;

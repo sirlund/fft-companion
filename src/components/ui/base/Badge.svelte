@@ -43,19 +43,19 @@
   /* Color variants - Default */
   .badge-default {
     background: rgba(139, 111, 71, 0.25);
-    border: var(--border-thin) solid var(--color-brown-light);
-    color: var(--color-brown-dark);
+    border: var(--border-thin) solid var(--color-brown-400);
+    color: var(--color-brown-700);
   }
 
   /* Color variants - Special/Unique */
   .badge-special {
-    background: var(--color-red);
+    background: var(--color-red-500);
     color: #fff;
   }
 
   .badge-unique {
-    background: var(--color-gold);
-    color: var(--color-brown-darkest);
+    background: var(--color-gold-500);
+    color: var(--color-brown-900);
   }
 
   /* Rating badges - FFT style gradient bars */

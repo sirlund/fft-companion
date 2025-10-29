@@ -92,41 +92,41 @@
 </script>
 
 <Button onclick={() => showSection('main-menu')}>
-  ← Volver
+  ← Back
 </Button>
 
 <div style="margin: 20px 0;">
   <Heading level={1}>Jobs</Heading>
 </div>
 
-<SearchBox placeholder="Buscar job..." bind:value={searchValue} {onkeyup} />
+<SearchBox placeholder="Search jobs..." bind:value={searchValue} {onkeyup} />
 
-<!-- LEYENDA DE RATINGS -->
-<Notice variant="info" title="📊 Leyenda de Stats">
+<!-- STATS RATING LEGEND -->
+<Notice variant="info" title="📊 Stats Legend">
   <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 15px;">
     <div style="display: flex; align-items: center; gap: 8px;">
       <Badge variant="rating-s">S</Badge>
-      <span>Excepcional (raro)</span>
+      <span>Exceptional (rare)</span>
     </div>
     <div style="display: flex; align-items: center; gap: 8px;">
       <Badge variant="rating-a">A</Badge>
-      <span>Excelente</span>
+      <span>Excellent</span>
     </div>
     <div style="display: flex; align-items: center; gap: 8px;">
       <Badge variant="rating-b">B</Badge>
-      <span>Bueno</span>
+      <span>Good</span>
     </div>
     <div style="display: flex; align-items: center; gap: 8px;">
       <Badge variant="rating-c">C</Badge>
-      <span>Promedio</span>
+      <span>Average</span>
     </div>
     <div style="display: flex; align-items: center; gap: 8px;">
       <Badge variant="rating-d">D</Badge>
-      <span>Bajo</span>
+      <span>Low</span>
     </div>
   </div>
   <p style="font-size: 0.9em; font-style: italic;">
-    Los ratings indican el crecimiento de stats al subir de nivel. <strong>A</strong> significa alto crecimiento, <strong>D</strong> significa bajo crecimiento.
+    Ratings indicate stat growth per level. <strong>A</strong> = high growth, <strong>D</strong> = low growth.
   </p>
 </Notice>
 
@@ -159,7 +159,7 @@
   <div class="job-tier special-section">
     <Heading level={2} variant="tier">⭐ Special Character Jobs (Unique)</Heading>
     <p class="special-description">
-      Jobs exclusivos de personajes únicos. No se pueden desbloquear para unidades genéricas.
+      Unique jobs for special characters. Cannot be unlocked for generic units.
     </p>
     <div class="jobs-row">
       {#each filteredSpecialJobs as job}
@@ -189,7 +189,7 @@
 
   .special-description {
     text-align: center;
-    color: #5a4530;
+    color: var(--color-brown-700);
     margin: 15px 0 30px;
     font-style: italic;
     font-size: 1em;

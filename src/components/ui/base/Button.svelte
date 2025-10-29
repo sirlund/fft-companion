@@ -20,7 +20,7 @@
   .btn {
     display: inline-block;
     padding: var(--spacing-md) var(--spacing-xl);
-    border: var(--border-base) solid var(--color-brown-base);
+    border: var(--border-base) solid var(--color-brown-600);
     border-radius: var(--radius-md);
     cursor: pointer;
     font-size: var(--font-size-base);
@@ -35,26 +35,26 @@
 
   /* Variants */
   .btn-primary {
-    background: linear-gradient(135deg, var(--color-parchment-light) 0%, var(--color-parchment-base) 100%);
-    color: var(--color-brown-dark);
-    border-color: var(--color-brown-light);
+    background: linear-gradient(135deg, var(--color-parchment-300) 0%, var(--color-parchment-500) 100%);
+    color: var(--color-brown-700);
+    border-color: var(--color-brown-400);
   }
 
   .btn-primary:hover {
-    background: linear-gradient(135deg, var(--color-gold-light) 0%, var(--color-parchment-light) 100%);
-    border-color: var(--color-gold);
+    background: linear-gradient(135deg, var(--color-gold-300) 0%, var(--color-parchment-300) 100%);
+    border-color: var(--color-gold-500);
   }
 
   .btn-ghost {
     background: transparent;
-    color: var(--color-parchment-base);
-    border-color: var(--color-brown-light);
+    color: var(--color-parchment-500);
+    border-color: var(--color-brown-400);
   }
 
   .btn-ghost:hover {
     background: rgba(139, 111, 71, 0.2);
-    border-color: var(--color-gold);
-    color: var(--color-gold-light);
+    border-color: var(--color-gold-500);
+    color: var(--color-gold-300);
   }
 
   /* Sizes */

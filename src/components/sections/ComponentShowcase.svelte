@@ -33,7 +33,7 @@
 <div class="showcase">
   <div class="showcase-header">
     <Heading level={1}>Component Showcase</Heading>
-    <p class="showcase-description">Biblioteca de componentes FFT Companion</p>
+    <p class="showcase-description">FFT Companion Component Library</p>
   </div>
 
   <!-- Buttons Section -->
@@ -155,7 +155,7 @@
 
     <div class="component-group">
       <Label>Example Label</Label>
-      <Label>Requisitos</Label>
+      <Label>Requirements</Label>
       <Label>Stats</Label>
     </div>
   </section>
@@ -226,7 +226,7 @@
     <Heading level={2} variant="section">Search Box</Heading>
 
     <div class="component-group">
-      <SearchBox bind:value={searchValue} placeholder="Buscar trabajos..." />
+      <SearchBox bind:value={searchValue} placeholder="Search jobs..." />
       {#if searchValue}
         <p class="search-result">Search value: {searchValue}</p>
       {/if}
@@ -236,7 +236,7 @@
   <!-- Back Button -->
   <div class="showcase-footer">
     <Button onclick={() => showSection('main-menu')}>
-      Volver al Menú
+      Back to Menu
     </Button>
   </div>
 </div>

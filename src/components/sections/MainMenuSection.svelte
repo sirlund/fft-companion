@@ -6,56 +6,56 @@
   const menuItems = [
     {
       title: 'Jobs',
-      description: 'Explora clases genéricas y especiales. Ver stats, requisitos, equipamiento y más.',
-      buttonText: 'Ver Jobs',
+      description: 'Explore generic and special jobs. View stats, requirements, equipment, and more.',
+      buttonText: 'View Jobs',
       section: 'jobs'
     },
     {
       title: 'Abilities',
-      description: 'Explora datos completos de habilidades incluyendo efectos, daño, cálculos de éxito, rango y área de efecto.',
-      buttonText: 'Ver Abilities',
+      description: 'Explore complete ability data including effects, damage, hit chance, range, and area.',
+      buttonText: 'View Abilities',
       section: 'abilities'
     },
     {
       title: 'Equipment',
-      description: 'Navega armas, armaduras y accesorios. Filtra por stats, efectos y disponibilidad.',
-      buttonText: 'Ver Equipment',
+      description: 'Browse weapons, armor, and accessories. Filter by stats, effects, and availability.',
+      buttonText: 'View Equipment',
       section: 'equipment'
     },
     {
-      title: 'Personajes Únicos',
-      description: 'Información detallada de personajes especiales: stats base, clases disponibles y misiones de reclutamiento.',
-      buttonText: 'Ver Personajes',
+      title: 'Unique Characters',
+      description: 'Detailed info on special characters: base stats, available jobs, and recruitment quests.',
+      buttonText: 'View Characters',
       section: 'characters'
     },
     {
       title: 'Monsters',
-      description: '¿Quieres saber dónde aparece un monstruo? Revisa sus stats, habilidades y ubicación.',
-      buttonText: 'Ver Monsters',
+      description: 'Want to know where a monster appears? Check their stats, abilities, and location.',
+      buttonText: 'View Monsters',
       section: 'monsters'
     },
     {
       title: 'Bosses',
-      description: 'Descubre inmunidades, debilidades, stats y detalles de unidades para prepararte para cada batalla.',
-      buttonText: 'Ver Bosses',
+      description: 'Discover immunities, weaknesses, stats, and unit details to prepare for each battle.',
+      buttonText: 'View Bosses',
       section: 'bosses'
     },
     {
       title: 'Maps',
-      description: 'Explora el diseño de mapas. Ver tesoros, trampas y ubicaciones de salida.',
-      buttonText: 'Ver Maps',
+      description: 'Explore map layouts. View treasures, traps, and exit locations.',
+      buttonText: 'View Maps',
       section: 'maps'
     },
     {
       title: 'Zodiac Compatibility',
-      description: '¿Curioso sobre cómo tu signo se empareja? Sumérgete en la tabla de compatibilidad zodiacal para descubrir qué aliados te empoderan y qué enemigos debes vigilar.',
-      buttonText: 'Ver Zodiac',
+      description: 'Curious how your sign matches up? Dive into zodiac compatibility to discover which allies empower you and which enemies to watch.',
+      buttonText: 'View Zodiac',
       section: 'zodiac'
     },
     {
       title: 'Component Showcase',
-      description: 'Biblioteca de componentes de la interfaz. Vista previa de todos los elementos de diseño disponibles.',
-      buttonText: 'Ver Showcase',
+      description: 'UI component library. Preview all available design elements.',
+      buttonText: 'View Showcase',
       section: 'showcase'
     }
   ];
@@ -65,8 +65,8 @@
   <h1>FFT COMPANION</h1>
   <div class="subtitle">FFT Compendium</div>
   <div class="version-info">
-    <h3>⚔️ Versión: War of the Lions (iOS/iPadOS)</h3>
-    <p><strong>Importante:</strong> Esta guía está diseñada específicamente para la versión móvil de FFT: War of the Lions (iOS/iPadOS), que incluye mejoras de rendimiento, cámara 360°, y acceso a items exclusivos de multiplayer a través de Trapper's Den. No es compatible con Ivalice Chronicles (2025 remaster).</p>
+    <h3>⚔️ Version: War of the Lions (iOS/iPadOS)</h3>
+    <p><strong>Important:</strong> This guide is designed specifically for the mobile version of FFT: War of the Lions (iOS/iPadOS), which includes performance improvements, 360° camera, and access to exclusive multiplayer items through Trapper's Den. Not compatible with Ivalice Chronicles (2025 remaster).</p>
   </div>
 </header>
 

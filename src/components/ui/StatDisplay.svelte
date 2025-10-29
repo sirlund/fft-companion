@@ -11,36 +11,31 @@
   const cleanValue = rating ? value.replace(new RegExp(`\\s*${rating.toUpperCase()}\\s*$`), '') : value;
 </script>
 
-<div class="stat-item">
+<span class="stat-item">
   <span class="stat-label">{label}:</span>
-  <span class="stat-value">
-    {cleanValue}
-    {#if rating}
-      <Badge variant="rating-{rating.toLowerCase()}">{rating.toUpperCase()}</Badge>
-    {/if}
-  </span>
-</div>
+  {#if rating}
+    <Badge variant="rating-{rating.toLowerCase()}" size="small">{rating.toUpperCase()}</Badge>
+  {:else}
+    <span class="stat-value">{cleanValue}</span>
+  {/if}
+</span>
 
 <style>
   .stat-item {
-    display: flex;
-    justify-content: space-between;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
     font-size: var(--font-size-sm);
-    padding: var(--spacing-xs) 0;
   }
 
   .stat-label {
-    color: var(--color-brown-base);
+    color: var(--color-brown-600);
     font-weight: var(--font-weight-bold);
   }
 
   .stat-value {
-    color: var(--color-brown-darkest);
+    color: var(--color-brown-900);
     font-weight: var(--font-weight-bold);
     font-family: var(--font-serif);
-    font-variant-numeric: tabular-nums;
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-sm);
   }
 </style>

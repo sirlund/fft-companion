@@ -2,7 +2,7 @@
   import Avatar from './base/Avatar.svelte';
   import Badge from './base/Badge.svelte';
   import Heading from './base/Heading.svelte';
-  import Label from './base/Label.svelte';
+  import SectionDivider from './base/SectionDivider.svelte';
   import StatDisplay from './StatDisplay.svelte';
   import RequirementList from './RequirementList.svelte';
 
@@ -19,6 +19,13 @@
     isExclusiveWotl = false,
     isSpecialCharacter = false
   } = $props();
+
+  // Convert description into tags (split by periods)
+  const descriptionTags = $derived(
+    description
+      ? description.split('.').map(s => s.trim()).filter(s => s.length > 0)
+      : []
+  );
 </script>
 
 <div
@@ -28,8 +35,12 @@
   <div class="job-header">
     <div class="job-title-section">
       <Heading level={3}>{name}</Heading>
-      {#if isExclusiveWotl}
-        <Badge size="small" variant="special">WotL</Badge>
+      {#if descriptionTags.length > 0}
+        <div class="description-tags">
+          {#each descriptionTags as tag}
+            <span class="desc-tag">{tag}</span>
+          {/each}
+        </div>
       {/if}
     </div>
     <div class="job-icon-wrapper">
@@ -43,11 +54,13 @@
     </div>
   {/if}
 
-  <RequirementList {requirements} />
+  <div class="card-section">
+    <RequirementList {requirements} />
+  </div>
 
   {#if Object.keys(stats).length > 0}
-    <div class="stats-section">
-      <Label>Stats</Label>
+    <div class="card-section stats-section">
+      <SectionDivider>STATS</SectionDivider>
       <div class="stats-container">
         {#if stats.hp}
           <StatDisplay label="HP" value={stats.hp.value} rating={stats.hp.rating} />
@@ -69,8 +82,8 @@
   {/if}
 
   {#if ability.name}
-    <div class="job-abilities">
-      <Label>Habilidad</Label>
+    <div class="card-section job-abilities">
+      <SectionDivider>ABILITY</SectionDivider>
       <div class="ability-name">{ability.name}</div>
       {#if ability.description}
         <div class="ability-description">{ability.description}</div>
@@ -79,50 +92,46 @@
   {/if}
 
   {#if bonuses.length > 0}
-    <div class="job-bonuses">
-      <Label>{bonuses[0].isCharacteristic ? 'Características' : 'Bonos Especiales'}</Label>
+    <div class="card-section job-bonuses">
+      <SectionDivider>{bonuses[0].isCharacteristic ? 'CHARACTERISTICS' : 'SPECIAL BONUSES'}</SectionDivider>
       {#each bonuses as bonus}
         <div class="bonus-item">{bonus.text}</div>
       {/each}
     </div>
   {/if}
-
-  {#if description}
-    <div class="job-description">{description}</div>
-  {/if}
 </div>
 
 <style>
   .job-card {
-    background: linear-gradient(135deg, var(--color-parchment-light) 0%, var(--color-parchment-base) 50%, var(--color-parchment-dark) 100%);
-    border: var(--border-thick) solid var(--color-brown-light);
+    background: linear-gradient(135deg, var(--color-parchment-300) 0%, var(--color-parchment-500) 50%, var(--color-parchment-600) 100%);
+    border: var(--border-thick) solid var(--color-brown-400);
     border-radius: var(--radius-md);
-    padding: var(--spacing-lg);
+    padding: var(--spacing-md);
     width: 320px;
     flex-shrink: 0;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
     position: relative;
     transition: all 0.3s ease;
     cursor: pointer;
     box-shadow:
-      inset 0 0 0 1px var(--color-brown-lightest),
-      inset 0 0 0 2px var(--color-parchment-light),
+      inset 0 0 0 1px var(--color-brown-300),
+      inset 0 0 0 2px var(--color-parchment-300),
       0 4px 8px rgba(0, 0, 0, 0.3);
   }
 
   .job-card:hover {
     transform: translateY(-3px);
     box-shadow:
-      inset 0 0 0 1px var(--color-gold),
-      inset 0 0 0 2px var(--color-gold-light),
+      inset 0 0 0 1px var(--color-gold-500),
+      inset 0 0 0 2px var(--color-gold-300),
       0 8px 20px rgba(212, 175, 55, 0.5);
   }
 
   .job-card.exclusive-wotl {
-    border-color: var(--color-red-dark);
+    border-color: var(--color-red-700);
     background: linear-gradient(135deg, #e8c4c0 0%, #d4a4a0 50%, #c49490 100%);
     box-shadow:
-      inset 0 0 0 1px var(--color-red-dark),
+      inset 0 0 0 1px var(--color-red-700),
       inset 0 0 0 2px #e8c4c0,
       0 4px 8px rgba(184, 50, 40, 0.3);
   }
@@ -132,7 +141,7 @@
     position: absolute;
     top: -12px;
     right: 10px;
-    background: var(--color-red);
+    background: var(--color-red-500);
     color: #fff;
     padding: var(--spacing-xs) var(--spacing-md);
     border-radius: var(--radius-md);
@@ -145,9 +154,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: var(--spacing-md);
-    padding-bottom: var(--spacing-md);
-    border-bottom: var(--border-base) solid var(--color-brown-light);
+    padding-bottom: var(--spacing-sm);
   }
 
   .job-title-section {
@@ -163,69 +170,64 @@
 
   .character-name {
     text-align: center;
-    color: var(--color-brown-light);
+    color: var(--color-brown-400);
     font-size: 0.9em;
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
     font-weight: var(--font-weight-bold);
   }
 
-  .stats-section {
-    margin: var(--spacing-md) 0;
-    padding-top: var(--spacing-md);
-    border-top: var(--border-base) solid var(--color-brown-light);
+  .card-section {
+    margin: var(--spacing-md) 0 var(--spacing-sm);
   }
 
   .stats-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--spacing-sm) var(--spacing-lg);
-    margin-top: var(--spacing-sm);
-  }
-
-  .job-abilities {
-    margin: var(--spacing-md) 0;
-    padding-top: var(--spacing-md);
-    border-top: var(--border-base) solid var(--color-brown-light);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-xs);
+    align-items: center;
   }
 
   .ability-name {
     font-weight: var(--font-weight-bold);
-    color: var(--color-brown-dark);
-    margin-bottom: 5px;
+    color: var(--color-brown-700);
+    margin-bottom: 4px;
     font-size: var(--font-size-base);
   }
 
   .ability-description {
     font-size: var(--font-size-sm);
-    color: var(--color-brown-base);
+    color: var(--color-brown-600);
     line-height: var(--line-height-normal);
-  }
-
-  .job-bonuses {
-    margin: var(--spacing-md) 0;
-    padding-top: var(--spacing-md);
-    border-top: var(--border-base) solid var(--color-brown-light);
   }
 
   .bonus-item {
     font-size: var(--font-size-sm);
-    color: var(--color-brown-dark);
-    padding: var(--spacing-xs) 0;
+    color: var(--color-brown-700);
+    padding: 2px 0;
     line-height: var(--line-height-normal);
   }
 
   .bonus-item:before {
     content: "⭐ ";
-    color: var(--color-gold);
+    color: var(--color-gold-500);
   }
 
-  .job-description {
-    font-size: var(--font-size-sm);
-    color: var(--color-brown-base);
-    line-height: var(--line-height-relaxed);
-    margin-top: var(--spacing-md);
-    padding-top: var(--spacing-md);
-    border-top: var(--border-thin) solid var(--color-brown-light);
+  .description-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+  }
+
+  .desc-tag {
+    font-size: 0.7em;
+    color: var(--color-brown-700);
+    background: rgba(139, 111, 71, 0.15);
+    padding: 3px 8px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-brown-400);
+    line-height: 1.2;
   }
 
   @media (max-width: 768px) {
