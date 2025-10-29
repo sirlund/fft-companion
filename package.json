@@ -1,0 +1,20 @@
+{
+  "name": "fft-companion",
+  "version": "1.0.0",
+  "description": "A companion guide for Final Fantasy Tactics: War of the Lions (iOS/iPadOS)",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx http-server -p 8080",
+    "dev": "npx http-server -p 8080 -o"
+  },
+  "keywords": [
+    "final-fantasy-tactics",
+    "fft",
+    "war-of-the-lions",
+    "game-guide",
+    "companion"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {}
+}

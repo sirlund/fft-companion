@@ -1,0 +1,2139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FFT COMPANION - War of the Lions (iOS)</title>
+    <link rel="stylesheet" href="src/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>FFT COMPANION</h1>
+            <div class="subtitle">FFT Compendium</div>
+            <div class="version-info">
+                <h3>⚔️ Versión: War of the Lions (iOS/iPadOS)</h3>
+                <p><strong>Importante:</strong> Esta guía está diseñada específicamente para la versión móvil de FFT: War of the Lions (iOS/iPadOS), que incluye mejoras de rendimiento, cámara 360°, y acceso a items exclusivos de multiplayer a través de Trapper's Den. No es compatible con Ivalice Chronicles (2025 remaster).</p>
+            </div>
+        </header>
+
+        <!-- MENÚ PRINCIPAL -->
+        <div id="main-menu" class="section active">
+            <div class="grid">
+                <div class="card" onclick="showSection('jobs')">
+                    <h2>Jobs</h2>
+                    <p>Explora clases genéricas y especiales. Ver stats, requisitos, equipamiento y más.</p>
+                    <span class="card-button">Ver Jobs</span>
+                </div>
+                
+                <div class="card" onclick="showSection('abilities')">
+                    <h2>Abilities</h2>
+                    <p>Explora datos completos de habilidades incluyendo efectos, daño, cálculos de éxito, rango y área de efecto.</p>
+                    <span class="card-button">Ver Abilities</span>
+                </div>
+                
+                <div class="card" onclick="showSection('equipment')">
+                    <h2>Equipment</h2>
+                    <p>Navega armas, armaduras y accesorios. Filtra por stats, efectos y disponibilidad.</p>
+                    <span class="card-button">Ver Equipment</span>
+                </div>
+                
+                <div class="card" onclick="showSection('characters')">
+                    <h2>Personajes Únicos</h2>
+                    <p>Información detallada de personajes especiales: stats base, clases disponibles y misiones de reclutamiento.</p>
+                    <span class="card-button">Ver Personajes</span>
+                </div>
+                
+                <div class="card" onclick="showSection('monsters')">
+                    <h2>Monsters</h2>
+                    <p>¿Quieres saber dónde aparece un monstruo? Revisa sus stats, habilidades y ubicación.</p>
+                    <span class="card-button">Ver Monsters</span>
+                </div>
+                
+                <div class="card" onclick="showSection('bosses')">
+                    <h2>Bosses</h2>
+                    <p>Descubre inmunidades, debilidades, stats y detalles de unidades para prepararte para cada batalla.</p>
+                    <span class="card-button">Ver Bosses</span>
+                </div>
+                
+                <div class="card" onclick="showSection('maps')">
+                    <h2>Maps</h2>
+                    <p>Explora el diseño de mapas. Ver tesoros, trampas y ubicaciones de salida.</p>
+                    <span class="card-button">Ver Maps</span>
+                </div>
+                
+                <div class="card" onclick="showSection('zodiac')">
+                    <h2>Zodiac Compatibility</h2>
+                    <p>¿Curioso sobre cómo tu signo se empareja? Sumérgete en la tabla de compatibilidad zodiacal para descubrir qué aliados te empoderan y qué enemigos debes vigilar.</p>
+                    <span class="card-button">Ver Zodiac</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN: JOBS -->
+        <div id="jobs" class="section">
+            <button class="back-button" onclick="showSection('main-menu')">← Volver al Menú</button>
+            <h2 style="color: #d4af37; font-size: 2.5em; margin-bottom: 20px;">Jobs</h2>
+            <input type="text" class="search-box" id="job-search" placeholder="Buscar job..." onkeyup="filterJobs()">
+
+            <!-- LEYENDA DE RATINGS -->
+            <div class="content-box" style="margin-bottom: 30px; background: rgba(212, 175, 55, 0.1);">
+                <h3 style="font-size: 1.2em; margin-bottom: 10px;">📊 Leyenda de Stats</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; font-size: 0.9em;">
+                    <div><span class="stat-rating s" style="font-size: 1.2em;">S</span> = Excepcional (raro)</div>
+                    <div><span class="stat-rating a" style="font-size: 1.2em;">A</span> = Excelente</div>
+                    <div><span class="stat-rating b" style="font-size: 1.2em;">B</span> = Bueno</div>
+                    <div><span class="stat-rating c" style="font-size: 1.2em;">C</span> = Promedio</div>
+                    <div><span class="stat-rating d" style="font-size: 1.2em;">D</span> = Bajo</div>
+                </div>
+                <p style="margin-top: 10px; font-size: 0.85em; font-style: italic; color: #b8a080;">
+                    Los ratings indican el crecimiento de stats al subir de nivel. <strong>A</strong> significa alto crecimiento, <strong>D</strong> significa bajo crecimiento.
+                </p>
+            </div>
+
+            <!-- TIER 1: CLASES INICIALES -->
+            <div class="job-tier">
+                <h3 class="tier-title">⚔️ Tier 1: Clases Iniciales</h3>
+                <div class="jobs-row">
+                    <!-- SQUIRE -->
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div class="job-name">Squire</div>
+                            <div class="job-icon"><img src="assets/jobs/squire.webp" alt="Squire" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                        </div>
+                        <div class="requirements-section">
+                            <div class="req-title">Requisitos:</div>
+                            <div class="req-badges">
+                                <span class="req-badge none">✓ Inicial</span>
+                            </div>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item-grid"><span class="stat-label-grid">HP:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MP:</span> <span class="stat-value-grid">D <span class="stat-rating d">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">Speed:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">PA:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MA:</span> <span class="stat-value-grid">D <span class="stat-rating d">●</span></span></div>
+                        </div>
+                        <div class="job-abilities">
+                            <div class="ability-name">🎯 Fundaments</div>
+                            <div style="font-size: 0.8em; color: #c4b5a0;">Item, Throw Stone, Heal, Dash</div>
+                        </div>
+                        <div class="job-description">Clase inicial básica. Desbloquea otras clases.</div>
+                    </div>
+
+                    <!-- CHEMIST -->
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div class="job-name">Chemist</div>
+                            <div class="job-icon"><img src="assets/jobs/chemist.webp" alt="Chemist" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                        </div>
+                        <div class="requirements-section">
+                            <div class="req-title">Requisitos:</div>
+                            <div class="req-badges">
+                                <span class="req-badge none">✓ Inicial</span>
+                            </div>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item-grid"><span class="stat-label-grid">HP:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MP:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">Speed:</span> <span class="stat-value-grid">B <span class="stat-rating b">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">PA:</span> <span class="stat-value-grid">D <span class="stat-rating d">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MA:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                        </div>
+                        <div class="job-abilities">
+                            <div class="ability-name">💊 Item</div>
+                            <div style="font-size: 0.8em; color: #c4b5a0;">Uso de items con rango extendido</div>
+                        </div>
+                        <div class="job-description">Excelente velocidad. Items a distancia. Soporte inicial.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TIER 2: CLASES BÁSICAS -->
+            <div class="job-tier">
+                <h3 class="tier-title">⚔️ Tier 2: Clases Básicas</h3>
+                <div class="jobs-row">
+                    <!-- KNIGHT -->
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div class="job-name">Knight</div>
+                            <div class="job-icon"><img src="assets/jobs/knight.webp" alt="Knight" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                        </div>
+                        <div class="requirements-section">
+                            <div class="req-title">Requisitos:</div>
+                            <div class="req-badges">
+                                <span class="req-badge">Squire <span class="level">Lv.2</span></span>
+                            </div>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item-grid"><span class="stat-label-grid">HP:</span> <span class="stat-value-grid">A <span class="stat-rating a">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MP:</span> <span class="stat-value-grid">D <span class="stat-rating d">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">Speed:</span> <span class="stat-value-grid">D <span class="stat-rating d">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">PA:</span> <span class="stat-value-grid">A <span class="stat-rating a">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MA:</span> <span class="stat-value-grid">D <span class="stat-rating d">●</span></span></div>
+                        </div>
+                        <div class="job-abilities">
+                            <div class="ability-name">💥 Ruin (Break)</div>
+                            <div style="font-size: 0.8em; color: #c4b5a0;">Destruye equipo enemigo</div>
+                        </div>
+                        <div class="job-bonuses">
+                            <div class="bonus-title">⭐ Bonos Especiales</div>
+                            <div class="bonus-item">Acceso a las mejores armaduras del juego</div>
+                            <div class="bonus-item">Puede usar Heavy Armor y Shields</div>
+                        </div>
+                        <div class="job-description">Tank físico. Alto HP y PA. Mejores armaduras.</div>
+                    </div>
+
+                    <!-- ARCHER -->
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div class="job-name">Archer</div>
+                            <div class="job-icon"><img src="assets/jobs/archer.webp" alt="Archer" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                        </div>
+                        <div class="requirements-section">
+                            <div class="req-title">Requisitos:</div>
+                            <div class="req-badges">
+                                <span class="req-badge">Squire <span class="level">Lv.2</span></span>
+                            </div>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item-grid"><span class="stat-label-grid">HP:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MP:</span> <span class="stat-value-grid">D <span class="stat-rating d">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">Speed:</span> <span class="stat-value-grid">B <span class="stat-rating b">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">PA:</span> <span class="stat-value-grid">B <span class="stat-rating b">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MA:</span> <span class="stat-value-grid">D <span class="stat-rating d">●</span></span></div>
+                        </div>
+                        <div class="job-abilities">
+                            <div class="ability-name">🎯 Aim</div>
+                            <div style="font-size: 0.8em; color: #c4b5a0;">Ataques de status a distancia</div>
+                        </div>
+                        <div class="job-bonuses">
+                            <div class="bonus-title">⭐ Bonos Especiales</div>
+                            <div class="bonus-item">Charge +1: Aumenta rango de arcos y crossbows</div>
+                        </div>
+                        <div class="job-description">Rango largo. Charge +1. Control de campo.</div>
+                    </div>
+
+                    <!-- WHITE MAGE -->
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div class="job-name">White Mage</div>
+                            <div class="job-icon"><img src="assets/jobs/white_mage.webp" alt="White Mage" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                        </div>
+                        <div class="requirements-section">
+                            <div class="req-title">Requisitos:</div>
+                            <div class="req-badges">
+                                <span class="req-badge">Chemist <span class="level">Lv.2</span></span>
+                            </div>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item-grid"><span class="stat-label-grid">HP:</span> <span class="stat-value-grid">D <span class="stat-rating d">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MP:</span> <span class="stat-value-grid">A <span class="stat-rating a">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">Speed:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">PA:</span> <span class="stat-value-grid">D <span class="stat-rating d">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MA:</span> <span class="stat-value-grid">A <span class="stat-rating a">●</span></span></div>
+                        </div>
+                        <div class="job-abilities">
+                            <div class="ability-name">✨ White Magick</div>
+                            <div style="font-size: 0.8em; color: #c4b5a0;">Cure, Raise, Reraise, Holy</div>
+                        </div>
+                        <div class="job-description">Curación principal. Fundamental para supervivencia.</div>
+                    </div>
+
+                    <!-- BLACK MAGE -->
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div class="job-name">Black Mage</div>
+                            <div class="job-icon"><img src="assets/jobs/black_mage.webp" alt="Black Mage" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                        </div>
+                        <div class="requirements-section">
+                            <div class="req-title">Requisitos:</div>
+                            <div class="req-badges">
+                                <span class="req-badge">Chemist <span class="level">Lv.2</span></span>
+                            </div>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item-grid"><span class="stat-label-grid">HP:</span> <span class="stat-value-grid">D <span class="stat-rating d">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MP:</span> <span class="stat-value-grid">A <span class="stat-rating a">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">Speed:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">PA:</span> <span class="stat-value-grid">D <span class="stat-rating d">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MA:</span> <span class="stat-value-grid">A <span class="stat-rating a">●</span></span></div>
+                        </div>
+                        <div class="job-abilities">
+                            <div class="ability-name">🔥 Black Magick</div>
+                            <div style="font-size: 0.8em; color: #c4b5a0;">Fire, Ice, Thunder, Flare series</div>
+                        </div>
+                        <div class="job-description">Daño mágico elemental. Alto MA.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TIER 3: CLASES INTERMEDIAS -->
+            <div class="job-tier">
+                <h3 class="tier-title">⚔️ Tier 3: Clases Intermedias</h3>
+                <div class="jobs-row">
+                    <!-- MONK -->
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div class="job-name">Monk</div>
+                            <div class="job-icon"><img src="assets/jobs/monk.webp" alt="Monk" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                        </div>
+                        <div class="requirements-section">
+                            <div class="req-title">Requisitos:</div>
+                            <div class="req-badges">
+                                <span class="req-badge">Knight <span class="level">Lv.3</span></span>
+                            </div>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item-grid"><span class="stat-label-grid">HP:</span> <span class="stat-value-grid">A <span class="stat-rating a">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MP:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">Speed:</span> <span class="stat-value-grid">B <span class="stat-rating b">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">PA:</span> <span class="stat-value-grid">A <span class="stat-rating a">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MA:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                        </div>
+                        <div class="job-abilities">
+                            <div class="ability-name">👊 Martial Arts</div>
+                            <div style="font-size: 0.8em; color: #c4b5a0;">Chakra, Wave Fist, Earth Slash</div>
+                        </div>
+                        <div class="job-bonuses">
+                            <div class="bonus-title">⭐ Bonos Especiales</div>
+                            <div class="bonus-item">Martial Arts: Daño sin arma = PA × (PA/2)</div>
+                        </div>
+                        <div class="job-description">Combate cuerpo a cuerpo. Revive aliados, excelente PA y Speed.</div>
+                    </div>
+
+                    <!-- THIEF -->
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div class="job-name">Thief</div>
+                            <div class="job-icon"><img src="assets/jobs/thief.webp" alt="Thief" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                        </div>
+                        <div class="requirements-section">
+                            <div class="req-title">Requisitos:</div>
+                            <div class="req-badges">
+                                <span class="req-badge">Archer <span class="level">Lv.3</span></span>
+                            </div>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item-grid"><span class="stat-label-grid">HP:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MP:</span> <span class="stat-value-grid">D <span class="stat-rating d">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">Speed:</span> <span class="stat-value-grid">A <span class="stat-rating a">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">PA:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MA:</span> <span class="stat-value-grid">D <span class="stat-rating d">●</span></span></div>
+                        </div>
+                        <div class="job-abilities">
+                            <div class="ability-name">💰 Steal</div>
+                            <div style="font-size: 0.8em; color: #c4b5a0;">Steal Heart, Steal Weapon, Gil</div>
+                        </div>
+                        <div class="job-bonuses">
+                            <div class="bonus-title">⭐ Bonos Especiales</div>
+                            <div class="bonus-item">Move +2</div>
+                            <div class="bonus-item">Innate: Treasure Hunter</div>
+                        </div>
+                        <div class="job-description">Velocidad máxima. Útil para conseguir items raros.</div>
+                    </div>
+
+                    <!-- TIME MAGE -->
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div class="job-name">Time Mage</div>
+                            <div class="job-icon"><img src="assets/jobs/time_mage.webp" alt="Time Mage" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                        </div>
+                        <div class="requirements-section">
+                            <div class="req-title">Requisitos:</div>
+                            <div class="req-badges">
+                                <span class="req-badge">Black Mage <span class="level">Lv.2</span></span>
+                            </div>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item-grid"><span class="stat-label-grid">HP:</span> <span class="stat-value-grid">D <span class="stat-rating d">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MP:</span> <span class="stat-value-grid">A <span class="stat-rating a">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">Speed:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">PA:</span> <span class="stat-value-grid">D <span class="stat-rating d">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MA:</span> <span class="stat-value-grid">B <span class="stat-rating b">●</span></span></div>
+                        </div>
+                        <div class="job-abilities">
+                            <div class="ability-name">⏱️ Time Magick</div>
+                            <div style="font-size: 0.8em; color: #c4b5a0;">Haste, Slow, Stop, Quick</div>
+                        </div>
+                        <div class="job-description">Control de velocidad. Crítico para estrategia.</div>
+                    </div>
+
+                    <!-- MYSTIC -->
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div class="job-name">Mystic</div>
+                            <div class="job-icon"><img src="assets/jobs/mystic.webp" alt="Mystic" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                        </div>
+                        <div class="requirements-section">
+                            <div class="req-title">Requisitos:</div>
+                            <div class="req-badges">
+                                <span class="req-badge">White Mage <span class="level">Lv.2</span></span>
+                            </div>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item-grid"><span class="stat-label-grid">HP:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MP:</span> <span class="stat-value-grid">A <span class="stat-rating a">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">Speed:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">PA:</span> <span class="stat-value-grid">D <span class="stat-rating d">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MA:</span> <span class="stat-value-grid">B <span class="stat-rating b">●</span></span></div>
+                        </div>
+                        <div class="job-abilities">
+                            <div class="ability-name">🔮 Mystic Arts</div>
+                            <div style="font-size: 0.8em; color: #c4b5a0;">Confuse, Silence, Blind, Sleep</div>
+                        </div>
+                        <div class="job-description">Status ailments. Control de enemigos.</div>
+                    </div>
+
+                    <!-- GEOMANCER -->
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div class="job-name">Geomancer</div>
+                            <div class="job-icon"><img src="assets/jobs/geomancer.webp" alt="Geomancer" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                        </div>
+                        <div class="requirements-section">
+                            <div class="req-title">Requisitos:</div>
+                            <div class="req-badges">
+                                <span class="req-badge">Monk <span class="level">Lv.2</span></span>
+                            </div>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item-grid"><span class="stat-label-grid">HP:</span> <span class="stat-value-grid">B <span class="stat-rating b">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MP:</span> <span class="stat-value-grid">B <span class="stat-rating b">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">Speed:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">PA:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MA:</span> <span class="stat-value-grid">B <span class="stat-rating b">●</span></span></div>
+                        </div>
+                        <div class="job-abilities">
+                            <div class="ability-name">🌍 Elemental</div>
+                            <div style="font-size: 0.8em; color: #c4b5a0;">Magia sin MP, basada en terreno</div>
+                        </div>
+                        <div class="job-bonuses">
+                            <div class="bonus-title">⭐ Bonos Especiales</div>
+                            <div class="bonus-item">Ignora terreno (Move on Lava/Water)</div>
+                        </div>
+                        <div class="job-description">Magia sin costo de MP. Dependiente del terreno.</div>
+                    </div>
+
+                    <!-- DRAGOON -->
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div class="job-name">Dragoon</div>
+                            <div class="job-icon"><img src="assets/jobs/dragoon.webp" alt="Dragoon" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                        </div>
+                        <div class="requirements-section">
+                            <div class="req-title">Requisitos:</div>
+                            <div class="req-badges">
+                                <span class="req-badge">Thief <span class="level">Lv.4</span></span>
+                            </div>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item-grid"><span class="stat-label-grid">HP:</span> <span class="stat-value-grid">A <span class="stat-rating a">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MP:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">Speed:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">PA:</span> <span class="stat-value-grid">A <span class="stat-rating a">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MA:</span> <span class="stat-value-grid">D <span class="stat-rating d">●</span></span></div>
+                        </div>
+                        <div class="job-abilities">
+                            <div class="ability-name">🐉 Jump</div>
+                            <div style="font-size: 0.8em; color: #c4b5a0;">Ataques aéreos, ignora evasión</div>
+                        </div>
+                        <div class="job-bonuses">
+                            <div class="bonus-title">⭐ Bonos Especiales</div>
+                            <div class="bonus-item">Jump +3 (Vertical Jump 8 total)</div>
+                            <div class="bonus-item">Los ataques Jump ignoran evasión completamente</div>
+                        </div>
+                        <div class="job-description">Jump ignora evasión. Vertical Jump 8. Anti-voladores.</div>
+                    </div>
+
+                    <!-- SUMMONER -->
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div class="job-name">Summoner</div>
+                            <div class="job-icon"><img src="assets/jobs/summoner.webp" alt="Summoner" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                        </div>
+                        <div class="requirements-section">
+                            <div class="req-title">Requisitos:</div>
+                            <div class="req-badges">
+                                <span class="req-badge">Time Mage <span class="level">Lv.3</span></span>
+                            </div>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item-grid"><span class="stat-label-grid">HP:</span> <span class="stat-value-grid">D <span class="stat-rating d">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MP:</span> <span class="stat-value-grid">S <span class="stat-rating s">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">Speed:</span> <span class="stat-value-grid">D <span class="stat-rating d">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">PA:</span> <span class="stat-value-grid">D <span class="stat-rating d">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MA:</span> <span class="stat-value-grid">A <span class="stat-rating a">●</span></span></div>
+                        </div>
+                        <div class="job-abilities">
+                            <div class="ability-name">✨ Summon</div>
+                            <div style="font-size: 0.8em; color: #c4b5a0;">Shiva, Ifrit, Ramuh, Bahamut, Odin</div>
+                        </div>
+                        <div class="job-bonuses">
+                            <div class="bonus-title">⭐ Bonos Especiales</div>
+                            <div class="bonus-item">MP Growth #1 del juego (125%)</div>
+                            <div class="bonus-item">Summons ignoran friendly fire (no dañan aliados)</div>
+                        </div>
+                        <div class="job-description">Daño de área masivo. AoE gigante. Alto costo de MP.</div>
+                    </div>
+
+                    <!-- ORATOR -->
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div class="job-name">Orator</div>
+                            <div class="job-icon"><img src="assets/jobs/orator.webp" alt="Orator" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                        </div>
+                        <div class="requirements-section">
+                            <div class="req-title">Requisitos:</div>
+                            <div class="req-badges">
+                                <span class="req-badge">Mystic <span class="level">Lv.3</span></span>
+                            </div>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item-grid"><span class="stat-label-grid">HP:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MP:</span> <span class="stat-value-grid">B <span class="stat-rating b">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">Speed:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">PA:</span> <span class="stat-value-grid">D <span class="stat-rating d">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MA:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                        </div>
+                        <div class="job-abilities">
+                            <div class="ability-name">📢 Speechcraft</div>
+                            <div style="font-size: 0.8em; color: #c4b5a0;">Praise/Brave, Preach/Faith, Recruit</div>
+                        </div>
+                        <div class="job-bonuses">
+                            <div class="bonus-title">⭐ Bonos Especiales</div>
+                            <div class="bonus-item">Manipula Brave/Faith permanentemente</div>
+                            <div class="bonus-item">Puede reclutar enemigos humanos y monstruos</div>
+                            <div class="bonus-item">Innate: Beast Tongue (hablar con monstruos)</div>
+                        </div>
+                        <div class="job-description">Útil para recruiting. Cambia stats permanentemente. Sin costo de MP.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TIER 4: CLASES AVANZADAS -->
+            <div class="job-tier">
+                <h3 class="tier-title">⚔️ Tier 4: Clases Avanzadas</h3>
+                <div class="jobs-row">
+                    <!-- SAMURAI -->
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div class="job-name">Samurai</div>
+                            <div class="job-icon"><img src="assets/jobs/samurai.webp" alt="Samurai" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                        </div>
+                        <div class="requirements-section">
+                            <div class="req-title">Requisitos:</div>
+                            <div class="req-badges">
+                                <span class="req-badge">Knight <span class="level">Lv.4</span></span>
+                                <span class="req-badge">Monk <span class="level">Lv.5</span></span>
+                                <span class="req-badge">Dragoon <span class="level">Lv.2</span></span>
+                            </div>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item-grid"><span class="stat-label-grid">HP:</span> <span class="stat-value-grid">A <span class="stat-rating a">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MP:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">Speed:</span> <span class="stat-value-grid">B <span class="stat-rating b">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">PA:</span> <span class="stat-value-grid">A <span class="stat-rating a">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MA:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                        </div>
+                        <div class="job-abilities">
+                            <div class="ability-name">⚡ Iaido</div>
+                            <div style="font-size: 0.8em; color: #c4b5a0;">Muramasa, Chirijiraden</div>
+                        </div>
+                        <div class="job-bonuses">
+                            <div class="bonus-title">⭐ Bonos Especiales</div>
+                            <div class="bonus-item">Shirahadori: Puede esquivar ataques físicos (Brave-based)</div>
+                        </div>
+                        <div class="job-description">Daño masivo. Shirahadori (esquiva físicos).</div>
+                    </div>
+
+                    <!-- NINJA -->
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div class="job-name">Ninja</div>
+                            <div class="job-icon"><img src="assets/jobs/ninja.webp" alt="Ninja" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                        </div>
+                        <div class="requirements-section">
+                            <div class="req-title">Requisitos:</div>
+                            <div class="req-badges">
+                                <span class="req-badge">Archer <span class="level">Lv.4</span></span>
+                                <span class="req-badge">Thief <span class="level">Lv.5</span></span>
+                                <span class="req-badge">Geomancer <span class="level">Lv.2</span></span>
+                            </div>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item-grid"><span class="stat-label-grid">HP:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MP:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">Speed:</span> <span class="stat-value-grid">A <span class="stat-rating a">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">PA:</span> <span class="stat-value-grid">B <span class="stat-rating b">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MA:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                        </div>
+                        <div class="job-abilities">
+                            <div class="ability-name">🥷 Throw</div>
+                            <div style="font-size: 0.8em; color: #c4b5a0;">Lanzar armas y shurikens</div>
+                        </div>
+                        <div class="job-bonuses">
+                            <div class="bonus-title">⭐ Bonos Especiales</div>
+                            <div class="bonus-item">Two Swords (Dual Wield): Ataca dos veces por turno</div>
+                            <div class="bonus-item">Innate: Sunken State (inmune a trampas de terreno)</div>
+                        </div>
+                        <div class="job-description">Velocidad máxima. Two Swords. Evasión excelente.</div>
+                    </div>
+
+                    <!-- CALCULATOR -->
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div class="job-name">Calculator</div>
+                            <div class="job-icon"><img src="assets/jobs/arithmetician.webp" alt="Calculator" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                        </div>
+                        <div class="requirements-section">
+                            <div class="req-title">Requisitos:</div>
+                            <div class="req-badges">
+                                <span class="req-badge">White Mage <span class="level">Lv.4</span></span>
+                                <span class="req-badge">Black Mage <span class="level">Lv.4</span></span>
+                                <span class="req-badge">Mystic <span class="level">Lv.2</span></span>
+                                <span class="req-badge">Time Mage <span class="level">Lv.2</span></span>
+                            </div>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item-grid"><span class="stat-label-grid">HP:</span> <span class="stat-value-grid">D <span class="stat-rating d">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MP:</span> <span class="stat-value-grid">A <span class="stat-rating a">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">Speed:</span> <span class="stat-value-grid">D <span class="stat-rating d">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">PA:</span> <span class="stat-value-grid">D <span class="stat-rating d">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MA:</span> <span class="stat-value-grid">A <span class="stat-rating a">●</span></span></div>
+                        </div>
+                        <div class="job-abilities">
+                            <div class="ability-name">🧮 Math Skill</div>
+                            <div style="font-size: 0.8em; color: #c4b5a0;">CT5 Holy, Level 4 Holy</div>
+                        </div>
+                        <div class="job-description">⚠️ GAMEBREAKING. Magia sin charge basada en números.</div>
+                    </div>
+
+                    <!-- BARD -->
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div class="job-name">Bard</div>
+                            <div class="job-icon"><img src="assets/jobs/bard.webp" alt="Bard" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                        </div>
+                        <div class="requirements-section">
+                            <div class="req-title">Requisitos:</div>
+                            <div class="req-badges">
+                                <span class="req-badge">Summoner <span class="level">Lv.5</span></span>
+                                <span class="req-badge">Orator <span class="level">Lv.5</span></span>
+                            </div>
+                            <div style="font-size: 0.8em; color: #f39c12; margin-top: 5px;">♂️ Solo Masculino</div>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item-grid"><span class="stat-label-grid">HP:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MP:</span> <span class="stat-value-grid">B <span class="stat-rating b">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">Speed:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">PA:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MA:</span> <span class="stat-value-grid">B <span class="stat-rating b">●</span></span></div>
+                        </div>
+                        <div class="job-abilities">
+                            <div class="ability-name">🎵 Sing</div>
+                            <div style="font-size: 0.8em; color: #c4b5a0;">Battle Song, Nameless Song</div>
+                        </div>
+                        <div class="job-description">Buffs de área permanentes hasta muerte/silence.</div>
+                    </div>
+
+                    <!-- DANCER -->
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div class="job-name">Dancer</div>
+                            <div class="job-icon"><img src="assets/jobs/dancer.webp" alt="Dancer" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                        </div>
+                        <div class="requirements-section">
+                            <div class="req-title">Requisitos:</div>
+                            <div class="req-badges">
+                                <span class="req-badge">Geomancer <span class="level">Lv.5</span></span>
+                                <span class="req-badge">Dragoon <span class="level">Lv.5</span></span>
+                            </div>
+                            <div style="font-size: 0.8em; color: #e91e63; margin-top: 5px;">♀️ Solo Femenino</div>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item-grid"><span class="stat-label-grid">HP:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MP:</span> <span class="stat-value-grid">B <span class="stat-rating b">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">Speed:</span> <span class="stat-value-grid">B <span class="stat-rating b">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">PA:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MA:</span> <span class="stat-value-grid">B <span class="stat-rating b">●</span></span></div>
+                        </div>
+                        <div class="job-abilities">
+                            <div class="ability-name">💃 Dance</div>
+                            <div style="font-size: 0.8em; color: #c4b5a0;">Slow Dance, Polka, Nameless</div>
+                        </div>
+                        <div class="job-description">Status ailments aleatorios de área.</div>
+                    </div>
+
+                    <!-- MIME -->
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div class="job-name">Mime</div>
+                            <div class="job-icon"><img src="assets/jobs/mime.webp" alt="Mime" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                        </div>
+                        <div class="requirements-section">
+                            <div class="req-title">Requisitos:</div>
+                            <div class="req-badges">
+                                <span class="req-badge">Squire <span class="level">Lv.8</span></span>
+                                <span class="req-badge">Chemist <span class="level">Lv.8</span></span>
+                                <span class="req-badge">Summoner <span class="level">Lv.5</span></span>
+                                <span class="req-badge">Orator <span class="level">Lv.5</span></span>
+                                <span class="req-badge">Dragoon <span class="level">Lv.5</span></span>
+                            </div>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item-grid"><span class="stat-label-grid">HP:</span> <span class="stat-value-grid">B <span class="stat-rating b">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MP:</span> <span class="stat-value-grid">B <span class="stat-rating b">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">Speed:</span> <span class="stat-value-grid">B <span class="stat-rating b">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">PA:</span> <span class="stat-value-grid">B <span class="stat-rating b">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MA:</span> <span class="stat-value-grid">B <span class="stat-rating b">●</span></span></div>
+                        </div>
+                        <div class="job-abilities">
+                            <div class="ability-name">🎭 Mimic</div>
+                            <div style="font-size: 0.8em; color: #c4b5a0;">Copia última acción ejecutada</div>
+                        </div>
+                        <div class="job-bonuses">
+                            <div class="bonus-title">⭐ Bonos Especiales</div>
+                            <div class="bonus-item">Puede equipar TODO el equipo del juego (sin restricciones)</div>
+                            <div class="bonus-item">Mimic no consume MP ni items</div>
+                        </div>
+                        <div class="job-description">Versátil. Copia sin costo. Equipa TODO.</div>
+                    </div>
+
+                    <!-- DARK KNIGHT -->
+                    <div class="job-card exclusive-wotl">
+                        <div class="job-header">
+                            <div class="job-name">Dark Knight</div>
+                            <div class="job-icon"><img src="assets/jobs/dark_knight.webp" alt="Dark Knight" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                        </div>
+                        <div class="requirements-section">
+                            <div class="req-title">Requisitos:</div>
+                            <div class="req-badges">
+                                <span class="req-badge">Knight <span class="level">Lv.8</span></span>
+                                <span class="req-badge">Black Mage <span class="level">Lv.8</span></span>
+                                <span class="req-badge">Dragoon <span class="level">Lv.8</span></span>
+                                <span class="req-badge">Samurai <span class="level">Lv.8</span></span>
+                                <span class="req-badge">Ninja <span class="level">Lv.8</span></span>
+                                <span class="req-badge">Geomancer <span class="level">Lv.8</span></span>
+                            </div>
+                            <div style="font-size: 0.8em; color: #e74c3c; margin-top: 5px;">⚠️ + 20 Kills (human enemies)</div>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item-grid"><span class="stat-label-grid">HP:</span> <span class="stat-value-grid">A <span class="stat-rating a">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MP:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">Speed:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">PA:</span> <span class="stat-value-grid">A <span class="stat-rating a">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MA:</span> <span class="stat-value-grid">B <span class="stat-rating b">●</span></span></div>
+                        </div>
+                        <div class="job-abilities">
+                            <div class="ability-name">🌑 Darkness</div>
+                            <div style="font-size: 0.8em; color: #c4b5a0;">Dark Sword, Night Sword (consume HP)</div>
+                        </div>
+                        <div class="job-description">⚠️ Daño masivo a costa de HP propio. Muy poderoso.</div>
+                    </div>
+
+                    <!-- ONION KNIGHT -->
+                    <div class="job-card exclusive-wotl">
+                        <div class="job-header">
+                            <div class="job-name">Onion Knight</div>
+                            <div class="job-icon"><img src="assets/jobs/onion_knight.webp" alt="Onion Knight" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                        </div>
+                        <div class="requirements-section">
+                            <div class="req-title">Requisitos:</div>
+                            <div class="req-badges">
+                                <span class="req-badge">Squire <span class="level">Lv.6</span></span>
+                                <span class="req-badge">Chemist <span class="level">Lv.6</span></span>
+                            </div>
+                            <div style="font-size: 0.8em; color: #e74c3c; margin-top: 5px;">⚠️ Requiere masterizar 14 jobs para máximo poder</div>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item-grid"><span class="stat-label-grid">HP:</span> <span class="stat-value-grid">★ → ★★★★★ <span class="stat-rating s">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MP:</span> <span class="stat-value-grid">★ → ★★★ <span class="stat-rating a">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">Speed:</span> <span class="stat-value-grid">★★★ <span class="stat-rating a">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">PA:</span> <span class="stat-value-grid">★ → ★★★★★ <span class="stat-rating s">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MA:</span> <span class="stat-value-grid">★ → ★★★ <span class="stat-rating a">●</span></span></div>
+                        </div>
+                        <div class="job-abilities">
+                            <div class="ability-name">🧅 None</div>
+                            <div style="font-size: 0.8em; color: #c4b5a0;">Sin habilidades propias (usa equipo)</div>
+                        </div>
+                        <div class="job-bonuses">
+                            <div class="bonus-title">⭐ Bonos Especiales</div>
+                            <div class="bonus-item">Poder escala con jobs masterizados (2 jobs = 1 nivel OK)</div>
+                            <div class="bonus-item">Puede equipar TODO (incluso equipo de género opuesto)</div>
+                            <div class="bonus-item">Acceso a Onion Equipment (extremadamente poderoso)</div>
+                            <div class="bonus-item">❌ No cuentan: Squire, Chemist, Mime, Dark Knight</div>
+                        </div>
+                        <div class="job-description">⭐ Endgame job. Débil al inicio, extremadamente poderoso con 14 jobs masterizados.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SPECIAL CHARACTER JOBS -->
+            <div class="job-tier" style="margin-top: 60px; border-top: 3px solid #d4af37; padding-top: 40px;">
+                <h3 class="tier-title" style="color: #f4cf67; font-size: 2em;">⭐ Special Character Jobs (Unique)</h3>
+                <p style="text-align: center; color: #b8a080; margin-bottom: 30px; font-style: italic;">
+                    Jobs exclusivos de personajes únicos. No se pueden desbloquear para unidades genéricas.
+                </p>
+                <div class="jobs-row">
+                    <!-- HOLY KNIGHT -->
+                    <div class="job-card" style="border-color: #f4cf67;">
+                        <div class="job-header">
+                            <div class="job-name">Holy Knight</div>
+                            <div class="job-icon"><img src="assets/jobs/holy_knight.webp" alt="Holy Knight" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                        </div>
+                        <div style="text-align: center; color: #f4cf67; font-size: 0.9em; margin-bottom: 10px; font-weight: bold;">
+                            Agrias Oaks / Delita Heiral
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item-grid"><span class="stat-label-grid">HP:</span> <span class="stat-value-grid">A <span class="stat-rating a">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MP:</span> <span class="stat-value-grid">B <span class="stat-rating b">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">Speed:</span> <span class="stat-value-grid">B <span class="stat-rating b">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">PA:</span> <span class="stat-value-grid">A <span class="stat-rating a">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MA:</span> <span class="stat-value-grid">B <span class="stat-rating b">●</span></span></div>
+                        </div>
+                        <div class="job-abilities">
+                            <div class="ability-name">⚔️ Holy Sword</div>
+                            <div style="font-size: 0.8em; color: #c4b5a0;">Judgment Blade, Hallowed Bolt, Divine Ruination</div>
+                        </div>
+                        <div class="job-bonuses">
+                            <div class="bonus-title">⭐ Características</div>
+                            <div class="bonus-item">100% Hit Rate en Holy Sword abilities</div>
+                            <div class="bonus-item">25% chance de status secundario (Stop, Silence)</div>
+                            <div class="bonus-item">Requiere Knight Sword o Sword equipado</div>
+                        </div>
+                        <div class="job-description">Elite knight con Holy-elemental abilities. Agrias se une en Ch.2.</div>
+                    </div>
+
+                    <!-- DIVINE KNIGHT -->
+                    <div class="job-card" style="border-color: #f4cf67;">
+                        <div class="job-header">
+                            <div class="job-name">Divine Knight</div>
+                            <div class="job-icon"><img src="assets/jobs/divine_knight.webp" alt="Divine Knight" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                        </div>
+                        <div style="text-align: center; color: #f4cf67; font-size: 0.9em; margin-bottom: 10px; font-weight: bold;">
+                            Meliadoul Tingel
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item-grid"><span class="stat-label-grid">HP:</span> <span class="stat-value-grid">B <span class="stat-rating b">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MP:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">Speed:</span> <span class="stat-value-grid">B <span class="stat-rating b">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">PA:</span> <span class="stat-value-grid">A <span class="stat-rating a">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MA:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                        </div>
+                        <div class="job-abilities">
+                            <div class="ability-name">🗡️ Mighty Sword</div>
+                            <div style="font-size: 0.8em; color: #c4b5a0;">Shellburst Stab, Hellcry Punch, Icewolf Bite</div>
+                        </div>
+                        <div class="job-bonuses">
+                            <div class="bonus-title">⭐ Características</div>
+                            <div class="bonus-item">100% Success Rate al romper equipo</div>
+                            <div class="bonus-item">Daña HP + Destruye Armor/Weapon/Accessory/Helmet</div>
+                            <div class="bonus-item">Inútil contra monstruos (no tienen equipo)</div>
+                        </div>
+                        <div class="job-description">Equipment breaker definitivo. Se une en Ch.4 en Limberry Castle.</div>
+                    </div>
+
+                    <!-- SWORD SAINT -->
+                    <div class="job-card" style="border-color: #f4cf67;">
+                        <div class="job-header">
+                            <div class="job-name">Sword Saint</div>
+                            <div class="job-icon"><img src="assets/jobs/sword_saint.webp" alt="Sword Saint" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                        </div>
+                        <div style="text-align: center; color: #f4cf67; font-size: 0.9em; margin-bottom: 10px; font-weight: bold;">
+                            Cidolfus Orlandeau (Thunder God Cid)
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item-grid"><span class="stat-label-grid">HP:</span> <span class="stat-value-grid">S <span class="stat-rating s">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MP:</span> <span class="stat-value-grid">A <span class="stat-rating a">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">Speed:</span> <span class="stat-value-grid">A <span class="stat-rating a">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">PA:</span> <span class="stat-value-grid">S <span class="stat-rating s">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MA:</span> <span class="stat-value-grid">A <span class="stat-rating a">●</span></span></div>
+                        </div>
+                        <div class="job-abilities">
+                            <div class="ability-name">⚡ All Swordskill</div>
+                            <div style="font-size: 0.8em; color: #c4b5a0;">Holy Sword, Iaido, Mighty Sword combinados</div>
+                        </div>
+                        <div class="job-bonuses">
+                            <div class="bonus-title">⭐ Características</div>
+                            <div class="bonus-item">⚠️ GAMEBREAKING: El personaje más fuerte del juego</div>
+                            <div class="bonus-item">Tiene TODAS las habilidades de espada (3 sets completos)</div>
+                            <div class="bonus-item">Stats superiores a cualquier generic job</div>
+                        </div>
+                        <div class="job-description">Legendario "Thunder God". Se une en Ch.4. Rompe el balance del juego.</div>
+                    </div>
+
+                    <!-- SKY PIRATE -->
+                    <div class="job-card exclusive-wotl" style="border-color: #f4cf67;">
+                        <div class="job-header">
+                            <div class="job-name">Sky Pirate</div>
+                            <div class="job-icon"><img src="assets/jobs/sky_pirate.webp" alt="Sky Pirate" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                        </div>
+                        <div style="text-align: center; color: #f4cf67; font-size: 0.9em; margin-bottom: 10px; font-weight: bold;">
+                            Balthier (FF12 Guest)
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item-grid"><span class="stat-label-grid">HP:</span> <span class="stat-value-grid">B <span class="stat-rating b">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MP:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">Speed:</span> <span class="stat-value-grid">S <span class="stat-rating s">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">PA:</span> <span class="stat-value-grid">B <span class="stat-rating b">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MA:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                        </div>
+                        <div class="job-abilities">
+                            <div class="ability-name">🏴‍☠️ Plunder</div>
+                            <div style="font-size: 0.8em; color: #c4b5a0;">Versión mejorada de Steal + Guns</div>
+                        </div>
+                        <div class="job-bonuses">
+                            <div class="bonus-title">⭐ Características</div>
+                            <div class="bonus-item">+10% Success Rate vs Steal normal</div>
+                            <div class="bonus-item">Speed Growth #1 (mejor que todos los jobs)</div>
+                            <div class="bonus-item">Innate: Safeguard (inmune a Steal/Plunder)</div>
+                        </div>
+                        <div class="job-description">WotL exclusive guest. Machinist mejorado + Thief. Sidequest opcional.</div>
+                    </div>
+
+                    <!-- TEMPLAR -->
+                    <div class="job-card" style="border-color: #f4cf67;">
+                        <div class="job-header">
+                            <div class="job-name">Templar</div>
+                            <div class="job-icon"><img src="assets/jobs/templar.webp" alt="Templar" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                        </div>
+                        <div style="text-align: center; color: #f4cf67; font-size: 0.9em; margin-bottom: 10px; font-weight: bold;">
+                            Beowulf Cadmus
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item-grid"><span class="stat-label-grid">HP:</span> <span class="stat-value-grid">A <span class="stat-rating a">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MP:</span> <span class="stat-value-grid">B <span class="stat-rating b">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">Speed:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">PA:</span> <span class="stat-value-grid">A <span class="stat-rating a">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MA:</span> <span class="stat-value-grid">A <span class="stat-rating a">●</span></span></div>
+                        </div>
+                        <div class="job-abilities">
+                            <div class="ability-name">🛡️ Magick Break</div>
+                            <div style="font-size: 0.8em; color: #c4b5a0;">Chicken, Toad, Stone, Stop status</div>
+                        </div>
+                        <div class="job-bonuses">
+                            <div class="bonus-title">⭐ Características</div>
+                            <div class="bonus-item">Status ailments permanentes (no temporales)</div>
+                            <div class="bonus-item">Rango largo sin necesidad de armas especiales</div>
+                            <div class="bonus-item">Reclutable en sidequest después de Lesalia</div>
+                        </div>
+                        <div class="job-description">Status breaker definitivo. Pareja de Reis. Sidequest Ch.4.</div>
+                    </div>
+
+                    <!-- MACHINIST -->
+                    <div class="job-card" style="border-color: #f4cf67;">
+                        <div class="job-header">
+                            <div class="job-name">Machinist</div>
+                            <div class="job-icon"><img src="assets/jobs/machinist.webp" alt="Machinist" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                        </div>
+                        <div style="text-align: center; color: #f4cf67; font-size: 0.9em; margin-bottom: 10px; font-weight: bold;">
+                            Mustadio Bunansa
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item-grid"><span class="stat-label-grid">HP:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MP:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">Speed:</span> <span class="stat-value-grid">B <span class="stat-rating b">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">PA:</span> <span class="stat-value-grid">B <span class="stat-rating b">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MA:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                        </div>
+                        <div class="job-abilities">
+                            <div class="ability-name">🔫 Aimed Shot</div>
+                            <div style="font-size: 0.8em; color: #c4b5a0;">Arm Aim, Leg Aim, Seal Evil</div>
+                        </div>
+                        <div class="job-bonuses">
+                            <div class="bonus-title">⭐ Características</div>
+                            <div class="bonus-item">Guns ignoran evasión y terreno</div>
+                            <div class="bonus-item">Status ailments a partes del cuerpo específicas</div>
+                            <div class="bonus-item">Se une permanentemente en Ch.2 (Goug)</div>
+                        </div>
+                        <div class="job-description">Ingeniero con armas de fuego. Útil early-game para control.</div>
+                    </div>
+
+                    <!-- SKYSEER -->
+                    <div class="job-card" style="border-color: #f4cf67;">
+                        <div class="job-header">
+                            <div class="job-name">Skyseer</div>
+                            <div class="job-icon"><img src="assets/jobs/skyseer.webp" alt="Skyseer" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                        </div>
+                        <div style="text-align: center; color: #f4cf67; font-size: 0.9em; margin-bottom: 10px; font-weight: bold;">
+                            Rafa Galthena (Heaven Knight)
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item-grid"><span class="stat-label-grid">HP:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MP:</span> <span class="stat-value-grid">B <span class="stat-rating b">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">Speed:</span> <span class="stat-value-grid">A <span class="stat-rating a">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">PA:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MA:</span> <span class="stat-value-grid">B <span class="stat-rating b">●</span></span></div>
+                        </div>
+                        <div class="job-abilities">
+                            <div class="ability-name">☁️ Sky Mantra (Truth)</div>
+                            <div style="font-size: 0.8em; color: #c4b5a0;">Heaven Thunder, Asura, Diamond Sword, Celestial Void</div>
+                        </div>
+                        <div class="job-bonuses">
+                            <div class="bonus-title">⭐ Características</div>
+                            <div class="bonus-item">⚠️ RANDOM: Golpea entre 1-10 veces por cast</div>
+                            <div class="bonus-item">Ignora Faith y Reflect, sin costo de MP</div>
+                            <div class="bonus-item">Daño elemental de área (Fire/Lightning/Wind/Water/Earth)</div>
+                            <div class="bonus-item">Se une en Ch.3 (Riovanes Castle)</div>
+                        </div>
+                        <div class="job-description">Heaven Knight. Hermana de Malak. Hechizos "Truth" random pero poderosos.</div>
+                    </div>
+
+                    <!-- NETHERSEER -->
+                    <div class="job-card" style="border-color: #f4cf67;">
+                        <div class="job-header">
+                            <div class="job-name">Netherseer</div>
+                            <div class="job-icon"><img src="assets/jobs/netherseer.webp" alt="Netherseer" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                        </div>
+                        <div style="text-align: center; color: #f4cf67; font-size: 0.9em; margin-bottom: 10px; font-weight: bold;">
+                            Malak Galthena (Hell Knight)
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item-grid"><span class="stat-label-grid">HP:</span> <span class="stat-value-grid">B <span class="stat-rating b">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MP:</span> <span class="stat-value-grid">B <span class="stat-rating b">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">Speed:</span> <span class="stat-value-grid">A <span class="stat-rating a">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">PA:</span> <span class="stat-value-grid">B <span class="stat-rating b">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MA:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                        </div>
+                        <div class="job-abilities">
+                            <div class="ability-name">🌑 Nether Mantra (Untruth)</div>
+                            <div style="font-size: 0.8em; color: #c4b5a0;">Hell's Wrath, Nether Blade, Nether Ashura, Corporeal Void</div>
+                        </div>
+                        <div class="job-bonuses">
+                            <div class="bonus-title">⭐ Características</div>
+                            <div class="bonus-item">⚠️ RANDOM: Golpea entre 1-10 veces por cast</div>
+                            <div class="bonus-item">Daño INVERSO a Faith (menor Faith = más daño)</div>
+                            <div class="bonus-item">Mejor PA que Rafa, peor MA (necesita MA Boost)</div>
+                            <div class="bonus-item">Se une en Ch.3 (Riovanes Castle)</div>
+                        </div>
+                        <div class="job-description">Hell Knight. Hermano de Rafa. "Untruth" basado en falta de fe.</div>
+                    </div>
+
+                    <!-- DRAGONKIN -->
+                    <div class="job-card" style="border-color: #f4cf67;">
+                        <div class="job-header">
+                            <div class="job-name">Dragonkin</div>
+                            <div class="job-icon"><img src="assets/jobs/dragonkin.webp" alt="Dragonkin" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                        </div>
+                        <div style="text-align: center; color: #f4cf67; font-size: 0.9em; margin-bottom: 10px; font-weight: bold;">
+                            Reis Duelar (Holy Dragon)
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item-grid"><span class="stat-label-grid">HP:</span> <span class="stat-value-grid">A <span class="stat-rating a">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MP:</span> <span class="stat-value-grid">A <span class="stat-rating a">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">Speed:</span> <span class="stat-value-grid">B <span class="stat-rating b">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">PA:</span> <span class="stat-value-grid">A <span class="stat-rating a">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MA:</span> <span class="stat-value-grid">A <span class="stat-rating a">●</span></span></div>
+                        </div>
+                        <div class="job-abilities">
+                            <div class="ability-name">🐲 Dragon Magicks</div>
+                            <div style="font-size: 0.8em; color: #c4b5a0;">Reis's Breath, Dragon's Gift, Dragon's Charm</div>
+                        </div>
+                        <div class="job-bonuses">
+                            <div class="bonus-title">⭐ Características</div>
+                            <div class="bonus-item">Único hybrid humano-dragón del juego</div>
+                            <div class="bonus-item">Buffs de área + daño elemental + curación</div>
+                            <div class="bonus-item">Reclutable en sidequest Ch.4 (con Beowulf)</div>
+                        </div>
+                        <div class="job-description">Ex-Holy Dragon transformada en humana. Support + offense hybrid.</div>
+                    </div>
+
+                    <!-- GAME HUNTER -->
+                    <div class="job-card exclusive-wotl" style="border-color: #f4cf67;">
+                        <div class="job-header">
+                            <div class="job-name">Game Hunter</div>
+                            <div class="job-icon"><img src="assets/jobs/game_hunter.webp" alt="Game Hunter" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                        </div>
+                        <div style="text-align: center; color: #f4cf67; font-size: 0.9em; margin-bottom: 10px; font-weight: bold;">
+                            Luso Clemens (FFTA2 Guest)
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item-grid"><span class="stat-label-grid">HP:</span> <span class="stat-value-grid">B <span class="stat-rating b">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MP:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">Speed:</span> <span class="stat-value-grid">A <span class="stat-rating a">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">PA:</span> <span class="stat-value-grid">B <span class="stat-rating b">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MA:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                        </div>
+                        <div class="job-abilities">
+                            <div class="ability-name">🎯 Hunt</div>
+                            <div style="font-size: 0.8em; color: #c4b5a0;">Abilities especializadas en cacería</div>
+                        </div>
+                        <div class="job-bonuses">
+                            <div class="bonus-title">⭐ Características</div>
+                            <div class="bonus-item">WotL exclusive character (crossover FFTA2)</div>
+                            <div class="bonus-item">Versátil: combat + soporte</div>
+                            <div class="bonus-item">Sidequest opcional en WotL</div>
+                        </div>
+                        <div class="job-description">WotL exclusive. Joven cazador del mundo de Ivalice.</div>
+                    </div>
+
+                    <!-- SOLDIER -->
+                    <div class="job-card" style="border-color: #f4cf67;">
+                        <div class="job-header">
+                            <div class="job-name">Soldier</div>
+                            <div class="job-icon"><img src="assets/jobs/soldier.webp" alt="Soldier" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                        </div>
+                        <div style="text-align: center; color: #f4cf67; font-size: 0.9em; margin-bottom: 10px; font-weight: bold;">
+                            Cloud Strife (FF7 Guest)
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item-grid"><span class="stat-label-grid">HP:</span> <span class="stat-value-grid">A <span class="stat-rating a">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MP:</span> <span class="stat-value-grid">B <span class="stat-rating b">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">Speed:</span> <span class="stat-value-grid">C <span class="stat-rating c">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">PA:</span> <span class="stat-value-grid">A <span class="stat-rating a">●</span></span></div>
+                            <div class="stat-item-grid"><span class="stat-label-grid">MA:</span> <span class="stat-value-grid">A <span class="stat-rating a">●</span></span></div>
+                        </div>
+                        <div class="job-abilities">
+                            <div class="ability-name">⚡ Limit</div>
+                            <div style="font-size: 0.8em; color: #c4b5a0;">Braver, Cross-Slash, Meteorain, Finishing Touch, Omnislash</div>
+                        </div>
+                        <div class="job-bonuses">
+                            <div class="bonus-title">⭐ Características</div>
+                            <div class="bonus-item">⚠️ REQUIERE: Materia Blade equipado para usar Limit</div>
+                            <div class="bonus-item">Límit Breaks de FF7 + Cherry Blossom (único de FFT)</div>
+                            <div class="bonus-item">Daño basado en MA (no PA), largo Charge Time</div>
+                            <div class="bonus-item">⚠️ Empieza nivel 1 (mejorado en Ivalice Chronicles)</div>
+                        </div>
+                        <div class="job-description">Crossover FF7. Sidequest complejo: Mustadio → Goug Machine → Sal Ghidos.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- SECCIÓN: ABILITIES -->
+        <div id="abilities" class="section">
+            <button class="back-button" onclick="showSection('main-menu')">← Volver al Menú</button>
+            <h2 style="color: #d4af37; font-size: 2.5em; margin-bottom: 20px;">Abilities</h2>
+            <input type="text" class="search-box" id="ability-search" placeholder="Buscar habilidad..." onkeyup="filterAbilities()">
+            
+            <div class="content-box">
+                <h3>Knight - Ruin (Break)</h3>
+                
+                <div class="ability-item">
+                    <h4>Ruin Speed (Speed Break)</h4>
+                    <div class="stat-line"><span class="stat-label">JP Cost:</span> <span class="stat-value">150 JP</span></div>
+                    <div class="stat-line"><span class="stat-label">Rango:</span> <span class="stat-value">1 (Melee)</span></div>
+                    <div class="stat-line"><span class="stat-label">Efecto:</span> <span class="stat-value">-2 Speed permanente</span></div>
+                    <div class="stat-line"><span class="stat-label">Fórmula:</span> <span class="stat-value">PA × WP</span></div>
+                    <p style="margin-top: 10px;">Reduce permanentemente la Speed del objetivo. No se puede recuperar con items.</p>
+                </div>
+
+                <div class="ability-item">
+                    <h4>Ruin Power (Power Break)</h4>
+                    <div class="stat-line"><span class="stat-label">JP Cost:</span> <span class="stat-value">250 JP</span></div>
+                    <div class="stat-line"><span class="stat-label">Efecto:</span> <span class="stat-value">-3 PA permanente</span></div>
+                    <p style="margin-top: 10px;">Reduce Physical Attack del objetivo. Excelente contra guerreros físicos.</p>
+                </div>
+
+                <div class="ability-item">
+                    <h4>Ruin Mind (Mind Break)</h4>
+                    <div class="stat-line"><span class="stat-label">JP Cost:</span> <span class="stat-value">250 JP</span></div>
+                    <div class="stat-line"><span class="stat-label">Efecto:</span> <span class="stat-value">-3 MA permanente</span></div>
+                    <p style="margin-top: 10px;">Neutraliza magos enemigos reduciendo su Magic Attack.</p>
+                </div>
+
+                <div class="ability-item">
+                    <h4>Ruin Armor (Armor Break)</h4>
+                    <div class="stat-line"><span class="stat-label">JP Cost:</span> <span class="stat-value">400 JP</span></div>
+                    <div class="stat-line"><span class="stat-label">Efecto:</span> <span class="stat-value">Destruye armadura equipada</span></div>
+                    <p style="margin-top: 10px;">Elimina la armadura del enemigo. Hace vulnerables a tanks pesados.</p>
+                </div>
+            </div>
+
+            <div class="content-box">
+                <h3>White Mage - White Magick</h3>
+                
+                <div class="ability-item">
+                    <h4>Cure</h4>
+                    <div class="stat-line"><span class="stat-label">JP Cost:</span> <span class="stat-value">30 JP</span></div>
+                    <div class="stat-line"><span class="stat-label">MP Cost:</span> <span class="stat-value">6 MP</span></div>
+                    <div class="stat-line"><span class="stat-label">Rango:</span> <span class="stat-value">4</span></div>
+                    <div class="stat-line"><span class="stat-label">CT:</span> <span class="stat-value">3</span></div>
+                    <div class="stat-line"><span class="stat-label">Fórmula:</span> <span class="stat-value">MA × 5</span></div>
+                    <p style="margin-top: 10px;">Curación básica single-target. Aprenderla primero.</p>
+                </div>
+
+                <div class="ability-item">
+                    <h4>Cure 2 (Cura)</h4>
+                    <div class="stat-line"><span class="stat-label">JP Cost:</span> <span class="stat-value">200 JP</span></div>
+                    <div class="stat-line"><span class="stat-label">MP Cost:</span> <span class="stat-value">10 MP</span></div>
+                    <div class="stat-line"><span class="stat-label">CT:</span> <span class="stat-value">4</span></div>
+                    <div class="stat-line"><span class="stat-label">Fórmula:</span> <span class="stat-value">MA × 10</span></div>
+                    <p style="margin-top: 10px;">Curación mejorada. El doble de potencia que Cure.</p>
+                </div>
+
+                <div class="ability-item">
+                    <h4>Raise</h4>
+                    <div class="stat-line"><span class="stat-label">JP Cost:</span> <span class="stat-value">180 JP</span></div>
+                    <div class="stat-line"><span class="stat-label">MP Cost:</span> <span class="stat-value">10 MP</span></div>
+                    <div class="stat-line"><span class="stat-label">CT:</span> <span class="stat-value">4</span></div>
+                    <div class="stat-line"><span class="stat-label">Efecto:</span> <span class="stat-value">Revive con 20% HP</span></div>
+                    <p style="margin-top: 10px;">Resurrect fallen allies. No funciona si el contador llega a 0.</p>
+                </div>
+
+                <div class="ability-item">
+                    <h4>Reraise</h4>
+                    <div class="stat-line"><span class="stat-label">JP Cost:</span> <span class="stat-value">400 JP</span></div>
+                    <div class="stat-line"><span class="stat-label">MP Cost:</span> <span class="stat-value">16 MP</span></div>
+                    <div class="stat-line"><span class="stat-label">CT:</span> <span class="stat-value">4</span></div>
+                    <div class="stat-line"><span class="stat-label">Efecto:</span> <span class="stat-value">Auto-revive al morir</span></div>
+                    <p style="margin-top: 10px;">Status: Reraise. Auto-revive con 10% HP cuando el personaje muere.</p>
+                </div>
+
+                <div class="ability-item">
+                    <h4>Holy</h4>
+                    <div class="stat-line"><span class="stat-label">JP Cost:</span> <span class="stat-value">500 JP</span></div>
+                    <div class="stat-line"><span class="stat-label">MP Cost:</span> <span class="stat-value">56 MP</span></div>
+                    <div class="stat-line"><span class="stat-label">Rango:</span> <span class="stat-value">5</span></div>
+                    <div class="stat-line"><span class="stat-label">CT:</span> <span class="stat-value">8</span></div>
+                    <div class="stat-line"><span class="stat-label">Elemento:</span> <span class="stat-value">Holy</span></div>
+                    <div class="stat-line"><span class="stat-label">Fórmula:</span> <span class="stat-value">MA × 22</span></div>
+                    <p style="margin-top: 10px;">La magia ofensiva más poderosa de White Mage. Elemento Holy rara vez resistido.</p>
+                </div>
+            </div>
+
+            <div class="content-box">
+                <h3>Black Mage - Black Magick</h3>
+                
+                <div class="ability-item">
+                    <h4>Fire / Fire 2 / Fire 3 / Fire 4</h4>
+                    <div class="stat-line"><span class="stat-label">JP Cost:</span> <span class="stat-value">50 / 250 / 450 / 900 JP</span></div>
+                    <div class="stat-line"><span class="stat-label">MP Cost:</span> <span class="stat-value">6 / 14 / 22 / 60 MP</span></div>
+                    <div class="stat-line"><span class="stat-label">Elemento:</span> <span class="stat-value">Fire</span></div>
+                    <div class="stat-line"><span class="stat-label">Fórmula:</span> <span class="stat-value">MA × (6/10/18/32)</span></div>
+                    <p style="margin-top: 10px;">Serie de fuego. Fire4 (Firaja) es extremadamente potente pero costoso en MP.</p>
+                </div>
+
+                <div class="ability-item">
+                    <h4>Bolt / Bolt 2 / Bolt 3 / Bolt 4</h4>
+                    <div class="stat-line"><span class="stat-label">JP Cost:</span> <span class="stat-value">50 / 250 / 450 / 900 JP</span></div>
+                    <div class="stat-line"><span class="stat-label">Elemento:</span> <span class="stat-value">Lightning</span></div>
+                    <p style="margin-top: 10px;">Serie de rayo. Efectivo contra enemigos en agua o con armadura metálica.</p>
+                </div>
+
+                <div class="ability-item">
+                    <h4>Ice / Ice 2 / Ice 3 / Ice 4</h4>
+                    <div class="stat-line"><span class="stat-label">JP Cost:</span> <span class="stat-value">50 / 250 / 450 / 900 JP</span></div>
+                    <div class="stat-line"><span class="stat-label">Elemento:</span> <span class="stat-value">Ice</span></div>
+                    <p style="margin-top: 10px;">Serie de hielo. Tiene chance de infligir Don't Move status.</p>
+                </div>
+
+                <div class="ability-item">
+                    <h4>Flare</h4>
+                    <div class="stat-line"><span class="stat-label">JP Cost:</span> <span class="stat-value">600 JP</span></div>
+                    <div class="stat-line"><span class="stat-label">MP Cost:</span> <span class="stat-value">60 MP</span></div>
+                    <div class="stat-line"><span class="stat-label">CT:</span> <span class="stat-value">10</span></div>
+                    <div class="stat-line"><span class="stat-label">Elemento:</span> <span class="stat-value">Ninguno</span></div>
+                    <div class="stat-line"><span class="stat-label">Fórmula:</span> <span class="stat-value">MA × 32</span></div>
+                    <p style="margin-top: 10px;">Daño masivo sin elemento. No puede ser absorbido. Charge time largo.</p>
+                </div>
+            </div>
+
+            <div class="content-box">
+                <h3>Time Mage - Time Magick</h3>
+                
+                <div class="ability-item">
+                    <h4>Haste</h4>
+                    <div class="stat-line"><span class="stat-label">JP Cost:</span> <span class="stat-value">120 JP</span></div>
+                    <div class="stat-line"><span class="stat-label">MP Cost:</span> <span class="stat-value">6 MP</span></div>
+                    <div class="stat-line"><span class="stat-label">CT:</span> <span class="stat-value">2</span></div>
+                    <div class="stat-line"><span class="stat-label">Efecto:</span> <span class="stat-value">Speed × 1.5</span></div>
+                    <p style="margin-top: 10px;">Incrementa velocidad del objetivo. Crítico para combate.</p>
+                </div>
+
+                <div class="ability-item">
+                    <h4>Slow</h4>
+                    <div class="stat-line"><span class="stat-label">JP Cost:</span> <span class="stat-value">120 JP</span></div>
+                    <div class="stat-line"><span class="stat-label">MP Cost:</span> <span class="stat-value">8 MP</span></div>
+                    <div class="stat-line"><span class="stat-label">CT:</span> <span class="stat-value">3</span></div>
+                    <div class="stat-line"><span class="stat-label">Efecto:</span> <span class="stat-value">Speed × 0.5</span></div>
+                    <p style="margin-top: 10px;">Reduce velocidad enemiga. Excelente para control.</p>
+                </div>
+
+                <div class="ability-item">
+                    <h4>Stop</h4>
+                    <div class="stat-line"><span class="stat-label">JP Cost:</span> <span class="stat-value">180 JP</span></div>
+                    <div class="stat-line"><span class="stat-label">MP Cost:</span> <span class="stat-value">10 MP</span></div>
+                    <div class="stat-line"><span class="stat-label">Efecto:</span> <span class="stat-value">CT = 0 (no puede actuar)</span></div>
+                    <p style="margin-top: 10px;">Congela al objetivo. No puede actuar hasta que expire.</p>
+                </div>
+
+                <div class="ability-item">
+                    <h4>Quick</h4>
+                    <div class="stat-line"><span class="stat-label">JP Cost:</span> <span class="stat-value">350 JP</span></div>
+                    <div class="stat-line"><span class="stat-label">MP Cost:</span> <span class="stat-value">20 MP</span></div>
+                    <div class="stat-line"><span class="stat-label">Efecto:</span> <span class="stat-value">Turno inmediato extra</span></div>
+                    <p style="margin-top: 10px;">Otorga turno adicional inmediato. Muy poderoso para combos.</p>
+                </div>
+            </div>
+
+            <div class="content-box">
+                <h3>Monk - Martial Arts</h3>
+                
+                <div class="ability-item">
+                    <h4>Chakra</h4>
+                    <div class="stat-line"><span class="stat-label">JP Cost:</span> <span class="stat-value">200 JP</span></div>
+                    <div class="stat-line"><span class="stat-label">Rango:</span> <span class="stat-value">Self</span></div>
+                    <div class="stat-line"><span class="stat-label">Efecto:</span> <span class="stat-value">Cura HP = Max HP/5 + Esuna</span></div>
+                    <p style="margin-top: 10px;">Auto-curación + remove status ailments. Sin costo de MP.</p>
+                </div>
+
+                <div class="ability-item">
+                    <h4>Wave Fist</h4>
+                    <div class="stat-line"><span class="stat-label">JP Cost:</span> <span class="stat-value">350 JP</span></div>
+                    <div class="stat-line"><span class="stat-label">Rango:</span> <span class="stat-value">3</span></div>
+                    <div class="stat-line"><span class="stat-label">Fórmula:</span> <span class="stat-value">PA × (PA/2)</span></div>
+                    <p style="margin-top: 10px;">Ataque físico a distancia. Ignora evasión.</p>
+                </div>
+
+                <div class="ability-item">
+                    <h4>Earth Slash</h4>
+                    <div class="stat-line"><span class="stat-label">JP Cost:</span> <span class="stat-value">500 JP</span></div>
+                    <div class="stat-line"><span class="stat-label">Rango:</span> <span class="stat-value">3</span></div>
+                    <div class="stat-line"><span class="stat-label">Elemento:</span> <span class="stat-value">Earth</span></div>
+                    <div class="stat-line"><span class="stat-label">Fórmula:</span> <span class="stat-value">PA × (PA+2)</span></div>
+                    <p style="margin-top: 10px;">Ataque elemental tierra. Muy potente con alto PA.</p>
+                </div>
+            </div>
+
+            <div class="content-box">
+                <h3>Samurai - Iaido</h3>
+                
+                <div class="ability-item">
+                    <h4>Muramasa (Draw Out)</h4>
+                    <div class="stat-line"><span class="stat-label">JP Cost:</span> <span class="stat-value">900 JP</span></div>
+                    <div class="stat-line"><span class="stat-label">Requisito:</span> <span class="stat-value">Katana equipada</span></div>
+                    <div class="stat-line"><span class="stat-label">Efecto:</span> <span class="stat-value">Daño masivo + Drena HP del usuario</span></div>
+                    <div class="stat-line"><span class="stat-label">Fórmula:</span> <span class="stat-value">(PA+Brave/2) × WP</span></div>
+                    <p style="margin-top: 10px;">Extremadamente poderoso pero consume HP del usuario. Área de efecto.</p>
+                </div>
+
+                <div class="ability-item">
+                    <h4>Chirijiraden</h4>
+                    <div class="stat-line"><span class="stat-label">JP Cost:</span> <span class="stat-value">900 JP</span></div>
+                    <div class="stat-line"><span class="stat-label">Requisito:</span> <span class="stat-value">Katana Chirijiraden</span></div>
+                    <div class="stat-line"><span class="stat-label">Efecto:</span> <span class="stat-value">Instant Death + Fire element</span></div>
+                    <p style="margin-top: 10px;">Mata instantáneamente si no es resistido. Elemento fuego.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN: EQUIPMENT -->
+        <div id="equipment" class="section">
+            <button class="back-button" onclick="showSection('main-menu')">← Volver al Menú</button>
+            <h2 style="color: #d4af37; font-size: 2.5em; margin-bottom: 20px;">Equipment</h2>
+            <input type="text" class="search-box" id="equipment-search" placeholder="Buscar equipment..." onkeyup="filterEquipment()">
+            
+            <div class="content-box">
+                <h3>Armas - Swords (Espadas)</h3>
+                
+                <div class="equipment-item">
+                    <h4>Excalibur</h4>
+                    <div class="stat-line"><span class="stat-label">WP:</span> <span class="stat-value">18</span></div>
+                    <div class="stat-line"><span class="stat-label">Elemento:</span> <span class="stat-value">Holy</span></div>
+                    <div class="stat-line"><span class="stat-label">Bonus:</span> <span class="stat-value">PA +2</span></div>
+                    <div class="stat-line"><span class="stat-label">Ubicación:</span> <span class="stat-value">Deep Dungeon B10 treasure o robar de Samurai</span></div>
+                    <p style="margin-top: 10px;">Una de las mejores espadas del juego. Elemento Holy muy útil.</p>
+                </div>
+
+                <div class="equipment-item">
+                    <h4>Save the Queen</h4>
+                    <div class="stat-line"><span class="stat-label">WP:</span> <span class="stat-value">16</span></div>
+                    <div class="stat-line"><span class="stat-label">Bonus:</span> <span class="stat-value">MA +3, PA +3</span></div>
+                    <div class="stat-line"><span class="stat-label">Ubicación:</span> <span class="stat-value">Lionel Castle treasure chest</span></div>
+                    <p style="margin-top: 10px;">Espada única de Agrias. Balanceada para hybrid builds.</p>
+                </div>
+
+                <div class="equipment-item">
+                    <h4>Chaos Blade</h4>
+                    <div class="stat-line"><span class="stat-label">WP:</span> <span class="stat-value">40</span></div>
+                    <div class="stat-line"><span class="stat-label">Elemento:</span> <span class="stat-value">Dark</span></div>
+                    <div class="stat-line"><span class="stat-label">Bonus:</span> <span class="stat-value">PA +3</span></div>
+                    <div class="stat-line"><span class="stat-label">Status:</span> <span class="stat-value">Confuse, Berserk (auto)</span></div>
+                    <div class="stat-line"><span class="stat-label">Ubicación:</span> <span class="stat-value">Deep Dungeon treasure</span></div>
+                    <p style="margin-top: 10px;">WP más alto del juego, pero causa Confuse/Berserk al portador. Muy riesgoso.</p>
+                </div>
+            </div>
+
+            <div class="content-box">
+                <h3>Armas - Katanas</h3>
+                
+                <div class="equipment-item">
+                    <h4>Murasame</h4>
+                    <div class="stat-line"><span class="stat-label">WP:</span> <span class="stat-value">16</span></div>
+                    <div class="stat-line"><span class="stat-label">Bonus:</span> <span class="stat-value">PA +2</span></div>
+                    <div class="stat-line"><span class="stat-label">Ubicación:</span> <span class="stat-value">Poach Red Dragon</span></div>
+                    <p style="margin-top: 10px;">Katana de alta potencia. Necesaria para Draw Out.</p>
+                </div>
+
+                <div class="equipment-item">
+                    <h4>Chirijiraden</h4>
+                    <div class="stat-line"><span class="stat-label">WP:</span> <span class="stat-value">18</span></div>
+                    <div class="stat-line"><span class="stat-label">Elemento:</span> <span class="stat-value">Fire</span></div>
+                    <div class="stat-line"><span class="stat-label">Bonus:</span> <span class="stat-value">PA +3</span></div>
+                    <div class="stat-line"><span class="stat-label">Status:</span> <span class="stat-value">Instant Death (on hit)</span></div>
+                    <div class="stat-line"><span class="stat-label">Ubicación:</span> <span class="stat-value">Yardrow, sideuest con Mustadio</span></div>
+                    <p style="margin-top: 10px;">La mejor katana. Su Draw Out causa muerte instantánea.</p>
+                </div>
+            </div>
+
+            <div class="content-box">
+                <h3>Armor - Armaduras</h3>
+                
+                <div class="equipment-item">
+                    <h4>Genji Armor</h4>
+                    <div class="stat-line"><span class="stat-label">HP:</span> <span class="stat-value">+80</span></div>
+                    <div class="stat-line"><span class="stat-label">Bonus:</span> <span class="stat-value">PA +2</span></div>
+                    <div class="stat-line"><span class="stat-label">Inmune:</span> <span class="stat-value">Poison, Petrify</span></div>
+                    <div class="stat-line"><span class="stat-label">Ubicación:</span> <span class="stat-value">Catch de Elmdore's Assassins</span></div>
+                    <p style="margin-top: 10px;">Top-tier armor. Difícil de conseguir pero vale la pena.</p>
+                </div>
+
+                <div class="equipment-item">
+                    <h4>Grand Armor</h4>
+                    <div class="stat-line"><span class="stat-label">HP:</span> <span class="stat-value">+90</span></div>
+                    <div class="stat-line"><span class="stat-label">Bonus:</span> <span class="stat-value">PA +1</span></div>
+                    <div class="stat-line"><span class="stat-label">Ubicación:</span> <span class="stat-value">Sal Ghidos shop (late game)</span></div>
+                    <p style="margin-top: 10px;">Armadura de mayor HP. Ideal para tanks.</p>
+                </div>
+
+                <div class="equipment-item">
+                    <h4>Reflect Mail</h4>
+                    <div class="stat-line"><span class="stat-label">HP:</span> <span class="stat-value">+60</span></div>
+                    <div class="stat-line"><span class="stat-label">Status:</span> <span class="stat-value">Auto-Reflect</span></div>
+                    <div class="stat-line"><span class="stat-label">Ubicación:</span> <span class="stat-value">Poach Sacred o comprar en Warjilis</span></div>
+                    <p style="margin-top: 10px;">Auto-Reflect permanente. Protege contra magia enemiga.</p>
+                </div>
+            </div>
+
+            <div class="content-box">
+                <h3>Accessories - Accesorios</h3>
+                
+                <div class="equipment-item">
+                    <h4>Genji Glove</h4>
+                    <div class="stat-line"><span class="stat-label">Bonus:</span> <span class="stat-value">PA +2</span></div>
+                    <div class="stat-line"><span class="stat-label">Habilidad:</span> <span class="stat-value">Two Swords (Dual Wield)</span></div>
+                    <div class="stat-line"><span class="stat-label">Ubicación:</span> <span class="stat-value">Catch/Steal de Elmdore</span></div>
+                    <p style="margin-top: 10px;">Permite atacar dos veces. Esencial para builds físicos.</p>
+                </div>
+
+                <div class="equipment-item">
+                    <h4>Ribbon</h4>
+                    <div class="stat-line"><span class="stat-label">Inmune:</span> <span class="stat-value">TODOS los status ailments</span></div>
+                    <div class="stat-line"><span class="stat-label">Ubicación:</span> <span class="stat-value">Poach Plague, Deep Dungeon treasure</span></div>
+                    <p style="margin-top: 10px;">El mejor accesorio defensivo. Inmunidad total a status.</p>
+                </div>
+
+                <div class="equipment-item">
+                    <h4>Bracer</h4>
+                    <div class="stat-line"><span class="stat-label">Bonus:</span> <span class="stat-value">PA +3</span></div>
+                    <div class="stat-line"><span class="stat-label">Ubicación:</span> <span class="stat-value">Poach Behemoth</span></div>
+                    <p style="margin-top: 10px;">Mayor bonus de PA de un solo item. Ideal para attackers.</p>
+                </div>
+
+                <div class="equipment-item">
+                    <h4>Chantage</h4>
+                    <div class="stat-line"><span class="stat-label">Bonus:</span> <span class="stat-value">MA +3</span></div>
+                    <div class="stat-line"><span class="stat-label">Ubicación:</span> <span class="stat-value">Poach Sacred o Warjilis shop</span></div>
+                    <p style="margin-top: 10px;">Mayor bonus de MA. Crítico para magos.</p>
+                </div>
+
+                <div class="equipment-item">
+                    <h4>Barette</h4>
+                    <div class="stat-line"><span class="stat-label">Bonus:</span> <span class="stat-value">Speed +2</span></div>
+                    <div class="stat-line"><span class="stat-label">Ubicación:</span> <span class="stat-value">Nelveska Temple sidequest</span></div>
+                    <p style="margin-top: 10px;">Aumenta Speed. Muy raro. Solo disponible en WOTL iOS a través de Trapper's Den.</p>
+                </div>
+            </div>
+
+            <div class="content-box">
+                <h3><span class="highlight">⚠️ Items Exclusivos WOTL iOS</span></h3>
+                <p style="margin-bottom: 15px;">En la versión iOS/Android de WOTL, los items que antes eran exclusivos del modo multiplayer del PSP están disponibles en <strong>Trapper's Den</strong> (tienda especial) en el late game:</p>
+                
+                <div class="equipment-item">
+                    <h4>Trapper's Den - Items Disponibles</h4>
+                    <div class="stat-line"><span class="stat-label">Rendezvous Gear:</span> <span class="stat-value">Barette, Sasuke's Blade, Nagnarock</span></div>
+                    <div class="stat-line"><span class="stat-label">Melee Mode Gear:</span> <span class="stat-value">Javelin II, Glacier Gun, Blaze Gun</span></div>
+                    <div class="stat-line"><span class="stat-label">Cuándo:</span> <span class="stat-value">Se desbloquea en late Chapter 4</span></div>
+                    <p style="margin-top: 10px;">Estos items antes requerían conexión adhoc PSP. En iOS están disponibles en el single-player.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN: PERSONAJES ÚNICOS -->
+        <div id="characters" class="section">
+            <button class="back-button" onclick="showSection('main-menu')">← Volver al Menú</button>
+            <h2 style="color: #d4af37; font-size: 2.5em; margin-bottom: 20px;">Personajes Únicos</h2>
+            
+            <div class="content-box">
+                <h3>Ramza Beoulve (Protagonista)</h3>
+                <div class="stat-line"><span class="stat-label">Clase Única:</span> <span class="stat-value">Squire (Especial)</span></div>
+                <div class="stat-line"><span class="stat-label">Habilidades:</span> <span class="stat-value">Mettle (Ch.1-3) / Ultima (Ch.4)</span></div>
+                <div class="stat-line"><span class="stat-label">Clases Accesibles:</span> <span class="stat-value">Todas las genéricas</span></div>
+                <p style="margin-top: 10px;"><strong>Consejos:</strong> Ramza puede aprender TODAS las clases genéricas. Su Squire especial tiene Yell (+1 Speed permanente), Accumulate (+1 PA), y en Chapter 4 obtiene Ultima. Recomendado: Ninja con Two Swords o Monk con Martial Arts.</p>
+                <p style="margin-top: 10px;"><strong>⚠️ Zodiac importante:</strong> Elige Aries, Gemini, Leo o Pisces para mejor compatibilidad en batallas difíciles del late game.</p>
+            </div>
+
+            <div class="content-box">
+                <h3>Agrias Oaks</h3>
+                <div class="stat-line"><span class="stat-label">Clase Única:</span> <span class="stat-value">Holy Knight</span></div>
+                <div class="stat-line"><span class="stat-label">Habilidades:</span> <span class="stat-value">Holy Sword (Lightning Stab, Hallowed Bolt, Judgment Blade, etc.)</span></div>
+                <div class="stat-line"><span class="stat-label">Arma Única:</span> <span class="stat-value">Save the Queen (espada especial)</span></div>
+                <div class="stat-line"><span class="stat-label">Reclutamiento:</span> <span class="stat-value">Automático en Chapter 2</span></div>
+                <p style="margin-top: 10px;"><strong>Consejos:</strong> Una de las mejores unidades del juego. Holy Sword tiene excelente rango y daño. Mantenerla en su clase única es óptimo. Equiparla con Excalibur o Save the Queen.</p>
+            </div>
+
+            <div class="content-box">
+                <h3>Cidolfus Orlandeau (TG Cid)</h3>
+                <div class="stat-line"><span class="stat-label">Clase Única:</span> <span class="stat-value">Sword Saint</span></div>
+                <div class="stat-line"><span class="stat-label">Habilidades:</span> <span class="stat-value">Swordplay (combina Holy Sword, Dark Sword, y Divine Knight)</span></div>
+                <div class="stat-line"><span class="stat-label">Reclutamiento:</span> <span class="stat-value">Automático en Chapter 4 (Bethla Garrison)</span></div>
+                <p style="margin-top: 10px;"><strong>⚠️ GAMEBREAKER:</strong> TG Cid es considerado el personaje más roto del juego. Tiene acceso a TODAS las técnicas de sword skills (Holy Sword + Dark Sword + Divine Knight). No necesita cambiar de clase nunca. Puede solo completar el resto del juego.</p>
+            </div>
+
+            <div class="content-box">
+                <h3>Mustadio Bunansa</h3>
+                <div class="stat-line"><span class="stat-label">Clase Única:</span> <span class="stat-value">Machinist</span></div>
+                <div class="stat-line"><span class="stat-label">Habilidades:</span> <span class="stat-value">Aimed Shot (Arm Aim, Leg Aim, Seal Evil)</span></div>
+                <div class="stat-line"><span class="stat-label">Arma:</span> <span class="stat-value">Guns (ignoran evasión física)</span></div>
+                <div class="stat-line"><span class="stat-label">Reclutamiento:</span> <span class="stat-value">Automático en Chapter 2</span></div>
+                <p style="margin-top: 10px;"><strong>Consejos:</strong> Útil para disable enemigos. Leg Aim impide movimiento, Arm Aim impide ataques. Guns siempre pegan (ignoran Evasion).</p>
+            </div>
+
+            <div class="content-box">
+                <h3>Balthier - <span class="highlight">EXCLUSIVO WOTL</span></h3>
+                <div class="stat-line"><span class="stat-label">Clase Única:</span> <span class="stat-value">Sky Pirate</span></div>
+                <div class="stat-line"><span class="stat-label">Habilidades:</span> <span class="stat-value">Barrage (ataques con guns especiales)</span></div>
+                <div class="stat-line"><span class="stat-label">Crossover:</span> <span class="stat-value">Final Fantasy XII</span></div>
+                <div class="stat-line"><span class="stat-label">Reclutamiento:</span> <span class="stat-value">Sidequest "The Wandering Blade" (Chapter 4)</span></div>
+                <p style="margin-top: 10px;"><strong>Cómo reclutar:</strong> En Chapter 4, ve a Trade City of Sal Ghidos. Debe aparecer "Rumors" en el bar. Completa la secuencia de batallas. Stats balanceados pero su clase es limitada comparada con Orlandeau.</p>
+            </div>
+
+            <div class="content-box">
+                <h3>Luso Clemens - <span class="highlight">EXCLUSIVO WOTL</span></h3>
+                <div class="stat-line"><span class="stat-label">Clase Única:</span> <span class="stat-value">Game Hunter</span></div>
+                <div class="stat-line"><span class="stat-label">Habilidades:</span> <span class="stat-value">Hunt (técnicas variadas de caza)</span></div>
+                <div class="stat-line"><span class="stat-label">Crossover:</span> <span class="stat-value">Final Fantasy Tactics A2</span></div>
+                <div class="stat-line"><span class="stat-label">Reclutamiento:</span> <span class="stat-value">Sidequest "The Redleaf Turnabout" (Chapter 4)</span></div>
+                <p style="margin-top: 10px;"><strong>Cómo reclutar:</strong> En Chapter 4, después de la batalla #56, una serie de eventos aparece en Zeltennia. Completa la chain de batallas.</p>
+            </div>
+
+            <div class="content-box">
+                <h3>Cloud Strife</h3>
+                <div class="stat-line"><span class="stat-label">Clase Única:</span> <span class="stat-value">Soldier</span></div>
+                <div class="stat-line"><span class="stat-label">Habilidades:</span> <span class="stat-value">Limit (Cross-slash, Blade Beam, Finishing Touch, etc.)</span></div>
+                <div class="stat-line"><span class="stat-label">Arma Única:</span> <span class="stat-value">Materia Blade (después Rune Blade)</span></div>
+                <div class="stat-line"><span class="stat-label">Crossover:</span> <span class="stat-value">Final Fantasy VII</span></div>
+                <div class="stat-line"><span class="stat-label">Reclutamiento:</span> <span class="stat-value">Sidequest compleja en Chapter 4</span></div>
+                <p style="margin-top: 10px;"><strong>Cómo reclutar:</strong></p>
+                <ol style="margin-left: 20px; margin-top: 10px;">
+                    <li>Tener Mustadio en party</li>
+                    <li>Comprar "flower" en Sal Ghidos (1000 gil)</li>
+                    <li>Ir a Zarghidas Trade City tavern → rumor "Cursed Island"</li>
+                    <li>Completar "The Haunted Mine" (Goug Machine City)</li>
+                    <li>Completar "The Nelveska Temple" → conseguir Materia Blade</li>
+                    <li>Random battle en Araguay Woods con Cloud como invitado</li>
+                    <li>Gana la batalla y Cloud se une permanentemente</li>
+                </ol>
+                <p style="margin-top: 10px;"><strong>Nota:</strong> Cloud empieza débil. Necesita subir Brave (>60) para que sus Limits sean efectivos.</p>
+            </div>
+
+            <div class="content-box">
+                <h3>Otros Personajes Notables</h3>
+                
+                <div class="job-item">
+                    <h4>Meliadoul Tengille</h4>
+                    <div class="stat-line"><span class="stat-label">Clase:</span> <span class="stat-value">Divine Knight</span></div>
+                    <div class="stat-line"><span class="stat-label">Habilidades:</span> <span class="stat-value">Crush (destruye equipo enemigo - similar a Ruin pero mejor)</span></div>
+                    <p style="margin-top: 10px;">Útil para destruir equipamiento de bosses. Reclutamiento en Chapter 4.</p>
+                </div>
+
+                <div class="job-item">
+                    <h4>Beowulf Cadmus</h4>
+                    <div class="stat-line"><span class="stat-label">Clase:</span> <span class="stat-value">Temple Knight</span></div>
+                    <div class="stat-line"><span class="stat-label">Habilidades:</span> <span class="stat-value">Chicken (transforma enemigos en chickens y status ailments)</span></div>
+                    <p style="margin-top: 10px;">Chicken es hilarious pero efectivo. Matrimonio con Reis lo potencia.</p>
+                </div>
+
+                <div class="job-item">
+                    <h4>Reis Duelar</h4>
+                    <div class="stat-line"><span class="stat-label">Clase:</span> <span class="stat-value">Dragonkin (después de sidequest)</span></div>
+                    <div class="stat-line"><span class="stat-label">Habilidades:</span> <span class="stat-value">Dragon Soul (control de dragones)</span></div>
+                    <p style="margin-top: 10px;">Transformar Reis de Holy Dragon requiere Beowulf en party. Potente mage/fighter hybrid.</p>
+                </div>
+
+                <div class="job-item">
+                    <h4>Rapha & Marach Galthena</h4>
+                    <div class="stat-line"><span class="stat-label">Clases:</span> <span class="stat-value">Heaven Knight / Hell Knight</span></div>
+                    <div class="stat-line"><span class="stat-label">Habilidades:</span> <span class="stat-value">Sky Manipulation / Nether Manip (magia aleatoria)</span></div>
+                    <p style="margin-top: 10px;">Hermanos con magia aleatoria. No muy confiables pero temáticos.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN: MONSTERS -->
+        <div id="monsters" class="section">
+            <button class="back-button" onclick="showSection('main-menu')">← Volver al Menú</button>
+            <h2 style="color: #d4af37; font-size: 2.5em; margin-bottom: 20px;">Monsters</h2>
+            
+            <div class="content-box">
+                <h3>Información sobre Monsters</h3>
+                <p>Los monstruos aparecen en random encounters y algunas batallas de la historia. Algunos pueden ser invitados al party con Mediator o capturados con Beastmaster. Todos los monstruos pueden ser Poached para obtener items únicos.</p>
+            </div>
+
+            <div class="content-box">
+                <h3>Monstruos Comunes</h3>
+                
+                <div class="job-item">
+                    <h4>Goblin</h4>
+                    <div class="stat-line"><span class="stat-label">Tipo:</span> <span class="stat-value">Goblin</span></div>
+                    <div class="stat-line"><span class="stat-label">Habilidades:</span> <span class="stat-value">Goblin Punch, Tackle</span></div>
+                    <div class="stat-line"><span class="stat-label">Debilidad:</span> <span class="stat-value">Thunder</span></div>
+                    <div class="stat-line"><span class="stat-label">Poach:</span> <span class="stat-value">Mythril Knife, Eye Drop</span></div>
+                    <p style="margin-top: 10px;">Monstruo básico. Aparece en early game.</p>
+                </div>
+
+                <div class="job-item">
+                    <h4>Chocobo</h4>
+                    <div class="stat-line"><span class="stat-label">Tipo:</span> <span class="stat-value">Chocobo</span></div>
+                    <div class="stat-line"><span class="stat-label">Habilidades:</span> <span class="stat-value">Choco Attack, Choco Cure, Choco Esuna</span></div>
+                    <div class="stat-line"><span class="stat-label">Poach:</span> <span class="stat-value">Phoenix Down, Soft</span></div>
+                    <p style="margin-top: 10px;">Pueden ser útiles como soporte. Choco Meteor es poderoso en Red/Black Chocobos.</p>
+                </div>
+
+                <div class="job-item">
+                    <h4>Bomb</h4>
+                    <div class="stat-line"><span class="stat-label">Tipo:</span> <span class="stat-value">Bomb</span></div>
+                    <div class="stat-line"><span class="stat-label">Habilidades:</span> <span class="stat-value">Self-Destruct, Spark</span></div>
+                    <div class="stat-line"><span class="stat-label">Elemento:</span> <span class="stat-value">Absorbe Fire, débil a Ice</span></div>
+                    <div class="stat-line"><span class="stat-label">Poach:</span> <span class="stat-value">Phoenix Down, Bomb Fragment</span></div>
+                    <p style="margin-top: 10px;">⚠️ Cuidado con Self-Destruct. Causa daño masivo en área.</p>
+                </div>
+
+                <div class="job-item">
+                    <h4>Panther</h4>
+                    <div class="stat-line"><span class="stat-label">Tipo:</span> <span class="stat-value">Feline</span></div>
+                    <div class="stat-line"><span class="stat-label">Habilidades:</span> <span class="stat-value">Triple Attack, Beso Toxico</span></div>
+                    <div class="stat-line"><span class="stat-label">Poach:</span> <span class="stat-value">Phoenix Down, Antidote</span></div>
+                    <p style="margin-top: 10px;">Rápido y evasivo. Triple Attack puede ser mortal.</p>
+                </div>
+            </div>
+
+            <div class="content-box">
+                <h3>Monstruos Raros - Poaching Importante</h3>
+                
+                <div class="job-item">
+                    <h4>Red Dragon</h4>
+                    <div class="stat-line"><span class="stat-label">Tipo:</span> <span class="stat-value">Dragon</span></div>
+                    <div class="stat-line"><span class="stat-label">Habilidades:</span> <span class="stat-value">Fire Breath, Wing Attack</span></div>
+                    <div class="stat-line"><span class="stat-label">Elemento:</span> <span class="stat-value">Absorbe Fire, débil a Ice</span></div>
+                    <div class="stat-line"><span class="stat-label">Poach:</span> <span class="stat-value"><strong>Murasame (katana)</strong>, Dragon Heart</span></div>
+                    <div class="stat-line"><span class="stat-label">Ubicación:</span> <span class="stat-value">Zigolis Swamp (raro)</span></div>
+                    <p style="margin-top: 10px;">⭐ Poaching Red Dragon es la única forma de conseguir Murasame katana.</p>
+                </div>
+
+                <div class="job-item">
+                    <h4>Behemoth</h4>
+                    <div class="stat-line"><span class="stat-label">Tipo:</span> <span class="stat-value">Beast</span></div>
+                    <div class="stat-line"><span class="stat-label">Habilidades:</span> <span class="stat-value">Wild Boar, Chicken Race</span></div>
+                    <div class="stat-line"><span class="stat-label">Poach:</span> <span class="stat-value"><strong>Bracer</strong> (+3 PA accessory)</span></div>
+                    <div class="stat-line"><span class="stat-label">Ubicación:</span> <span class="stat-value">Mandalia Plains, Deep Dungeon</span></div>
+                    <p style="margin-top: 10px;">⭐ Bracer es el mejor accesorio de PA. Vale la pena farmear.</p>
+                </div>
+
+                <div class="job-item">
+                    <h4>Sacred</h4>
+                    <div class="stat-line"><span class="stat-label">Tipo:</span> <span class="stat-value">Dragon</span></div>
+                    <div class="stat-line"><span class="stat-label">Habilidades:</span> <span class="stat-value">Holy Breath, Dragon Dive</span></div>
+                    <div class="stat-line"><span class="stat-label">Poach:</span> <span class="stat-value"><strong>Chantage</strong> (+3 MA), <strong>Reflect Mail</strong></span></div>
+                    <div class="stat-line"><span class="stat-label">Ubicación:</span> <span class="stat-value">Deep Dungeon (muy raro)</span></div>
+                    <p style="margin-top: 10px;">⭐ Poaching Sacred da los mejores items de mago del juego.</p>
+                </div>
+
+                <div class="job-item">
+                    <h4>Plague</h4>
+                    <div class="stat-line"><span class="stat-label">Tipo:</span> <span class="stat-value">Undead</span></div>
+                    <div class="stat-line"><span class="stat-label">Habilidades:</span> <span class="stat-value">Zombie Touch, Beso Toxico</span></div>
+                    <div class="stat-line"><span class="stat-label">Poach:</span> <span class="stat-value"><strong>Ribbon</strong> (inmune a todos los status)</span></div>
+                    <div class="stat-line"><span class="stat-label">Ubicación:</span> <span class="stat-value">Deep Dungeon (raro)</span></div>
+                    <p style="margin-top: 10px;">⭐ Ribbon es el mejor accesorio defensivo. Difícil de conseguir pero esencial.</p>
+                </div>
+            </div>
+
+            <div class="content-box">
+                <h3>Tips de Poaching</h3>
+                <div class="stat-line"><span class="stat-label">Requisito:</span> <span class="stat-value">Thief Lv5 + Lancer Lv4 = Orator → aprende Beastmaster</span></div>
+                <div class="stat-line"><span class="stat-label">Cómo funciona:</span> <span class="stat-value">Usa "Poach" en monstruo con HP bajo (< 20%)</span></div>
+                <div class="stat-line"><span class="stat-label">Resultado:</span> <span class="stat-value">Mata al monstruo y da 2 items diferentes (random de su loot table)</span></div>
+                <p style="margin-top: 10px;">⚠️ <strong>IMPORTANTE:</strong> Poaching es la ÚNICA forma de conseguir muchos items top-tier como Murasame, Bracer, Chantage, y Ribbon. Vale la pena invertir en un Orator con Beastmaster.</p>
+            </div>
+        </div>
+
+        <!-- SECCIÓN: BOSSES -->
+        <div id="bosses" class="section">
+            <button class="back-button" onclick="showSection('main-menu')">← Volver al Menú</button>
+            <h2 style="color: #d4af37; font-size: 2.5em; margin-bottom: 20px;">Bosses</h2>
+            
+            <div class="content-box">
+                <h3>Batallas Difíciles - Chapter 1-2</h3>
+                
+                <div class="job-item">
+                    <h4>Dorter Slums - Algus + Archers</h4>
+                    <div class="stat-line"><span class="stat-label">Dificultad:</span> <span class="stat-value">⭐⭐⭐ (primera pared de dificultad)</span></div>
+                    <div class="stat-line"><span class="stat-label">Enemigos:</span> <span class="stat-value">Algus (Knight), 2 Archers, 2 Knights</span></div>
+                    <div class="stat-line"><span class="stat-label">Estrategia:</span> <span class="stat-value">Prioriza matar Archers. Usa Cover para proteger unidades débiles.</span></div>
+                    <p style="margin-top: 10px;">Los Archers tienen Charge +1 y pegan desde lejos. Acércate rápido o usa magia de área.</p>
+                </div>
+
+                <div class="job-item">
+                    <h4>Ziekden Fortress - Milleuda</h4>
+                    <div class="stat-line"><span class="stat-label">Dificultad:</span> <span class="stat-value">⭐⭐</span></div>
+                    <div class="stat-line"><span class="stat-label">Enemigos:</span> <span class="stat-value">Milleuda (Fell Knight), Knights, Archers</span></div>
+                    <div class="stat-line"><span class="stat-label">Debilidad:</span> <span class="stat-value">Vulnerable a status ailments</span></div>
+                    <p style="margin-top: 10px;">Milleuda tiene Shadowblade. Usa Blind o Sleep para neutralizarla.</p>
+                </div>
+
+                <div class="job-item">
+                    <h4>Fort Zeakden - Algus (Rematch)</h4>
+                    <div class="stat-line"><span class="stat-label">Dificultad:</span> <span class="stat-value">⭐⭐⭐⭐</span></div>
+                    <div class="stat-line"><span class="stat-label">Enemigos:</span> <span class="stat-value">Algus mejorado + Knights/Archers</span></div>
+                    <div class="stat-line"><span class="stat-label">Estrategia:</span> <span class="stat-value">Delita y Ramza atacan simultáneamente. Buff con Accumulate/Yell antes.</span></div>
+                    <p style="margin-top: 10px;">Batalla final de Chapter 1. Algus está mucho más fuerte. Asegura tener Delita vivo.</p>
+                </div>
+            </div>
+
+            <div class="content-box">
+                <h3>Batallas Difíciles - Chapter 3-4</h3>
+                
+                <div class="job-item">
+                    <h4>Riovanes Castle Rooftop - Wiegraf → Belias</h4>
+                    <div class="stat-line"><span class="stat-label">Dificultad:</span> <span class="stat-value">⭐⭐⭐⭐⭐ (la batalla más difícil del juego)</span></div>
+                    <div class="stat-line"><span class="stat-label">Enemigos:</span> <span class="stat-value">Wiegraf 1v1 → Belias + Archaic Demons</span></div>
+                    <div class="stat-line"><span class="stat-label">⚠️ PELIGRO:</span> <span class="stat-value">Solo Ramza vs Wiegraf. Si no estás preparado, puedes quedar stuck.</span></div>
+                    <div class="stat-line"><span class="stat-label">Estrategia Fase 1:</span> <span class="stat-value">Yell × 2 o 3, luego Accumulate. Cuando Speed alto, attack.</span></div>
+                    <div class="stat-line"><span class="stat-label">Estrategia Fase 2:</span> <span class="stat-value">Mata Archaic Demons primero. Belias usa Cyclops (área gigante).</span></div>
+                    <p style="margin-top: 10px;"><strong>Preparación crítica:</strong> Antes de esta batalla, asegura que Ramza tenga: Yell/Accumulate aprendido, Auto-Potion, armadura fuerte, y level 25+. GUARDA en un slot diferente antes de entrar a Riovanes.</p>
+                </div>
+
+                <div class="job-item">
+                    <h4>Riovanes Castle - Elmdore's Assassins</h4>
+                    <div class="stat-line"><span class="stat-label">Dificultad:</span> <span class="stat-value">⭐⭐⭐⭐</span></div>
+                    <div class="stat-line"><span class="stat-label">Enemigos:</span> <span class="stat-value">Celia & Lede (Assassins) - ambas tienen Stop, Charm</span></div>
+                    <div class="stat-line"><span class="stat-label">Debilidad:</span> <span class="stat-value">Vulnerables a Instant Death</span></div>
+                    <div class="stat-line"><span class="stat-label">Estrategia:</span> <span class="stat-value">Ribbon para inmunidad a status. Mantén distancia o usa magia de área.</span></div>
+                    <p style="margin-top: 10px;">Las Assassins usan Stop + Ultima. Extremadamente peligrosas. Ninja con Throw es efectivo.</p>
+                </div>
+
+                <div class="job-item">
+                    <h4>Limberry Castle - Elmdore (Real)</h4>
+                    <div class="stat-line"><span class="stat-label">Dificultad:</span> <span class="stat-value">⭐⭐⭐⭐⭐</span></div>
+                    <div class="stat-line"><span class="stat-label">Enemigos:</span> <span class="stat-value">Marquis Elmdore + Celia + Lede</span></div>
+                    <div class="stat-line"><span class="stat-label">Equipo de Elmdore:</span> <span class="stat-value">Masamune (always First Strike), Genji equipment</span></div>
+                    <div class="stat-line"><span class="stat-label">Habilidades:</span> <span class="stat-value">Muramasa (vampiric), Lightning Stab</span></div>
+                    <div class="stat-line"><span class="stat-label">Inmune:</span> <span class="stat-value">Todos los status (Ribbon)</span></div>
+                    <div class="stat-line"><span class="stat-label">Estrategia:</span> <span class="stat-value">Ninja con Speed Save. Catch/Steal sus Genji Gloves y Genji equipment.</span></div>
+                    <p style="margin-top: 10px;"><strong>⭐ FARMEABLE:</strong> Esta es tu oportunidad de conseguir Genji equipment (Glove, Helm, Armor, Shield). Usa Thief con "Steal" o Ninja con "Catch". Elmdore tiene Safeguard innate, así que Steal tiene baja probabilidad. Catch funciona mejor pero requiere timing perfecto.</p>
+                </div>
+
+                <div class="job-item">
+                    <h4>Deep Dungeon - Ultima Demon (Boss Secreto)</h4>
+                    <div class="stat-line"><span class="stat-label">Dificultad:</span> <span class="stat-value">⭐⭐⭐⭐⭐</span></div>
+                    <div class="stat-line"><span class="stat-label">Ubicación:</span> <span class="stat-value">Deep Dungeon Basement 10 (TERMINE)</span></div>
+                    <div class="stat-line"><span class="stat-label">Habilidades:</span> <span class="stat-value">Ultima, Dark Holy, Vengeance (counter)</span></div>
+                    <div class="stat-line"><span class="stat-label">Inmune:</span> <span class="stat-value">Casi todos los status</span></div>
+                    <div class="stat-line"><span class="stat-label">Estrategia:</span> <span class="stat-value">Shell/Protect party. Usa Holy o Flare. Evita ataques físicos (counter).</span></div>
+                    <p style="margin-top: 10px;">Boss opcional más difícil. Requiere party level 80+. Reward: Chaos Blade.</p>
+                </div>
+            </div>
+
+            <div class="content-box">
+                <h3>Lucavi Battles (Bosses de Zodiac Stones)</h3>
+                
+                <div class="job-item">
+                    <h4>Belias (Aries)</h4>
+                    <div class="stat-line"><span class="stat-label">Batalla:</span> <span class="stat-value">Riovanes Castle Rooftop</span></div>
+                    <div class="stat-line"><span class="stat-label">Elemento:</span> <span class="stat-value">Fire</span></div>
+                    <div class="stat-line"><span class="stat-label">Debilidad:</span> <span class="stat-value">Ice</span></div>
+                    <div class="stat-line"><span class="stat-label">Habilidades:</span> <span class="stat-value">Cyclops (área gigante), Fire IV</span></div>
+                    <p style="margin-top: 10px;">Prioriza matar Archaic Demons. Usa Ice magic si tienes.</p>
+                </div>
+
+                <div class="job-item">
+                    <h4>Cuchulainn (Taurus)</h4>
+                    <div class="stat-line"><span class="stat-label">Batalla:</span> <span class="stat-value">Underground Book Storage (Orbonne)</span></div>
+                    <div class="stat-line"><span class="stat-label">Elemento:</span> <span class="stat-value">Poison</span></div>
+                    <div class="stat-line"><span class="stat-label">Habilidades:</span> <span class="stat-value">Bio 3, Deathspell (AoE death + status)</span></div>
+                    <p style="margin-top: 10px;">⚠️ Extremadamente tóxico. Ribbon o Immunity accesorios esenciales.</p>
+                </div>
+
+                <div class="job-item">
+                    <h4>Hashmal (Leo)</h4>
+                    <div class="stat-line"><span class="stat-label">Batalla:</span> <span class="stat-value">Lionel Castle</span></div>
+                    <div class="stat-line"><span class="stat-label">Elemento:</span> <span class="stat-value">Earth</span></div>
+                    <div class="stat-line"><span class="stat-label">Habilidades:</span> <span class="stat-value">Quake, Meteor</span></div>
+                    <p style="margin-top: 10px;">Usa Float para evitar Quake. Meteor no puede ser evitado.</p>
+                </div>
+
+                <div class="job-item">
+                    <h4>Zalera (Gemini)</h4>
+                    <div class="stat-line"><span class="stat-label">Batalla:</span> <span class="stat-value">Limberry Castle</span></div>
+                    <div class="stat-line"><span class="stat-label">Elemento:</span> <span class="stat-value">Dark</span></div>
+                    <div class="stat-line"><span class="stat-label">Habilidades:</span> <span class="stat-value">Level-based death spells, Stop</span></div>
+                    <p style="margin-top: 10px;">Cuidado con Level 2 Holy, Level 3 Flare. Ajusta levels de tu party.</p>
+                </div>
+
+                <div class="job-item">
+                    <h4>Altima (Final Boss)</h4>
+                    <div class="stat-line"><span class="stat-label">Batalla:</span> <span class="stat-value">Orbonne Monastery, final floor</span></div>
+                    <div class="stat-line"><span class="stat-label">Fases:</span> <span class="stat-value">2 (Holy Angel → Altima)</span></div>
+                    <div class="stat-line"><span class="stat-label">Habilidades:</span> <span class="stat-value">Grand Cross (random status AoE), Ultima, Holy</span></div>
+                    <div class="stat-line"><span class="stat-label">Debilidad:</span> <span class="stat-value">Ninguna</span></div>
+                    <div class="stat-line"><span class="stat-label">Estrategia:</span> <span class="stat-value">Ribbon para inmunidad a Grand Cross. Shell/Protect. Orlando Cid trivializa esta batalla.</span></div>
+                    <p style="margin-top: 10px;">Boss final. Requiere level 50+ recomendado. Grand Cross puede wipe party sin Ribbon.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN: MAPS -->
+        <div id="maps" class="section">
+            <button class="back-button" onclick="showSection('main-menu')">← Volver al Menú</button>
+            <h2 style="color: #d4af37; font-size: 2.5em; margin-bottom: 20px;">Maps</h2>
+            
+            <div class="content-box">
+                <h3>Información sobre Maps</h3>
+                <p>Los mapas tienen tesoros escondidos, trampas, y diferentes configuraciones de terreno. Algunos maps tienen random encounters con rare monsters para Poaching.</p>
+            </div>
+
+            <div class="content-box">
+                <h3>Mapas con Tesoros Importantes</h3>
+                
+                <div class="job-item">
+                    <h4>Lionel Castle</h4>
+                    <div class="stat-line"><span class="stat-label">Tesoros:</span> <span class="stat-value">Save the Queen (espada de Agrias)</span></div>
+                    <div class="stat-line"><span class="stat-label">Ubicación del tesoro:</span> <span class="stat-value">Hidden chest en la parte alta del mapa</span></div>
+                    <p style="margin-top: 10px;">Uno de los tesoros más importantes del juego para Agrias.</p>
+                </div>
+
+                <div class="job-item">
+                    <h4>Deep Dungeon (Todos los pisos)</h4>
+                    <div class="stat-line"><span class="stat-label">Tesoros:</span> <span class="stat-value">Excalibur, Ragnarok, Ribbon, Genji equipment, etc.</span></div>
+                    <div class="stat-line"><span class="stat-label">Acceso:</span> <span class="stat-value">Chapter 4, requiere completar sidequests previas</span></div>
+                    <div class="stat-line"><span class="stat-label">Pisos:</span> <span class="stat-value">10 niveles (NOGIAS → TERMINATE)</span></div>
+                    <p style="margin-top: 10px;">La mejor fuente de top-tier equipment. Cada piso tiene múltiples chests. Random encounters tienen rare monsters (Sacred, Behemoth King, etc.).</p>
+                </div>
+
+                <div class="job-item">
+                    <h4>Nelveska Temple</h4>
+                    <div class="stat-line"><span class="stat-label">Tesoros:</span> <span class="stat-value">Zodiac Ore (Capricorn), Barette, Sasuke's Blade</span></div>
+                    <div class="stat-line"><span class="stat-label">Acceso:</span> <span class="stat-value">Sidequest con Mustadio (Chapter 4)</span></div>
+                    <div class="stat-line"><span class="stat-label">Boss:</span> <span class="stat-value">Construct 8 (robot)</span></div>
+                    <p style="margin-top: 10px;">Sidequest que requiere Mustadio. Materia Blade (para reclutar Cloud) está aquí.</p>
+                </div>
+
+                <div class="job-item">
+                    <h4>Goug Machine City</h4>
+                    <div class="stat-line"><span class="stat-label">Tesoros:</span> <span class="stat-value">Glacier Gun, Blaze Gun</span></div>
+                    <div class="stat-line"><span class="stat-label">Acceso:</span> <span class="stat-value">Sidequest "The Haunted Mine" con Mustadio</span></div>
+                    <p style="margin-top: 10px;">Primera parte de la chain para reclutar Cloud.</p>
+                </div>
+            </div>
+
+            <div class="content-box">
+                <h3>Mapas con Random Encounters Importantes</h3>
+                
+                <div class="job-item">
+                    <h4>Zigolis Swamp</h4>
+                    <div class="stat-line"><span class="stat-label">Rare Monsters:</span> <span class="stat-value">Red Dragon (Poach → Murasame)</span></div>
+                    <p style="margin-top: 10px;">Farmear Red Dragon aquí para conseguir Murasame katana.</p>
+                </div>
+
+                <div class="job-item">
+                    <h4>Mandalia Plains</h4>
+                    <div class="stat-line"><span class="stat-label">Rare Monsters:</span> <span class="stat-value">Behemoth (Poach → Bracer)</span></div>
+                    <p style="margin-top: 10px;">Uno de los mejores lugares para farmear Behemoth temprano en el juego.</p>
+                </div>
+
+                <div class="job-item">
+                    <h4>Araguay Woods</h4>
+                    <div class="stat-line"><span class="stat-label">Especial:</span> <span class="stat-value">Cloud aparece aquí como invitado (después de Nelveska Temple)</span></div>
+                    <p style="margin-top: 10px;">Trigger battle para reclutar a Cloud definitivamente.</p>
+                </div>
+            </div>
+
+            <div class="content-box">
+                <h3>Tips de Exploración</h3>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li style="margin: 10px 0;">Usa Move-Find Item ability para revelar tesoros escondidos</li>
+                    <li style="margin: 10px 0;">En iOS version, puedes rotar cámara 360° para encontrar chests ocultos detrás de objetos</li>
+                    <li style="margin: 10px 0;">Algunos mapas tienen trampas (Death Sentence tiles, Darkness tiles)</li>
+                    <li style="margin: 10px 0;">Geomancer's Elemental depende del tipo de terrain del tile</li>
+                    <li style="margin: 10px 0;">Deep Dungeon rewards: NOGIAS (B1), DELTA (B2), BRAVE (B3), FAITH (B4), HOLY (B5), HEAVEN (B6), SAINT (B7), WATER (B8), TIGER (B9), TERMINATE (B10)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SECCIÓN: ZODIAC -->
+        <div id="zodiac" class="section">
+            <button class="back-button" onclick="showSection('main-menu')">← Volver al Menú</button>
+            <h2 style="color: #d4af37; font-size: 2.5em; margin-bottom: 20px;">Zodiac Compatibility</h2>
+            
+            <div class="content-box">
+                <h3>¿Cómo funciona Zodiac Compatibility?</h3>
+                <p style="margin-bottom: 15px;">La compatibilidad zodiacal afecta el daño dado y recibido entre unidades. Es una mecánica importante pero a menudo ignorada.</p>
+                
+                <div class="stat-line"><span class="stat-label">Best Compatibility:</span> <span class="stat-value">Daño × 1.25 (dado y recibido)</span></div>
+                <div class="stat-line"><span class="stat-label">Good Compatibility:</span> <span class="stat-value">Daño × 1.125</span></div>
+                <div class="stat-line"><span class="stat-label">Neutral:</span> <span class="stat-value">Daño × 1.0 (normal)</span></div>
+                <div class="stat-line"><span class="stat-label">Bad Compatibility:</span> <span class="stat-value">Daño × 0.875</span></div>
+                <div class="stat-line"><span class="stat-label">Worst Compatibility:</span> <span class="stat-value">Daño × 0.5 (mitad de daño)</span></div>
+                
+                <p style="margin-top: 15px;">⚠️ <strong>Importante:</strong> La compatibilidad funciona en AMBAS direcciones. Si tienes Best compatibility con un enemigo, haces MÁS daño pero también RECIBES MÁS daño de ese enemigo.</p>
+            </div>
+
+            <div class="content-box">
+                <h3>Tabla de Compatibilidad</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tu Signo</th>
+                            <th>Best</th>
+                            <th>Good</th>
+                            <th>Bad</th>
+                            <th>Worst</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Aries ♈</td>
+                            <td>Leo, Sagittarius</td>
+                            <td>Gemini, Aquarius, Aries</td>
+                            <td>Pisces, Taurus</td>
+                            <td>Cancer, Capricorn</td>
+                        </tr>
+                        <tr>
+                            <td>Taurus ♉</td>
+                            <td>Virgo, Capricorn</td>
+                            <td>Cancer, Pisces, Taurus</td>
+                            <td>Aries, Gemini</td>
+                            <td>Leo, Aquarius</td>
+                        </tr>
+                        <tr>
+                            <td>Gemini ♊</td>
+                            <td>Libra, Aquarius</td>
+                            <td>Leo, Aries, Gemini</td>
+                            <td>Taurus, Cancer</td>
+                            <td>Virgo, Pisces</td>
+                        </tr>
+                        <tr>
+                            <td>Cancer ♋</td>
+                            <td>Scorpio, Pisces</td>
+                            <td>Virgo, Taurus, Cancer</td>
+                            <td>Gemini, Leo</td>
+                            <td>Aries, Libra</td>
+                        </tr>
+                        <tr>
+                            <td>Leo ♌</td>
+                            <td>Sagittarius, Aries</td>
+                            <td>Gemini, Libra, Leo</td>
+                            <td>Cancer, Virgo</td>
+                            <td>Capricorn, Taurus</td>
+                        </tr>
+                        <tr>
+                            <td>Virgo ♍</td>
+                            <td>Capricorn, Taurus</td>
+                            <td>Scorpio, Cancer, Virgo</td>
+                            <td>Leo, Libra</td>
+                            <td>Sagittarius, Gemini</td>
+                        </tr>
+                        <tr>
+                            <td>Libra ♎</td>
+                            <td>Aquarius, Gemini</td>
+                            <td>Sagittarius, Leo, Libra</td>
+                            <td>Virgo, Scorpio</td>
+                            <td>Pisces, Cancer</td>
+                        </tr>
+                        <tr>
+                            <td>Scorpio ♏</td>
+                            <td>Pisces, Cancer</td>
+                            <td>Capricorn, Virgo, Scorpio</td>
+                            <td>Libra, Sagittarius</td>
+                            <td>Aries, Leo</td>
+                        </tr>
+                        <tr>
+                            <td>Sagittarius ♐</td>
+                            <td>Aries, Leo</td>
+                            <td>Libra, Aquarius, Sagittarius</td>
+                            <td>Scorpio, Capricorn</td>
+                            <td>Taurus, Virgo</td>
+                        </tr>
+                        <tr>
+                            <td>Capricorn ♑</td>
+                            <td>Taurus, Virgo</td>
+                            <td>Scorpio, Pisces, Capricorn</td>
+                            <td>Sagittarius, Aquarius</td>
+                            <td>Gemini, Aries</td>
+                        </tr>
+                        <tr>
+                            <td>Aquarius ♒</td>
+                            <td>Gemini, Libra</td>
+                            <td>Aries, Sagittarius, Aquarius</td>
+                            <td>Capricorn, Pisces</td>
+                            <td>Cancer, Taurus</td>
+                        </tr>
+                        <tr>
+                            <td>Pisces ♓</td>
+                            <td>Cancer, Scorpio</td>
+                            <td>Taurus, Capricorn, Pisces</td>
+                            <td>Aquarius, Aries</td>
+                            <td>Leo, Libra</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="content-box">
+                <h3>Signos Recomendados para Ramza</h3>
+                <p style="margin-bottom: 15px;">Elegir el signo correcto para Ramza puede hacer una diferencia significativa en las batallas más difíciles del juego:</p>
+                
+                <div class="job-item">
+                    <h4>⭐ Aries (Recomendado #1)</h4>
+                    <div class="stat-line"><span class="stat-label">Best con:</span> <span class="stat-value">Leo, Sagittarius</span></div>
+                    <div class="stat-line"><span class="stat-label">Worst con:</span> <span class="stat-value">Cancer, Capricorn</span></div>
+                    <p style="margin-top: 10px;"><strong>Por qué es bueno:</strong> Belias (Aries Lucavi) es weak contra Aries Ramza. Riovanes rooftop battle es más fácil. No tiene Worst compatibility con ningún personaje único importante.</p>
+                </div>
+
+                <div class="job-item">
+                    <h4>⭐ Gemini</h4>
+                    <div class="stat-line"><span class="stat-label">Best con:</span> <span class="stat-value">Libra, Aquarius</span></div>
+                    <div class="stat-line"><span class="stat-label">Worst con:</span> <span class="stat-value">Virgo, Pisces</span></div>
+                    <p style="margin-top: 10px;">Balanceado. Buena compatibilidad general.</p>
+                </div>
+
+                <div class="job-item">
+                    <h4>⭐ Leo</h4>
+                    <div class="stat-line"><span class="stat-label">Best con:</span> <span class="stat-value">Sagittarius, Aries</span></div>
+                    <div class="stat-line"><span class="stat-label">Worst con:</span> <span class="stat-value">Capricorn, Taurus</span></div>
+                    <p style="margin-top: 10px;">Excelente con Agrias (Virgo) y Orlandeau (Scorpio). Malo contra Wiegraf (Capricorn).</p>
+                </div>
+
+                <div class="job-item">
+                    <h4>⭐ Pisces</h4>
+                    <div class="stat-line"><span class="stat-label">Best con:</span> <span class="stat-value">Cancer, Scorpio</span></div>
+                    <div class="stat-line"><span class="stat-label">Worst con:</span> <span class="stat-value">Leo, Libra</span></div>
+                    <p style="margin-top: 10px;">Bueno para magic builds. Compatible con healers.</p>
+                </div>
+
+                <div class="job-item">
+                    <h4>❌ Evitar: Capricorn y Taurus</h4>
+                    <p style="margin-top: 10px;"><strong>Por qué:</strong> Tienen Worst compatibility con bosses importantes. Wiegraf (Capricorn) es mucho más difícil con estos signos. Las batallas críticas de Chapter 3-4 se vuelven extremadamente complicadas.</p>
+                </div>
+            </div>
+
+            <div class="content-box">
+                <h3>Signos de Bosses y Personajes Importantes</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Personaje/Boss</th>
+                            <th>Signo</th>
+                            <th>Notas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Wiegraf</td>
+                            <td>Capricorn ♑</td>
+                            <td>Batalla 1v1 crítica en Riovanes</td>
+                        </tr>
+                        <tr>
+                            <td>Agrias</td>
+                            <td>Virgo ♍</td>
+                            <td>Personaje permanente</td>
+                        </tr>
+                        <tr>
+                            <td>Orlandeau (TG Cid)</td>
+                            <td>Scorpio ♏</td>
+                            <td>Best character del juego</td>
+                        </tr>
+                        <tr>
+                            <td>Delita</td>
+                            <td>Aries ♈</td>
+                            <td>Aparece en varias batallas story</td>
+                        </tr>
+                        <tr>
+                            <td>Belias (Lucavi)</td>
+                            <td>Aries ♈</td>
+                            <td>Boss de Riovanes rooftop</td>
+                        </tr>
+                        <tr>
+                            <td>Elmdore</td>
+                            <td>Leo ♌</td>
+                            <td>Boss de Limberry Castle</td>
+                        </tr>
+                        <tr>
+                            <td>Mustadio</td>
+                            <td>Libra ♎</td>
+                            <td>Personaje permanente</td>
+                        </tr>
+                        <tr>
+                            <td>Cloud</td>
+                            <td>Leo ♌</td>
+                            <td>Personaje secreto opcional</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="content-box">
+                <h3>Tips Prácticos</h3>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li style="margin: 10px 0;">La compatibilidad zodiacal se puede ignorar en la mayoría del juego, pero es CRÍTICA en batallas difíciles como Riovanes y Limberry</li>
+                    <li style="margin: 10px 0;">Cuando reclutes generics, intenta que tu healer tenga Good/Best compatibility con tu party principal</li>
+                    <li style="margin: 10px 0;">Worst compatibility puede reducir tu daño a la MITAD - puede hacer imposibles algunas batallas</li>
+                    <li style="margin: 10px 0;">Usa la tabla para planear tu party composition antes de batallas difíciles</li>
+                    <li style="margin: 10px 0;">En iOS, no puedes cambiar el birthdate de Ramza después de empezar - elige sabiamente al inicio</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- REFERENCIAS -->
+        <div class="reference-section">
+            <h3>📚 Referencias y Fuentes</h3>
+            <p style="margin-bottom: 15px;">Esta guía está basada en información verificada de las siguientes fuentes confiables específicas para <strong>Final Fantasy Tactics: War of the Lions</strong>:</p>
+            
+            <ul>
+                <li><strong>just_call_me_ash's Complete Guide</strong> - GameFAQs (v1.06, actualizada 2025) - La guía más completa y actualizada para WOTL: <a href="https://gamefaqs.gamespot.com/psp/937312-final-fantasy-tactics-the-war-of-the-lions/faqs/76070" target="_blank">gamefaqs.com/psp/937312</a></li>
+                <li><strong>Final Fantasy Wiki - WotL Jobs Database</strong> - Documentación completa de jobs, abilities y mechanics: <a href="https://finalfantasy.fandom.com/wiki/Final_Fantasy_Tactics_jobs" target="_blank">finalfantasy.fandom.com</a></li>
+                <li><strong>Caves of Narshe - FFT Database</strong> - Stats, abilities y job requirements: <a href="https://www.cavesofnarshe.com/fft/" target="_blank">cavesofnarshe.com</a></li>
+                <li><strong>RPG Site - iOS Guide</strong> - Guía específica para la versión iOS/iPadOS: <a href="https://www.rpgsite.net" target="_blank">rpgsite.net</a></li>
+            </ul>
+
+            <h4 style="margin-top: 20px; color: #d4af37;">Características - Versión iOS/iPadOS:</h4>
+            <ul style="margin-top: 10px;">
+                <li>✅ <strong>Excelente rendimiento</strong> - sin slowdowns en spell animations</li>
+                <li>✅ <strong>Cámara 360°</strong> - rotación completa del mapa</li>
+                <li>✅ <strong>Zoom mejorado</strong> - control total de cámara</li>
+                <li>✅ <strong>Items de Multiplayer disponibles</strong> - a través de Trapper's Den</li>
+                <li>✅ <strong>Auto-save</strong> cuando sales de la app</li>
+                <li>✅ <strong>High-resolution sprites</strong> - gráficos mejorados</li>
+                <li>✅ <strong>Contenido exclusivo WotL</strong> - Dark Knight, Onion Knight, Balthier, Luso</li>
+                <li>❌ <strong>Solo touchscreen</strong> - sin soporte de controller</li>
+                <li>❌ <strong>Compra separada</strong> - iPhone y iPad son apps diferentes</li>
+            </ul>
+
+            <h4 style="margin-top: 20px; color: #d4af37;">⚠️ Nota Importante:</h4>
+            <ul style="margin-top: 10px;">
+                <li><strong>Final Fantasy Tactics: The Ivalice Chronicles (2025)</strong> - El remaster NO incluye contenido exclusivo de WotL (Balthier, Luso, Dark Knight, Onion Knight). Esta guía es específica para War of the Lions iOS/iPadOS.</li>
+            </ul>
+
+            <p style="margin-top: 20px; font-style: italic;">Esta guía fue creada específicamente para la versión iOS/iPadOS de War of the Lions. Última actualización: Octubre 2025.</p>
+        </div>
+    </div>
+
+    <script src="src/js/app.js"></script>
+</body>
+</html>
