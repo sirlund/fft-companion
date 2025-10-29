@@ -1,11 +1,13 @@
 <script>
+  import Button from './base/Button.svelte';
+
   let { title, description, buttonText, onclick } = $props();
 </script>
 
 <div class="card" {onclick}>
   <h2>{title}</h2>
   <p>{description}</p>
-  <span class="card-button">{buttonText}</span>
+  <Button size="md">{buttonText}</Button>
 </div>
 
 <style>
@@ -52,26 +54,8 @@
     line-height: var(--line-height-relaxed);
   }
 
-  .card-button {
+  .card :global(button) {
     display: block;
-    background: linear-gradient(180deg, var(--color-brown-400) 0%, var(--color-brown-600) 100%);
-    border: var(--border-base) solid var(--color-brown-600);
-    color: var(--color-gold-300);
-    padding: 12px 24px;
-    text-align: center;
-    text-decoration: none;
-    border-radius: var(--radius-md);
-    transition: all 0.3s ease;
-    font-size: 1.1em;
-    letter-spacing: 1px;
-    font-weight: var(--font-weight-bold);
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
-  }
-
-  .card-button:hover {
-    background: linear-gradient(180deg, var(--color-gold-500) 0%, var(--color-gold-600) 100%);
-    color: var(--color-brown-900);
-    border-color: var(--color-gold-500);
+    width: 100%;
   }
 </style>

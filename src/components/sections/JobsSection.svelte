@@ -91,7 +91,7 @@
   let filteredSpecialJobs = $derived(specialCharacterJobs.filter(filterJob));
 </script>
 
-<Button variant="secondary" onclick={() => showSection('main-menu')}>
+<Button onclick={() => showSection('main-menu')}>
   ← Volver
 </Button>
 

@@ -43,18 +43,9 @@
     <div class="component-group">
       <Label>Primary Buttons</Label>
       <div class="button-row">
-        <Button variant="primary" size="sm">Small</Button>
-        <Button variant="primary" size="md">Medium</Button>
-        <Button variant="primary" size="lg">Large</Button>
-      </div>
-    </div>
-
-    <div class="component-group">
-      <Label>Secondary Buttons</Label>
-      <div class="button-row">
-        <Button variant="secondary" size="sm">Small</Button>
-        <Button variant="secondary" size="md">Medium</Button>
-        <Button variant="secondary" size="lg">Large</Button>
+        <Button size="sm">Small</Button>
+        <Button size="md">Medium</Button>
+        <Button size="lg">Large</Button>
       </div>
     </div>
 
@@ -244,7 +235,7 @@
 
   <!-- Back Button -->
   <div class="showcase-footer">
-    <Button variant="secondary" onclick={() => showSection('home')}>
+    <Button onclick={() => showSection('main-menu')}>
       Volver al Menú
     </Button>
   </div>

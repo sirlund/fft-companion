@@ -1,6 +1,6 @@
 <script>
   let {
-    variant = 'primary', // primary, secondary, ghost
+    variant = 'primary', // primary, ghost
     size = 'md', // sm, md, lg
     onclick,
     type = 'button',
@@ -35,23 +35,12 @@
 
   /* Variants */
   .btn-primary {
-    background: linear-gradient(180deg, var(--color-brown-light) 0%, #6b5537 100%);
-    color: var(--color-gold-light);
-  }
-
-  .btn-primary:hover {
-    background: linear-gradient(180deg, var(--color-gold) 0%, #b8941f 100%);
-    color: var(--color-brown-darkest);
-    border-color: var(--color-gold);
-  }
-
-  .btn-secondary {
     background: linear-gradient(135deg, var(--color-parchment-light) 0%, var(--color-parchment-base) 100%);
     color: var(--color-brown-dark);
     border-color: var(--color-brown-light);
   }
 
-  .btn-secondary:hover {
+  .btn-primary:hover {
     background: linear-gradient(135deg, var(--color-gold-light) 0%, var(--color-parchment-light) 100%);
     border-color: var(--color-gold);
   }
