@@ -2,6 +2,8 @@
 
 A comprehensive companion guide for Final Fantasy Tactics: War of the Lions (iOS/iPadOS version).
 
+Built with **Svelte 5** and **Vite** for a fast, modern user experience.
+
 ## Features
 
 - **Jobs**: Complete job tree with requirements, stats, and abilities
@@ -13,60 +15,130 @@ A comprehensive companion guide for Final Fantasy Tactics: War of the Lions (iOS
 - **Maps**: Battle locations and treasure information
 - **Zodiac Compatibility**: Complete compatibility system
 
+## Tech Stack
+
+- **Svelte 5** - Reactive UI framework with runes
+- **Vite 7** - Fast development server with HMR
+- **Modern JavaScript** - ES modules and modern syntax
+- **CSS** - Custom styling inspired by FFT aesthetic
+
 ## Quick Start
 
-**⚠️ IMPORTANT:** You must run this app with a local HTTP server. Do not open `index.html` directly.
+### Prerequisites
 
-### Running the App
+- Node.js 16+ installed
+- npm or pnpm
+
+### Installation & Running
 
 ```bash
-# Python (easiest)
-python3 -m http.server 8080
+# Install dependencies
+npm install
 
-# Node.js
-npx http-server -p 8080
-
-# NPM
+# Start development server
 npm run dev
 ```
 
-Then open: **http://localhost:8080**
+Then open: **http://localhost:5173**
 
-### Why a server?
+The app will automatically reload when you make changes thanks to Vite's Hot Module Replacement (HMR).
 
-Modern browsers block loading external CSS/JS files from `file://` URLs for security reasons (CORS). Using a local HTTP server solves this.
+### Build for Production
+
+```bash
+# Create optimized production build
+npm run build
+
+# Preview production build
+npm run preview
+```
 
 ## Version Information
 
-This guide is specifically for **FFT: War of the Lions iOS/iPadOS**, which includes:
+This guide is specifically for **FFT: War of the Lions iOS/iPadOS**.
 
-- ✅ Better performance than PSP
-- ✅ 360° camera rotation
-- ✅ Multiplayer items available through Trapper's Den
-- ✅ Auto-save functionality
-- ✅ High-resolution sprites
+**Features included:**
+- WOTL exclusive jobs (Dark Knight, Onion Knight)
+- Multiplayer items accessible via Trapper's Den
+- Updated ability names and translations
+- iOS-specific performance improvements
 
 **Not compatible with:**
 - Final Fantasy Tactics (PS1 original)
-- Final Fantasy Tactics: The Ivalice Chronicles (2025)
+- Final Fantasy Tactics: The Ivalice Chronicles (2025 remaster)
 
 ## Project Structure
 
 ```
 fft-companion/
-├── index.html              # Main application
+├── public/                    # Static assets
+│   └── assets/
+│       ├── jobs/              # Job icon images (34 webp)
+│       └── ref/               # Design reference images
+├── scripts/                   # Build & migration scripts
+│   ├── convert-to-svelte.js
+│   └── extract-sections.js
 ├── src/
-│   ├── css/styles.css     # Styling
-│   └── js/app.js          # Navigation & search
+│   ├── assets/
+│   │   └── styles/            # CSS styles
+│   │       └── styles.css
+│   ├── components/
+│   │   ├── ui/                # Reusable UI components
+│   │   │   ├── MenuCard.svelte
+│   │   │   ├── BackButton.svelte
+│   │   │   └── SearchBox.svelte
+│   │   └── sections/          # Section components
+│   │       ├── JobsSection.svelte
+│   │       ├── AbilitiesSection.svelte
+│   │       ├── EquipmentSection.svelte
+│   │       ├── CharactersSection.svelte
+│   │       ├── MonstersSection.svelte
+│   │       ├── BossesSection.svelte
+│   │       ├── MapsSection.svelte
+│   │       └── ZodiacSection.svelte
+│   ├── App.svelte             # Root component
+│   └── main.js                # Application entry point
+├── index.html                 # HTML template
 ├── package.json
+├── vite.config.js             # Vite configuration
+├── svelte.config.js           # Svelte configuration
 └── README.md
 ```
 
+## Development
+
+### Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+
+### Key Components
+
+- **MenuCard** - Reusable card component for main menu
+- **BackButton** - Navigation back button
+- **SearchBox** - Search input with two-way binding
+- **Section Components** - Each game feature (Jobs, Abilities, etc.) as a separate component
+
+### Styling
+
+The app uses a custom FFT-inspired theme with:
+- Medieval/fantasy color palette (golds, browns, dark backgrounds)
+- Responsive grid layouts
+- Smooth transitions and hover effects
+- Mobile-friendly design
+
 ## Troubleshooting
 
-**Problem:** All sections appear at once instead of just the main menu.
+### Port Already in Use
 
-**Solution:** You're opening `index.html` directly. Use a local HTTP server (see Quick Start above).
+If port 5173 is already in use, Vite will automatically try the next available port.
+
+### Hot Module Replacement Not Working
+
+1. Make sure you're running `npm run dev`
+2. Check that no other Vite instances are running
+3. Clear Vite cache: `rm -rf node_modules/.vite`
 
 For more details, see [TROUBLESHOOTING.md](./TROUBLESHOOTING.md)
 
@@ -77,6 +149,10 @@ Based on verified information from:
 - Final Fantasy Wiki - Version Differences
 - RPG Site - FFT Version Comparison
 - Arqade/Stack Exchange discussions
+
+## Contributing
+
+This is a personal project, but suggestions and bug reports are welcome via GitHub issues.
 
 ## License
 
