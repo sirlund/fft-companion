@@ -212,6 +212,29 @@
     --border-thin: 1px;
     --border-base: 2px;
     --border-thick: 3px;
+
+    /* Gradients - Parchment */
+    --gradient-parchment-default: linear-gradient(135deg, var(--color-parchment-300) 0%, var(--color-parchment-500) 50%, var(--color-parchment-600) 100%);
+    --gradient-parchment-light: linear-gradient(135deg, var(--color-parchment-300) 0%, var(--color-parchment-500) 100%);
+    --gradient-parchment-hover: linear-gradient(135deg, var(--color-gold-300) 0%, var(--color-parchment-300) 100%);
+    --gradient-parchment-wotl: linear-gradient(135deg, #e8c4c0 0%, #d4a4a0 50%, #c49490 100%);
+
+    /* Gradients - UI Elements */
+    --gradient-brown-header: linear-gradient(180deg, var(--color-brown-400) 0%, var(--color-brown-600) 100%);
+    --gradient-gold-highlight: linear-gradient(180deg, var(--color-gold-500) 0%, var(--color-gold-700) 100%);
+
+    /* Gradients - Status (3-stop for notices/alerts) */
+    --gradient-status-info: linear-gradient(135deg, var(--color-status-info-light) 0%, var(--color-status-info-base) 50%, var(--color-status-info-dark) 100%);
+    --gradient-status-warning: linear-gradient(135deg, var(--color-status-warning-light) 0%, var(--color-status-warning-base) 50%, var(--color-status-warning-dark) 100%);
+    --gradient-status-success: linear-gradient(135deg, var(--color-status-success-light) 0%, var(--color-status-success-base) 50%, var(--color-status-success-dark) 100%);
+    --gradient-status-error: linear-gradient(135deg, var(--color-status-error-light) 0%, var(--color-status-error-base) 50%, var(--color-status-error-dark) 100%);
+
+    /* Gradients - Ratings (for Badge component) */
+    --gradient-rating-s: linear-gradient(180deg, var(--color-rating-s) 0%, var(--color-rating-s-accent) 100%);
+    --gradient-rating-a: linear-gradient(180deg, var(--color-rating-a) 0%, var(--color-rating-a-accent) 100%);
+    --gradient-rating-b: linear-gradient(180deg, var(--color-rating-b) 0%, var(--color-rating-b-accent) 100%);
+    --gradient-rating-c: linear-gradient(180deg, var(--color-rating-c) 0%, var(--color-rating-c-accent) 100%);
+    --gradient-rating-d: linear-gradient(180deg, var(--color-rating-d) 0%, var(--color-rating-d-accent) 100%);
 }
 
 /* Global Resets */
@@ -225,15 +248,8 @@
 body {
     font-family: 'Georgia', 'Times New Roman', serif;
     /* Watercolor texture background with dark overlay */
-    background-color: #0d0a08;
-    background-image:
-        linear-gradient(135deg, rgba(26, 21, 16, 0.85) 0%, rgba(13, 10, 8, 0.9) 100%),
-        url('/assets/watercolor.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    background-blend-mode: multiply;
-    color: #d4c5a0;
+    background-color: var(--color-parchment-100);
+    color: var(--color-brown-700);
     line-height: 1.6;
     min-height: 100vh;
     padding: 20px;
@@ -266,7 +282,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Content Boxes */
 .content-box {
-    background: linear-gradient(135deg, #e8dcc0 0%, #d4c4a0 50%, #c4b490 100%);
+    background: var(--gradient-parchment-default);
     border: 3px solid #8b6f47;
     border-radius: 4px;
     padding: 20px;
@@ -292,7 +308,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* List Items (for abilities, equipment, etc.) */
 .job-item, .ability-item, .equipment-item {
-    background: linear-gradient(135deg, #e8dcc0 0%, #d4c4a0 100%);
+    background: var(--gradient-parchment-light);
     border-left: 4px solid #8b6f47;
     padding: 15px;
     margin-bottom: 15px;
@@ -303,7 +319,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .job-item:hover, .ability-item:hover, .equipment-item:hover {
     border-left-color: #d4af37;
-    background: linear-gradient(135deg, #f4e4c4 0%, #e8dcc0 100%);
+    background: var(--gradient-parchment-hover);
 }
 
 /* Stat Display */
@@ -330,7 +346,7 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
-    background: linear-gradient(135deg, #e8dcc0 0%, #d4c4a0 100%);
+    background: var(--gradient-parchment-light);
     border: 3px solid #8b6f47;
     border-radius: 4px;
     overflow: hidden;
@@ -344,7 +360,7 @@ th, td {
 }
 
 th {
-    background: linear-gradient(180deg, #8b6f47 0%, #6b5537 100%);
+    background: var(--gradient-brown-header);
     color: #f4e4c4;
     font-weight: bold;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
@@ -356,7 +372,7 @@ tr:hover {
 
 /* Reference Section */
 .reference-section {
-    background: linear-gradient(135deg, #e8dcc0 0%, #d4c4a0 50%, #c4b490 100%);
+    background: var(--gradient-parchment-default);
     border: 3px solid #8b6f47;
     border-radius: 4px;
     padding: 20px;
@@ -396,7 +412,7 @@ tr:hover {
 
 /* Utility Classes */
 .highlight {
-    background: linear-gradient(180deg, #ffd700 0%, #ff8c00 100%);
+    background: var(--gradient-gold-highlight);
     color: #fff;
     padding: 3px 8px;
     border-radius: 3px;

@@ -87,7 +87,6 @@
     padding: 30px 0 50px 0;
     border-bottom: var(--border-thick) solid var(--color-brown-400);
     margin-bottom: 40px;
-    background: linear-gradient(180deg, rgba(139, 111, 71, 0.2) 0%, transparent 100%);
   }
 
   h1 {
@@ -109,7 +108,7 @@
   }
 
   .version-info {
-    background: linear-gradient(135deg, var(--color-parchment-300) 0%, var(--color-parchment-500) 50%, var(--color-parchment-600) 100%);
+    background: var(--gradient-parchment-default);
     border: var(--border-thick) solid var(--color-brown-400);
     border-radius: var(--radius-md);
     padding: 15px;

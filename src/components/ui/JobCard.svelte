@@ -103,7 +103,7 @@
 
 <style>
   .job-card {
-    background: linear-gradient(135deg, var(--color-parchment-300) 0%, var(--color-parchment-500) 50%, var(--color-parchment-600) 100%);
+    background: var(--gradient-parchment-default);
     border: var(--border-thick) solid var(--color-brown-400);
     border-radius: var(--radius-md);
     padding: var(--spacing-md);
@@ -129,7 +129,7 @@
 
   .job-card.exclusive-wotl {
     border-color: var(--color-red-700);
-    background: linear-gradient(135deg, #e8c4c0 0%, #d4a4a0 50%, #c49490 100%);
+    background: var(--gradient-parchment-wotl);
     box-shadow:
       inset 0 0 0 1px var(--color-red-700),
       inset 0 0 0 2px #e8c4c0,

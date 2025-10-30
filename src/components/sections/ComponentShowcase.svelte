@@ -252,7 +252,7 @@
     text-align: center;
     margin-bottom: 40px;
     padding: 30px;
-    background: linear-gradient(135deg, #e8dcc0 0%, #d4c4a0 50%, #c4b490 100%);
+    background: var(--gradient-parchment-default);
     border: 3px solid #8b6f47;
     border-radius: 4px;
     box-shadow:
@@ -267,7 +267,7 @@
   }
 
   .showcase-section {
-    background: linear-gradient(135deg, #e8dcc0 0%, #d4c4a0 50%, #c4b490 100%);
+    background: var(--gradient-parchment-default);
     border: 3px solid #8b6f47;
     border-radius: 4px;
     padding: 30px;

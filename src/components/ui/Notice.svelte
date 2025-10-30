@@ -17,7 +17,7 @@
 
 <style>
   .notice {
-    background: linear-gradient(135deg, var(--color-parchment-300) 0%, var(--color-parchment-500) 50%, var(--color-parchment-600) 100%);
+    background: var(--gradient-parchment-default);
     border: var(--border-thick) solid var(--color-brown-400);
     border-radius: var(--radius-md);
     padding: var(--spacing-lg);
@@ -44,7 +44,7 @@
 
   /* Variants */
   .notice-info {
-    background: linear-gradient(135deg, var(--color-status-info-light) 0%, var(--color-status-info-base) 50%, var(--color-status-info-dark) 100%);
+    background: var(--gradient-status-info);
     border-color: var(--color-status-info-border);
     box-shadow:
       inset 0 0 0 1px var(--color-status-info-border),
@@ -53,7 +53,7 @@
   }
 
   .notice-warning {
-    background: linear-gradient(135deg, var(--color-status-warning-light) 0%, var(--color-status-warning-base) 50%, var(--color-status-warning-dark) 100%);
+    background: var(--gradient-status-warning);
     border-color: var(--color-status-warning-border);
     box-shadow:
       inset 0 0 0 1px var(--color-status-warning-border),
@@ -62,7 +62,7 @@
   }
 
   .notice-success {
-    background: linear-gradient(135deg, var(--color-status-success-light) 0%, var(--color-status-success-base) 50%, var(--color-status-success-dark) 100%);
+    background: var(--gradient-status-success);
     border-color: var(--color-status-success-border);
     box-shadow:
       inset 0 0 0 1px var(--color-status-success-border),
@@ -71,7 +71,7 @@
   }
 
   .notice-error {
-    background: linear-gradient(135deg, var(--color-status-error-light) 0%, var(--color-status-error-base) 50%, var(--color-status-error-dark) 100%);
+    background: var(--gradient-status-error);
     border-color: var(--color-status-error-border);
     box-shadow:
       inset 0 0 0 1px var(--color-status-error-border),

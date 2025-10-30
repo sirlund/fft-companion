@@ -35,13 +35,13 @@
 
   /* Variants */
   .btn-primary {
-    background: linear-gradient(135deg, var(--color-parchment-300) 0%, var(--color-parchment-500) 100%);
+    background: var(--gradient-parchment-light);
     color: var(--color-brown-700);
     border-color: var(--color-brown-400);
   }
 
   .btn-primary:hover {
-    background: linear-gradient(135deg, var(--color-gold-300) 0%, var(--color-parchment-300) 100%);
+    background: var(--gradient-parchment-hover);
     border-color: var(--color-gold-500);
   }
 

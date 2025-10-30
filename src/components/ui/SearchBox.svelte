@@ -14,7 +14,7 @@
   .search-box {
     width: 100%;
     padding: var(--spacing-md) var(--spacing-md);
-    background: linear-gradient(135deg, var(--color-parchment-200) 0%, var(--color-parchment-300) 100%);
+    background: var(--gradient-parchment-light);
     border: var(--border-base) solid var(--color-brown-400);
     border-radius: var(--radius-md);
     font-family: var(--font-serif);

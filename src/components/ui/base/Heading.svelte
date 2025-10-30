@@ -60,7 +60,7 @@
     letter-spacing: 2px;
     border-bottom: var(--border-thick) solid var(--color-brown-400);
     padding: var(--spacing-md);
-    background: linear-gradient(180deg, var(--color-brown-400) 0%, #6b5537 100%);
+    background: var(--gradient-brown-header);
     border-radius: var(--radius-md);
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);

@@ -60,35 +60,35 @@
 
   /* Rating badges - FFT style gradient bars */
   .badge-rating-s {
-    background: linear-gradient(180deg, var(--color-rating-s) 0%, var(--color-rating-s-accent) 100%);
+    background: var(--gradient-rating-s);
     color: #fff;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
     box-shadow: inset 0 -2px 4px rgba(0, 0, 0, 0.2);
   }
 
   .badge-rating-a {
-    background: linear-gradient(180deg, var(--color-rating-a) 0%, var(--color-rating-a-accent) 100%);
+    background: var(--gradient-rating-a);
     color: #fff;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
     box-shadow: inset 0 -2px 4px rgba(0, 0, 0, 0.2);
   }
 
   .badge-rating-b {
-    background: linear-gradient(180deg, var(--color-rating-b) 0%, var(--color-rating-b-accent) 100%);
+    background: var(--gradient-rating-b);
     color: #fff;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
     box-shadow: inset 0 -2px 4px rgba(0, 0, 0, 0.2);
   }
 
   .badge-rating-c {
-    background: linear-gradient(180deg, var(--color-rating-c) 0%, var(--color-rating-c-accent) 100%);
+    background: var(--gradient-rating-c);
     color: #fff;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
     box-shadow: inset 0 -2px 4px rgba(0, 0, 0, 0.2);
   }
 
   .badge-rating-d {
-    background: linear-gradient(180deg, var(--color-rating-d) 0%, var(--color-rating-d-accent) 100%);
+    background: var(--gradient-rating-d);
     color: #fff;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
     box-shadow: inset 0 -2px 4px rgba(0, 0, 0, 0.2);

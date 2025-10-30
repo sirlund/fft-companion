@@ -12,7 +12,7 @@
 
 <style>
   .card {
-    background: linear-gradient(135deg, var(--color-parchment-300) 0%, var(--color-parchment-500) 50%, var(--color-parchment-600) 100%);
+    background: var(--gradient-parchment-default);
     border: var(--border-thick) solid var(--color-brown-400);
     border-radius: var(--radius-md);
     padding: 30px;
