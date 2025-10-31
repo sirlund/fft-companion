@@ -49,13 +49,14 @@
 
   .special-req {
     font-size: var(--font-size-sm);
-    color: var(--color-red-500);
+    color: var(--color-red-700);
     margin-top: 5px;
   }
 
   .gender-lock {
     font-size: var(--font-size-sm);
     margin-top: 5px;
+    color: var(--color-red-700);
   }
 
   .level {

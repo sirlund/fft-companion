@@ -183,7 +183,7 @@
     --gradient-parchment-default: linear-gradient(135deg, var(--color-parchment-200) 0%, var(--color-parchment-300) 50%, var(--color-parchment-400) 100%);
     --gradient-parchment-light: linear-gradient(135deg, var(--color-parchment-100) 0%, var(--color-parchment-200) 100%);
     --gradient-parchment-hover: linear-gradient(135deg, var(--color-gold-300) 0%, var(--color-parchment-300) 100%);
-    --gradient-parchment-wotl: linear-gradient(135deg, #e8c4c0 0%, #d4a4a0 50%, #c49490 100%);
+    --gradient-parchment-wotl: linear-gradient(135deg, var(--color-gold-200) 0%, var(--color-red-200) 50%, var(--color-gold-400) 100%);
 
     /* Gradients - UI Elements */
     --gradient-brown-header: linear-gradient(180deg, var(--color-brown-400) 0%, var(--color-brown-600) 100%);

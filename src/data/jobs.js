@@ -365,7 +365,7 @@ export const jobTiers = {
         requirements: [
           { label: 'Summoner', level: 'Lv.5' },
           { label: 'Orator', level: 'Lv.5' },
-          { label: '♂️ Male Only', genderLock: true, color: '#f39c12' }
+          { label: '♂️ Male Only', genderLock: true, color: 'var(--color-green-900)' }
         ],
         stats: {
           hp: { value: 'C', rating: 'c' },
@@ -386,7 +386,7 @@ export const jobTiers = {
         requirements: [
           { label: 'Geomancer', level: 'Lv.5' },
           { label: 'Dragoon', level: 'Lv.5' },
-          { label: '♀️ Female Only', genderLock: true, color: '#e91e63' }
+          { label: '♀️ Female Only', genderLock: true, color: 'var(--color-yellow-900)' }
         ],
         stats: {
           hp: { value: 'C', rating: 'c' },

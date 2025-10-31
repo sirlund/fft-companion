@@ -2,6 +2,7 @@
   let {
     level = 2, // 1, 2, 3, 4
     variant = 'default', // default, tier, section
+    class: className = '', // Accept class prop
     children
   } = $props();
 
@@ -9,7 +10,7 @@
   const shouldAddNoise = variant === 'tier';
 </script>
 
-<svelte:element this={Tag} class="heading heading-{variant}" class:addNoise={shouldAddNoise}>
+<svelte:element this={Tag} class="heading heading-{variant} {className}" class:addNoise={shouldAddNoise}>
   {@render children()}
 </svelte:element>
 

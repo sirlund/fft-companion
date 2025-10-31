@@ -30,11 +30,11 @@
 
 <div
   class="job-card addNoise {isExclusiveWotl ? 'exclusive-wotl' : ''}"
-  style={isSpecialCharacter ? 'border-color: var(--color-gold); box-shadow: inset 0 0 0 1px var(--color-gold), inset 0 0 0 2px var(--color-gold-light), 0 4px 8px rgba(212, 175, 55, 0.5);' : ''}
+  style={isSpecialCharacter ? 'border-color: var(--color-gold-600); box-shadow: inset 0 0 0 1px var(--color-gold-400), inset 0 0 0 2px var(--color-gold-100), 0 4px 8px rgba(212, 175, 55, 0.5);' : ''}
 >
   <div class="job-header">
     <div class="job-title-section">
-      <Heading level={3}>{name}</Heading>
+      <Heading level={3} class={isSpecialCharacter ? 'special' : ''}>{name}</Heading>
       {#if descriptionTags.length > 0}
         <div class="description-tags">
           {#each descriptionTags as tag}
@@ -128,7 +128,7 @@
   }
 
   .job-card.exclusive-wotl {
-    border-color: var(--color-red-700);
+    border-color: var(--color-red-500) !important;
     background: var(--gradient-parchment-wotl);
     box-shadow:
       inset 0 0 0 1px var(--color-red-700),
@@ -144,7 +144,7 @@
     background: var(--color-red-500);
     color: #fff;
     padding: var(--spacing-xs) var(--spacing-md);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-sm);
     font-size: var(--font-size-xs);
     font-weight: var(--font-weight-bold);
     letter-spacing: 1px;
@@ -239,5 +239,10 @@
     .job-card {
       /* width: 100%; */
     }
+  }
+
+  :global(.heading.special) {
+    color: var(--color-gold-700);
+    /* add any other special styles */
   }
 </style>
