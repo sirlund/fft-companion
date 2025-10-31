@@ -17,10 +17,11 @@ Built with **Svelte 5** and **Vite** for a fast, modern user experience.
 
 ## Tech Stack
 
-- **Svelte 5** - Reactive UI framework with runes
+- **Svelte 5** - Reactive UI framework with runes ($props, $derived)
 - **Vite 7** - Fast development server with HMR
 - **Modern JavaScript** - ES modules and modern syntax
-- **CSS** - Custom styling inspired by FFT aesthetic
+- **CSS Design System** - Custom properties, design tokens, modular architecture
+- **SVG Filters** - Procedural noise textures for authentic paper/parchment feel
 
 ## Quick Start
 
@@ -74,28 +75,44 @@ fft-companion/
 ├── public/                    # Static assets
 │   └── assets/
 │       ├── jobs/              # Job icon images (34 webp)
+│       ├── characters/        # Character portraits
+│       ├── noise.svg          # SVG noise texture filter
+│       ├── watercolor.jpg     # Background texture
 │       └── ref/               # Design reference images
 ├── scripts/                   # Build & migration scripts
 │   ├── convert-to-svelte.js
-│   └── extract-sections.js
+│   ├── extract-sections.js
+│   ├── download-job-portraits.js
+│   └── download-character-portraits.js
 ├── src/
 │   ├── assets/
-│   │   └── styles/            # CSS styles
-│   │       └── styles.css
+│   │   ├── fonts/             # Custom font files (Altima, Georgia)
+│   │   └── styles/            # Modular CSS architecture
+│   │       ├── fonts.css      # Font declarations
+│   │       ├── variables.css  # Design tokens & CSS custom properties
+│   │       └── styles.css     # General styles & imports
 │   ├── components/
-│   │   ├── ui/                # Reusable UI components
-│   │   │   ├── MenuCard.svelte
+│   │   ├── ui/
+│   │   │   ├── base/          # Base UI primitives
+│   │   │   │   ├── Avatar.svelte
+│   │   │   │   ├── Badge.svelte
+│   │   │   │   ├── Button.svelte
+│   │   │   │   ├── Heading.svelte
+│   │   │   │   └── SectionDivider.svelte
 │   │   │   ├── BackButton.svelte
-│   │   │   └── SearchBox.svelte
+│   │   │   ├── JobCard.svelte
+│   │   │   ├── MenuCard.svelte
+│   │   │   ├── Notice.svelte
+│   │   │   ├── RequirementList.svelte
+│   │   │   ├── SearchBox.svelte
+│   │   │   └── StatDisplay.svelte
 │   │   └── sections/          # Section components
+│   │       ├── ComponentShowcase.svelte
 │   │       ├── JobsSection.svelte
-│   │       ├── AbilitiesSection.svelte
-│   │       ├── EquipmentSection.svelte
-│   │       ├── CharactersSection.svelte
-│   │       ├── MonstersSection.svelte
-│   │       ├── BossesSection.svelte
-│   │       ├── MapsSection.svelte
-│   │       └── ZodiacSection.svelte
+│   │       ├── MainMenuSection.svelte
+│   │       └── [other sections...]
+│   ├── data/                  # Game data
+│   │   └── jobs.js            # Job definitions & stats
 │   ├── App.svelte             # Root component
 │   └── main.js                # Application entry point
 ├── index.html                 # HTML template
@@ -115,18 +132,73 @@ fft-companion/
 
 ### Key Components
 
-- **MenuCard** - Reusable card component for main menu
-- **BackButton** - Navigation back button
-- **SearchBox** - Search input with two-way binding
-- **Section Components** - Each game feature (Jobs, Abilities, etc.) as a separate component
+#### Base Components
+- **Avatar** - Character/job portraits with size variants
+- **Badge** - Labels for requirements, ratings (S/A/B/C/D)
+- **Button** - Primary/ghost variants with hover states
+- **Heading** - Semantic headings (h1-h4) with tier/section variants
+- **SectionDivider** - Horizontal dividers with centered text
 
-### Styling
+#### Composite Components
+- **JobCard** - Displays job info with stats, requirements, abilities, and bonuses
+- **MenuCard** - Reusable card component for main menu navigation
+- **Notice** - Alert/info boxes (info, warning, success, error variants)
+- **RequirementList** - Displays job prerequisites with badges
+- **SearchBox** - Search input with two-way binding ($bindable)
+- **StatDisplay** - Compact stat display with rating badges
 
-The app uses a custom FFT-inspired theme with:
-- Medieval/fantasy color palette (golds, browns, dark backgrounds)
+### Design System
+
+The app uses a comprehensive design token system:
+
+#### CSS Architecture
+- **fonts.css** - Font-face declarations (Altima, Georgia variants)
+- **variables.css** - Single source of truth for all design tokens
+- **styles.css** - Global styles with modular imports
+
+#### Design Tokens (in variables.css)
+- **Spacing** - 8pt grid system (xs/sm/md/lg/xl/xxl)
+- **Colors** - 9-level palettes (100-900) for parchment, brown, gold, red, green, yellow
+- **Typography** - Font families, sizes, weights, line heights
+- **Sizing** - Consistent size scale (xs/sm/md/lg/xl)
+- **Border Radius** - 4 levels of rounding (xs/sm/md/lg)
+- **Gradients** - Reusable gradient definitions for backgrounds
+- **Status Colors** - Semantic colors for notices/alerts
+
+#### Visual Effects
+- **SVG Noise Texture** - Procedural feTurbulence filter for paper grain
+  - Customizable via `public/assets/noise.svg`
+  - Parameters: baseFrequency, numOctaves, blur, contrast
+  - Applied to job cards, notices, and tier headings
+- **Watercolor Background** - Textured background with color-burn blend mode
+- **Gradient Overlays** - Layer gradients with noise for depth
+
+#### Theme Aesthetic
+- Medieval/fantasy color palette (golds, browns, parchment tones)
+- Paper/parchment texture effects
 - Responsive grid layouts
 - Smooth transitions and hover effects
-- Mobile-friendly design
+- Mobile-friendly design (8pt grid system)
+
+### Customizing the Noise Texture
+
+The SVG noise texture can be customized by editing `public/assets/noise.svg`:
+
+```xml
+<feTurbulence
+  type='fractalNoise'     <!-- or 'turbulence' for sharper noise -->
+  baseFrequency='0.5'     <!-- 0.3-2.0: grain size (lower=coarser) -->
+  numOctaves='5'          <!-- 1-8: detail complexity -->
+  seed='1'                <!-- 0-999: random variation -->
+  stitchTiles='stitch'/>  <!-- makes texture seamlessly tileable -->
+```
+
+Additional optional filters (uncomment in the SVG):
+- **feGaussianBlur** - Smooths/softens the texture
+- **feColorMatrix** - Adjusts contrast and saturation
+- **feComponentTransfer** - Fine-tune RGB channels
+
+See comments in `noise.svg` for detailed customization examples.
 
 ## Troubleshooting
 
