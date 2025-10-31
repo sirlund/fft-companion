@@ -4,7 +4,7 @@
   let { title, description, buttonText, onclick } = $props();
 </script>
 
-<div class="card" {onclick}>
+<div class="card addNoise" {onclick}>
   <h2>{title}</h2>
   <p>{description}</p>
   <Button size="md">{buttonText}</Button>

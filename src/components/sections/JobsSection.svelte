@@ -99,7 +99,13 @@
   <Heading level={1}>Jobs</Heading>
 </div>
 
-<SearchBox placeholder="Search jobs..." bind:value={searchValue} {onkeyup} />
+<div style="margin: 20px 0;">
+  <SearchBox
+    placeholder="Search jobs..."
+    bind:value={searchValue}
+    on:keyup={onkeyup}
+  />
+</div>
 
 <!-- STATS RATING LEGEND -->
 <Notice variant="info" title="📊 Stats Legend">

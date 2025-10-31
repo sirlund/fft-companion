@@ -1,0 +1,108 @@
+<svg
+  xmlns='http://www.w3.org/2000/svg'
+  xmlns:xlink='http://www.w3.org/1999/xlink'
+  width='300' height='300'>
+
+    <!--
+      SVG NOISE TEXTURE - CUSTOMIZATION GUIDE
+
+      This filter creates a procedural noise texture using SVG filters.
+      Adjust the parameters below to customize the noise effect.
+
+      === feTurbulence Parameters ===
+
+      type: Type of noise algorithm
+        - "fractalNoise" = Smooth, organic noise (like clouds or paper texture)
+        - "turbulence" = Sharper, more chaotic noise (like fire or smoke)
+
+      baseFrequency: Controls the grain size/detail level
+        - Lower values (0.3-0.5) = Coarser, larger grain
+        - Medium values (0.6-0.8) = Medium grain (current: 0.75)
+        - Higher values (0.9-2.0) = Finer, smaller grain
+        - Can use two values for X,Y: baseFrequency="0.75 0.5"
+
+      numOctaves: Number of noise layers (adds detail/complexity)
+        - 1 = Simple, smooth noise
+        - 2-3 = Moderate detail (default if not specified)
+        - 4-8 = Very detailed, complex texture (slower rendering)
+
+      seed: Random seed for the noise pattern
+        - Change this number (0-999) to get different random patterns
+        - Same seed = same pattern (useful for consistency)
+
+      stitchTiles: Makes the texture seamlessly tileable
+        - "stitch" = Texture repeats seamlessly (recommended)
+        - "noStitch" = May show visible seams when tiled
+
+      === feGaussianBlur (Optional) ===
+      Smooths/softens the noise texture
+        - stdDeviation: Blur amount (0.5-3.0)
+        - Higher = softer, less visible grain
+        - Lower = sharper, more visible grain
+
+      === feColorMatrix (Optional) ===
+      Adjusts contrast and brightness of the noise
+        - type="saturate" values="0" = Grayscale noise
+        - Can use matrix values to adjust contrast/brightness
+
+      === Opacity ===
+      Controls the overall visibility of the noise
+        - 0.4-0.6 = Subtle texture
+        - 0.7-0.8 = Moderate texture (current: 0.80)
+        - 0.9-1.0 = Strong, very visible texture
+
+      EXAMPLES:
+
+      Paper texture:
+        baseFrequency='0.9' numOctaves='4' + feGaussianBlur stdDeviation='0.5'
+
+      Canvas texture:
+        baseFrequency='0.65' numOctaves='2' + no blur
+
+      Organic/cloudy:
+        type='fractalNoise' baseFrequency='0.4' numOctaves='6'
+
+      Fine grain film:
+        baseFrequency='1.5' numOctaves='2' opacity='0.4'
+    -->
+
+    <filter id='n' x='0' y='0'>
+      <!-- Main noise generation -->
+      <feTurbulence
+        type='fractalNoise'
+        baseFrequency='0.5'
+        numOctaves='5'
+        seed='1'
+        stitchTiles='stitch'
+        result='turbulence'/>
+
+      <!-- Optional: Uncomment to add blur/smoothing -->
+      
+      <feGaussianBlur
+        in='turbulence'
+        stdDeviation='0.5'
+        result='blur'/>
+     
+
+      <!-- Optional: Uncomment to adjust contrast/brightness -->
+      
+      <feColorMatrix
+        in='turbulence'
+        type='saturate'
+        values='0'
+        result='desaturate'/>
+     
+
+      <!-- Optional: Uncomment for contrast adjustment -->
+      
+      <feComponentTransfer in='turbulence' result='contrast'>
+        <feFuncR type='linear' slope='1.5' intercept='-0.25'/>
+        <feFuncG type='linear' slope='1.5' intercept='-0.25'/>
+        <feFuncB type='linear' slope='1.5' intercept='-0.25'/>
+      </feComponentTransfer>
+     
+    </filter>
+
+    <rect width='300' height='300' fill='#fff'/>
+    <rect width='300' height='300' filter="url(#n)" opacity='1'/>
+</svg>

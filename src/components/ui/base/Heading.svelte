@@ -6,9 +6,10 @@
   } = $props();
 
   const Tag = `h${level}`;
+  const shouldAddNoise = variant === 'tier';
 </script>
 
-<svelte:element this={Tag} class="heading heading-{variant}">
+<svelte:element this={Tag} class="heading heading-{variant}" class:addNoise={shouldAddNoise}>
   {@render children()}
 </svelte:element>
 
@@ -64,6 +65,7 @@
     border-radius: var(--radius-md);
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    position: relative;
   }
 
   /* Section variant */

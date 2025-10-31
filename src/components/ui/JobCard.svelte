@@ -29,7 +29,7 @@
 </script>
 
 <div
-  class="job-card {isExclusiveWotl ? 'exclusive-wotl' : ''}"
+  class="job-card addNoise {isExclusiveWotl ? 'exclusive-wotl' : ''}"
   style={isSpecialCharacter ? 'border-color: var(--color-gold); box-shadow: inset 0 0 0 1px var(--color-gold), inset 0 0 0 2px var(--color-gold-light), 0 4px 8px rgba(212, 175, 55, 0.5);' : ''}
 >
   <div class="job-header">
@@ -155,6 +155,13 @@
     justify-content: space-between;
     align-items: center;
     padding-bottom: var(--spacing-sm);
+    position: relative;
+    z-index: 1;
+  }
+  .card-section {
+    margin: var(--spacing-md) 0 var(--spacing-sm);
+    position: relative;
+    z-index: 1;
   }
 
   .job-title-section {
@@ -176,9 +183,7 @@
     font-weight: var(--font-weight-bold);
   }
 
-  .card-section {
-    margin: var(--spacing-md) 0 var(--spacing-sm);
-  }
+  
 
   .stats-container {
     display: flex;

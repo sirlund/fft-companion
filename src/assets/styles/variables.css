@@ -1,0 +1,214 @@
+/* Design Tokens (8pt grid system)
+ *
+ * Single Source of Truth: All design tokens are defined here as CSS custom properties.
+ * Components reference these tokens using var(--token-name).
+ *
+ * Color Palettes:
+ * All color palettes use a consistent 100-900 scale (9 levels):
+ *   100 = lightest
+ *   500 = base/medium
+ *   900 = darkest
+ *
+ * Available palettes (all 9 levels):
+ * - parchment-100 through parchment-900 (beige/cream tones)
+ * - brown-100 through brown-900 (main UI colors)
+ * - gold-100 through gold-900 (accent/highlight colors)
+ * - red-100 through red-900 (error/danger states)
+ * - green-100 through green-900 (success states)
+ * - yellow-100 through yellow-900 (warning states)
+ *
+ * Workflow to update a token:
+ * 1. Find the token in this :root section
+ * 2. Update the value
+ * 3. Save - all components using this token will update automatically
+ *
+ * Example: To adjust the medium brown color throughout the app:
+ *   --color-brown-500: #6d5737; → --color-brown-500: #7d6747;
+ */
+:root {
+    /* Spacing */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    --spacing-xxl: 40px;
+
+    /* Colors - Parchment Palette (9 levels) */
+    --color-parchment-100: #fdf8ec;
+    --color-parchment-100-alpha: rgba(253, 248, 236, 0.5);
+    --color-parchment-200: #f5ecd7;
+    --color-parchment-200-alpha: rgba(245, 236, 215, 0.5);
+    --color-parchment-300: #e8dcc0;
+    --color-parchment-300-alpha: rgba(232, 220, 192, 0.5);
+    --color-parchment-400: #dccfad;
+    --color-parchment-400-alpha: rgba(220, 207, 173, 0.5);
+    --color-parchment-500: #d4c4a0;
+    --color-parchment-500-alpha: rgba(212, 196, 160, 0.5);
+    --color-parchment-600: #c4b490;
+    --color-parchment-600-alpha: rgba(196, 180, 144, 0.5);
+    --color-parchment-700: #b4a480;
+    --color-parchment-700-alpha: rgba(180, 164, 128, 0.5);
+    --color-parchment-800: #a49470;
+    --color-parchment-800-alpha: rgba(164, 148, 112, 0.5);
+    --color-parchment-900: #948460;
+    --color-parchment-900-alpha: rgba(148, 132, 96, 0.5);
+
+    /* Colors - Brown Palette (9 levels) */
+    --color-brown-100: #c9b497;
+    --color-brown-200: #b59f7f;
+    --color-brown-300: #a08968;
+    --color-brown-400: #8b6f47;
+    --color-brown-500: #6d5737;
+    --color-brown-600: #5a4530;
+    --color-brown-700: #4a3820;
+    --color-brown-800: #3a2818;
+    --color-brown-900: #2f2416;
+
+    /* Colors - Gold Palette (9 levels) */
+    --color-gold-100: #fef9ed;
+    --color-gold-200: #f8eed4;
+    --color-gold-300: #f4e4c4;
+    --color-gold-400: #e8d4a0;
+    --color-gold-500: #d4af37;
+    --color-gold-600: #c19d2f;
+    --color-gold-700: #a08227;
+    --color-gold-800: #80681f;
+    --color-gold-900: #665317;
+
+    /* Colors - Red Palette (9 levels) */
+    --color-red-100: #fdecea;
+    --color-red-200: #f8d7d5;
+    --color-red-300: #f0b3ae;
+    --color-red-400: #e97a72;
+    --color-red-500: #e74c3c;
+    --color-red-600: #d43f2f;
+    --color-red-700: #b83228;
+    --color-red-800: #9c2b22;
+    --color-red-900: #81231c;
+
+    /* Colors - Green Palette (9 levels) */
+    --color-green-100: #e8f5e9;
+    --color-green-200: #c8e6c9;
+    --color-green-300: #a5d6a7;
+    --color-green-400: #81c784;
+    --color-green-500: #66bb6a;
+    --color-green-600: #4caf50;
+    --color-green-700: #43a047;
+    --color-green-800: #388e3c;
+    --color-green-900: #2e7d32;
+
+    /* Colors - Yellow Palette (9 levels) */
+    --color-yellow-100: #fffde7;
+    --color-yellow-200: #fff9c4;
+    --color-yellow-300: #fff59d;
+    --color-yellow-400: #fff176;
+    --color-yellow-500: #ffee58;
+    --color-yellow-600: #ffeb3b;
+    --color-yellow-700: #fdd835;
+    --color-yellow-800: #f9a825;
+    --color-yellow-900: #f57f17;
+
+    /* Colors - Ratings */
+    --color-rating-s: #ffd700;
+    --color-rating-s-accent: #ff8c00;
+    --color-rating-a: #4fc3f7;
+    --color-rating-a-accent: #0288d1;
+    --color-rating-b: #81c784;
+    --color-rating-b-accent: #388e3c;
+    --color-rating-c: #aaa;
+    --color-rating-c-accent: #666;
+    --color-rating-d: #999;
+    --color-rating-d-accent: #555;
+
+    /* Colors - Status (for notices, alerts, etc) */
+    /* Info - uses parchment tones */
+    --color-status-info-light: var(--color-parchment-200);
+    --color-status-info-base: var(--color-parchment-300);
+    --color-status-info-dark: var(--color-parchment-400);
+    --color-status-info-border: var(--color-brown-400);
+
+    /* Warning - yellow tones */
+    --color-status-warning-light: var(--color-yellow-100);
+    --color-status-warning-base: var(--color-yellow-200);
+    --color-status-warning-dark: var(--color-yellow-300);
+    --color-status-warning-border: var(--color-yellow-700);
+
+    /* Success - green tones */
+    --color-status-success-light: var(--color-green-100);
+    --color-status-success-base: var(--color-green-200);
+    --color-status-success-dark: var(--color-green-300);
+    --color-status-success-border: var(--color-green-600);
+
+    /* Error - red tones */
+    --color-status-error-light: var(--color-red-100);
+    --color-status-error-base: var(--color-red-200);
+    --color-status-error-dark: var(--color-red-300);
+    --color-status-error-border: var(--color-red-600);
+
+    /* Typography */
+    --font-serif: 'Georgia', 'Times New Roman', serif;
+    --font-sans: system-ui, -apple-system, sans-serif;
+    --font-size-xs: 0.7em;
+    --font-size-sm: 0.8em;
+    --font-size-base: 1em;
+    --font-size-md: 1.1em;
+    --font-size-lg: 1.5em;
+    --font-size-xl: 2em;
+    --font-weight-normal: 400;
+    --font-weight-bold: 700;
+    --line-height-tight: 1.25;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.6;
+
+    /* Size */
+    --size-xs: 24px;
+    --size-sm: 32px;
+    --size-md: 48px;
+    --size-lg: 64px;
+    --size-xl: 96px;
+
+    /* Border Radius */
+    --radius-xs: 4px;
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+
+    /* Border Width */
+    --border-thin: 1px;
+    --border-base: 2px;
+    --border-thick: 3px;
+
+    /* Gradients - Parchment */
+    --gradient-parchment-default: linear-gradient(135deg, var(--color-parchment-200) 0%, var(--color-parchment-300) 50%, var(--color-parchment-400) 100%);
+    --gradient-parchment-light: linear-gradient(135deg, var(--color-parchment-100) 0%, var(--color-parchment-200) 100%);
+    --gradient-parchment-hover: linear-gradient(135deg, var(--color-gold-300) 0%, var(--color-parchment-300) 100%);
+    --gradient-parchment-wotl: linear-gradient(135deg, #e8c4c0 0%, #d4a4a0 50%, #c49490 100%);
+
+    /* Gradients - UI Elements */
+    --gradient-brown-header: linear-gradient(180deg, var(--color-brown-400) 0%, var(--color-brown-600) 100%);
+    --gradient-gold-highlight: linear-gradient(180deg, var(--color-gold-500) 0%, var(--color-gold-700) 100%);
+
+    /* Gradients - Status (3-stop for notices/alerts) */
+    --gradient-status-info: linear-gradient(135deg, var(--color-status-info-light) 0%, var(--color-status-info-base) 50%, var(--color-status-info-dark) 100%);
+    --gradient-status-warning: linear-gradient(135deg, var(--color-status-warning-light) 0%, var(--color-status-warning-base) 50%, var(--color-status-warning-dark) 100%);
+    --gradient-status-success: linear-gradient(135deg, var(--color-status-success-light) 0%, var(--color-status-success-base) 50%, var(--color-status-success-dark) 100%);
+    --gradient-status-error: linear-gradient(135deg, var(--color-status-error-light) 0%, var(--color-status-error-base) 50%, var(--color-status-error-dark) 100%);
+
+    /* Gradients - Ratings (for Badge component) */
+    --gradient-rating-s: linear-gradient(180deg, var(--color-rating-s) 0%, var(--color-rating-s-accent) 100%);
+    --gradient-rating-a: linear-gradient(180deg, var(--color-rating-a) 0%, var(--color-rating-a-accent) 100%);
+    --gradient-rating-b: linear-gradient(180deg, var(--color-rating-b) 0%, var(--color-rating-b-accent) 100%);
+    --gradient-rating-c: linear-gradient(180deg, var(--color-rating-c) 0%, var(--color-rating-c-accent) 100%);
+    --gradient-rating-d: linear-gradient(180deg, var(--color-rating-d) 0%, var(--color-rating-d-accent) 100%);
+
+    /* Site constraints */
+    --site-max-width: 1200px;
+    --site-min-width: 320px;
+    --container-padding: 32px;
+    --container-margin: 32px;
+    --container-padding-mobile: 16px;
+    --container-margin-mobile: 16px;
+
+    --noise-texture: url(/assets/noise.svg);
+}

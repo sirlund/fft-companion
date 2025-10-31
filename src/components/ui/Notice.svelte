@@ -6,7 +6,7 @@
   } = $props();
 </script>
 
-<div class="notice notice-{variant}">
+<div class="notice notice-{variant} addNoise">
   {#if title}
     <h3 class="notice-title">{title}</h3>
   {/if}

@@ -64,7 +64,7 @@
 <header>
   <h1>FFT COMPANION</h1>
   <div class="subtitle">FFT Compendium</div>
-  <div class="version-info">
+  <div class="version-info addNoise">
     <h3>⚔️ Version: War of the Lions (iOS/iPadOS)</h3>
     <p><strong>Important:</strong> This guide is designed specifically for the mobile version of FFT: War of the Lions (iOS/iPadOS), which includes performance improvements, 360° camera, and access to exclusive multiplayer items through Trapper's Den. Not compatible with Ivalice Chronicles (2025 remaster).</p>
   </div>
